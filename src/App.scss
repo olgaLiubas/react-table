@@ -1,0 +1,41 @@
+.table {
+  background-color: aquamarine;
+  min-width: 900px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.id {
+  min-width: 80px;
+  // width: 5vw;
+  max-width: 100px;
+}
+
+.iso3,
+.phone_code,
+.currency {
+  min-width: 140px;
+  max-width: 200px;
+}
+
+.name,
+.capital {
+  min-width: 160px;
+  max-width: 200px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
