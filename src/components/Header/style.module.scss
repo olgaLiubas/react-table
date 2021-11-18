@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.headerCheckbox {
+  background-color: blue;
+  font-size: 30px;
+  width: 50px;
+}
+
+.headerCell {
+  display: flex;
+}
+
+.separator {
+  margin: 2px;
+}
+
+.cellName {
+  font-size: 16px;
+}
+
+.cellButtons {
+  display: flex;
+}
+
+.id {
+  min-width: 80px;
+  // width: 50vw;
+  max-width: 100px;
+}
+
+.iso3,
+.phone_code,
+.currency {
+  min-width: 140px;
+  max-width: 200px;
+}
+
+.name,
+.capital {
+  min-width: 160px;
+  max-width: 200px;
+}

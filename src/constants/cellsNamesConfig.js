@@ -1,4 +1,4 @@
-export const cellsNamesConfig = [
+const cellsNamesConfig = [
   {
     id: "id",
     nameOfHeaderColumn: "ID",
@@ -30,3 +30,5 @@ export const cellsNamesConfig = [
     nameOfClass: "iso3",
   },
 ];
+
+export default cellsNamesConfig;

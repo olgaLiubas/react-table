@@ -1,24 +1,30 @@
-import "./App.scss";
-import Header from "./components/header/Header";
-import Row from "./components/Row";
-import countries from "./database/countries";
-import { cellsNamesConfig } from "./database/cellsNamesConfig";
+import React from "react";
+import PropTypes from "prop-types";
 
-function App() {
-  return (
-    <div className="table">
-      <Header cellsNamesConfig={cellsNamesConfig} />
-      {countries.map((country) => {
-        return (
-          <Row
-            key={country.id}
-            country={country}
-            cellsNamesConfig={cellsNamesConfig}
-          />
-        );
-      })}
-    </div>
-  );
-}
+import Row from "components/Row/";
+import Header from "components/Header";
+import countries from "constants/countries";
+import cellsNamesConfig from "constants/cellsNamesConfig";
+
+import styles from "App.module.scss";
+
+const App = () => (
+  <div className={styles.table}>
+    <Header cellsNamesConfig={cellsNamesConfig} />
+
+    {countries.map((country) => (
+      <Row
+        key={country.id}
+        country={country}
+        cellsNamesConfig={cellsNamesConfig}
+      />
+    ))}
+  </div>
+);
+
+App.propTypes = {
+  countries: PropTypes.array,
+  cellsNamesConfig: PropTypes.array,
+};
 
 export default App;
