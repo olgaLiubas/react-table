@@ -1,7 +1,10 @@
-import PropTypes from "prop-types";
 import cn from "classnames";
+import PropTypes from "prop-types";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+// import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
-import styles from "components/Header/style.module.scss";
+import styles from "components/Header/HeaderCell/style.module.scss";
 
 const HeaderCell = ({ name, extraClass }) => {
   return (
@@ -9,7 +12,10 @@ const HeaderCell = ({ name, extraClass }) => {
       <p className={styles.separator}>|</p>
       <div className={cn(styles.headerCell, styles[extraClass])}>
         <p className={styles.cellName}>{name}</p>
-        <div className={styles.cellButtons}></div>
+        <div className={styles.cellButtons}>
+          <ArrowUpwardIcon />
+          <MoreVertIcon />
+        </div>
       </div>
     </>
   );

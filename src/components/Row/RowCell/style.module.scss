@@ -1,0 +1,26 @@
+.rowCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 7px;
+}
+
+.id {
+  min-width: 80px;
+  width: 10vw;
+  max-width: 100px;
+}
+
+.iso3,
+.currency {
+  min-width: 140px;
+  width: 14vw;
+  max-width: 200px;
+}
+
+.name,
+.capital,
+.phone_code {
+  min-width: 160px;
+  width: 17vw;
+  max-width: 200px;
+}
