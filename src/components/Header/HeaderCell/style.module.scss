@@ -11,17 +11,17 @@
   max-width: 100px;
 }
 
-.iso3,
+.iso,
 .currency {
-  min-width: 140px;
+  min-width: 130px;
   width: 14vw;
   max-width: 200px;
 }
 
 .name,
 .capital,
-.phone_code {
-  min-width: 160px;
+.phoneCode {
+  min-width: 150px;
   width: 17vw;
   max-width: 200px;
 }
@@ -43,20 +43,21 @@
   align-items: center;
   margin: 0px 5px;
   height: 25px;
+  position: relative;
 }
 
 .cellButtons > svg {
-  opacity: 0;
-  margin: 0px 5px;
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
-}
-
-.headerCell:hover svg {
   opacity: 1;
   margin: 0px 5px;
   height: 25px;
   width: 25px;
   border-radius: 50%;
 }
+
+// .headerCell:hover svg {
+//   opacity: 1;
+//   margin: 0px 5px;
+//   height: 25px;
+//   width: 25px;
+//   border-radius: 50%;
+// }

@@ -1,9 +1,8 @@
-import React from "react";
 import PropTypes from "prop-types";
 
 import HeaderCell from "components/Header/HeaderCell";
 
-import styles from "components/Header/style.module.scss";
+import styles from "./style.module.scss";
 
 const Header = ({ cellsNamesConfig }) => (
   <header className={styles.header}>
@@ -17,7 +16,8 @@ const Header = ({ cellsNamesConfig }) => (
       <HeaderCell
         key={cell.id}
         name={cell.nameOfHeaderColumn}
-        extraClass={cell.nameOfClass}
+        field={cell.fieldInCountries}
+        extraClass={cell.id}
       />
     ))}
   </header>

@@ -1,12 +1,10 @@
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-import styles from "components/Row/RowCell/style.module.scss";
+import styles from "./style.module.scss";
 
-const RowCell = ({ extraClass, country }) => (
-  <div className={cn(styles.rowCell, styles[extraClass])}>
-    {country[extraClass]}
-  </div>
+const RowCell = ({ extraClass, field, country }) => (
+  <div className={cn(styles.rowCell, styles[extraClass])}>{country[field]}</div>
 );
 
 RowCell.propTypes = {

@@ -1,33 +1,33 @@
 const cellsNamesConfig = [
   {
+    fieldInCountries: "id",
     id: "id",
     nameOfHeaderColumn: "ID",
-    nameOfClass: "id",
   },
   {
+    fieldInCountries: "name",
     id: "name",
     nameOfHeaderColumn: "Name",
-    nameOfClass: "name",
   },
   {
+    fieldInCountries: "capital",
     id: "capital",
     nameOfHeaderColumn: "Capital",
-    nameOfClass: "capital",
   },
   {
+    fieldInCountries: "phone_code",
     id: "phoneCode",
     nameOfHeaderColumn: "Phone Code",
-    nameOfClass: "phone_code",
   },
   {
+    fieldInCountries: "currency",
     id: "currency",
     nameOfHeaderColumn: "Currency",
-    nameOfClass: "currency",
   },
   {
+    fieldInCountries: "iso3",
     id: "iso",
     nameOfHeaderColumn: "ISO",
-    nameOfClass: "iso3",
   },
 ];
 
