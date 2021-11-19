@@ -17,7 +17,7 @@ const HeaderCell = ({ text, field, extraClass }) => {
         <div className={styles.cellButtons}>
           <ArrowUpwardIcon />
           <MoreVertIcon />
-          <Dropdown field={field} showMenu />
+          <Dropdown field={field} showMenu={false} />
         </div>
       </div>
     </>

@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 
+import Filter from "components/Header/Filter";
+import Modal from "components/Header/Modal";
 import HeaderCell from "components/Header/HeaderCell";
 
 import styles from "./style.module.scss";
@@ -20,6 +22,9 @@ const Header = ({ cellsNamesConfig }) => (
         extraClass={styles[cell.id]}
       />
     ))}
+
+    <Filter showFilter={false} />
+    <Modal showModal={false} />
   </header>
 );
 
