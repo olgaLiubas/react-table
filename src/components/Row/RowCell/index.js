@@ -3,13 +3,13 @@ import cn from "classnames";
 
 import styles from "./style.module.scss";
 
-const RowCell = ({ extraClass, field, country }) => (
-  <div className={cn(styles.rowCell, styles[extraClass])}>{country[field]}</div>
+const RowCell = ({ extraClass, text }) => (
+  <div className={cn(styles.rowCell, extraClass)}>{text}</div>
 );
 
 RowCell.propTypes = {
-  country: PropTypes.object,
-  nameOfField: PropTypes.string,
+  extraClass: PropTypes.string,
+  text: PropTypes.string,
 };
 
 export default RowCell;

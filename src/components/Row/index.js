@@ -10,9 +10,8 @@ const Row = ({ country, cellsNamesConfig }) => (
     {cellsNamesConfig.map((cell) => (
       <RowCell
         key={cell.id}
-        extraClass={cell.id}
-        field={cell.fieldInCountries}
-        country={country}
+        extraClass={styles[cell.id]}
+        text={country[cell.fieldInCountries]}
       />
     ))}
   </div>

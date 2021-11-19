@@ -8,16 +8,16 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 import styles from "./style.module.scss";
 
-const HeaderCell = ({ name, field, extraClass }) => {
+const HeaderCell = ({ text, field, extraClass }) => {
   return (
     <>
       <p className={styles.separator}>|</p>
-      <div className={cn(styles.headerCell, styles[extraClass])}>
-        <p className={styles.cellName}>{name}</p>
+      <div className={cn(styles.headerCell, extraClass)}>
+        <p className={styles.cellName}>{text}</p>
         <div className={styles.cellButtons}>
           <ArrowUpwardIcon />
           <MoreVertIcon />
-          <Dropdown field={field} showMenu={true} />
+          <Dropdown field={field} showMenu />
         </div>
       </div>
     </>
@@ -25,7 +25,7 @@ const HeaderCell = ({ name, field, extraClass }) => {
 };
 
 HeaderCell.propTypes = {
-  name: PropTypes.string,
+  text: PropTypes.string,
   field: PropTypes.string,
   extraClass: PropTypes.string,
 };

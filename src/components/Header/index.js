@@ -15,9 +15,9 @@ const Header = ({ cellsNamesConfig }) => (
     {cellsNamesConfig.map((cell) => (
       <HeaderCell
         key={cell.id}
-        name={cell.nameOfHeaderColumn}
+        text={cell.nameOfHeaderColumn}
         field={cell.fieldInCountries}
-        extraClass={cell.id}
+        extraClass={styles[cell.id]}
       />
     ))}
   </header>

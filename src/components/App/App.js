@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 
 import Row from "components/Row/";
@@ -6,7 +5,7 @@ import Header from "components/Header";
 import countries from "constants/countries";
 import cellsNamesConfig from "constants/cellsNamesConfig";
 
-import styles from "App.module.scss";
+import styles from "./App.module.scss";
 
 const App = () => (
   <div className={styles.table}>
