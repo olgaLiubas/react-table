@@ -1,0 +1,42 @@
+.headerCell {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.separator {
+  margin-right: 2px;
+}
+
+.cellName {
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cellButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0px 5px;
+  height: 25px;
+  position: relative;
+}
+
+.cellButtons > svg {
+  opacity: 1;
+  margin: 0px 5px;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+// .headerCell:hover svg {
+//   opacity: 1;
+//   margin: 0px 5px;
+//   height: 25px;
+//   width: 25px;
+//   border-radius: 50%;
+// }
