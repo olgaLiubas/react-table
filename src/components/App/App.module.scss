@@ -1,6 +1,19 @@
 .table {
   display: flex;
   flex-direction: column;
-  position: relative;
   z-index: 1;
+}
+
+@media (max-width: 1200px) {
+  .table {
+    max-width: 98vw;
+    width: 98vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .table {
+    max-width: 1230px;
+    width: 1230px;
+  }
 }

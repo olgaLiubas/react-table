@@ -1,0 +1,44 @@
+.footer {
+  max-width: inherit;
+  width: inherit;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  position: fixed;
+  top: 93vh;
+  background-color: white;
+  z-index: 1;
+  border: 1px solid grey;
+  .wrapperSelector {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 15px;
+
+    select {
+      margin: 0px 0px 0px 5px;
+      font-size: 16px;
+    }
+  }
+  .wrapperButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 15px;
+    p {
+      font-size: 25px;
+      padding: 2px 5px 1px 5px;
+      margin: 0px 10px;
+      border-radius: 50%;
+    }
+    p:hover {
+      background-color: rgba(128, 128, 128, 0.293);
+      box-shadow: 0px 0px 5px 3px rgba(128, 128, 128, 0.293);
+    }
+  }
+}

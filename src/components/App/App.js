@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 
 import Row from "components/Row/";
+import Footer from "components/Footer";
 import Header from "components/Header";
 import countries from "constants/countries";
 import cellsNamesConfig from "constants/cellsNamesConfig";
@@ -18,6 +19,8 @@ const App = () => (
         cellsNamesConfig={cellsNamesConfig}
       />
     ))}
+
+    <Footer />
   </div>
 );
 
