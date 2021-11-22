@@ -9,7 +9,7 @@ const RowCell = ({ extraClass, text }) => (
 
 RowCell.propTypes = {
   extraClass: PropTypes.string,
-  text: PropTypes.string,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default RowCell;

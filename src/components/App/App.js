@@ -7,22 +7,31 @@ import countries from "constants/countries";
 import cellsNamesConfig from "constants/cellsNamesConfig";
 
 import styles from "./App.module.scss";
+import { useState } from "react";
 
-const App = () => (
-  <div className={styles.table}>
-    <Header cellsNamesConfig={cellsNamesConfig} />
-
-    {countries.map((country) => (
-      <Row
-        key={country.id}
-        country={country}
+const App = () => {
+  const [showEditForm, setShowEditForm] = useState(false);
+  return (
+    <div className={styles.table}>
+      <Header
         cellsNamesConfig={cellsNamesConfig}
+        showEditForm={showEditForm}
+        hideEditForm={(bool) => setShowEditForm(bool)}
       />
-    ))}
 
-    <Footer />
-  </div>
-);
+      {countries.map((country) => (
+        <Row
+          key={country.id}
+          onEditClick={(val) => setShowEditForm(val)}
+          country={country}
+          cellsNamesConfig={cellsNamesConfig}
+        />
+      ))}
+
+      <Footer />
+    </div>
+  );
+};
 
 App.propTypes = {
   countries: PropTypes.array,
