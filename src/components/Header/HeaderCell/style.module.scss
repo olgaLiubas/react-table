@@ -23,14 +23,23 @@
   margin: 0px 5px;
   height: 25px;
   position: relative;
-}
-
-.cellButtons > svg {
-  opacity: 1;
-  margin: 0px 5px;
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
+  button {
+    height: 25px;
+    width: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 50%;
+  }
+  svg {
+    opacity: 1;
+    margin: 0px 5px;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+  }
 }
 
 // .headerCell:hover svg {

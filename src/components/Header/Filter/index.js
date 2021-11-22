@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 
-import cn from "classnames";
 import styles from "./style.module.scss";
 
 const Filter = ({ showFilter }) => (
-  <div className={cn(styles.filter, { [styles.filterActive]: showFilter })}>
-    <p className={styles.filterCross}>╳</p>
+  <div className={styles.filter}>
+    <p className={styles.filterCross} onClick={() => showFilter(false)}>
+      ╳
+    </p>
     <div className={styles.filterItem}>
       <p>Columns</p>
       <select>
@@ -35,7 +36,7 @@ const Filter = ({ showFilter }) => (
 );
 
 Filter.propTypes = {
-  showFilter: PropTypes.bool,
+  showFilter: PropTypes.func,
 };
 
 export default Filter;

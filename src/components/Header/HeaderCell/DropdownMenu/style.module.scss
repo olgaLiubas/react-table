@@ -1,15 +1,11 @@
 .dropdown {
-  display: none;
+  display: flex;
   flex-direction: column;
   background-color: white;
   border: 1px solid black;
   position: absolute;
   top: 38px;
   right: -10px;
-}
-
-.dropdownActive {
-  display: flex;
 }
 
 .dropdownItem {

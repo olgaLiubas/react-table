@@ -1,14 +1,10 @@
-import cn from "classnames";
 import PropTypes from "prop-types";
 
 import styles from "./style.module.scss";
 
-const Modal = ({ showModal, drillStateFromModalForm }) => {
-  const hideModalForm = (bool) => {
-    drillStateFromModalForm(bool);
-  };
+const Modal = ({ showModal }) => {
   return (
-    <div className={cn(styles.modal, { [styles.modalActive]: showModal })}>
+    <div className={styles.modalActive}>
       <div className={styles.modalProp}>
         <p>ID № </p>
         <p></p>
@@ -34,7 +30,7 @@ const Modal = ({ showModal, drillStateFromModalForm }) => {
         <input />
       </div>
       <div className={styles.modalButtons}>
-        <button onClick={() => hideModalForm(false)}>CANCEL</button>
+        <button onClick={() => showModal(false)}>CANCEL</button>
         <button>CHANGE</button>
       </div>
     </div>
@@ -42,7 +38,7 @@ const Modal = ({ showModal, drillStateFromModalForm }) => {
 };
 
 Modal.propTypes = {
-  showModal: PropTypes.bool,
+  showModal: PropTypes.func,
 };
 
 export default Modal;

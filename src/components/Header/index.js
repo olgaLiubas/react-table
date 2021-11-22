@@ -1,15 +1,20 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 import Filter from "components/Header/Filter";
-import Modal from "components/Header/Modal";
 import HeaderCell from "components/Header/HeaderCell";
 
 import styles from "./style.module.scss";
 
-const Header = ({ cellsNamesConfig, showEditForm, hideEditForm }) => {
-  const drillStateToApp = (bool) => {
-    hideEditForm(bool);
-  };
+const Header = ({
+  cellsNamesConfig,
+  isMenu,
+  isFilter,
+  showMenu,
+  showFilter,
+}) => {
+  const [activeColumn, setActiveColumn] = useState();
+
   return (
     <header className={styles.header}>
       <input
@@ -21,24 +26,29 @@ const Header = ({ cellsNamesConfig, showEditForm, hideEditForm }) => {
       {cellsNamesConfig.map((cell) => (
         <HeaderCell
           key={cell.id}
+          id={cell.id}
           text={cell.nameOfHeaderColumn}
           field={cell.fieldInCountries}
           extraClass={styles[cell.id]}
+          isMenu={isMenu}
+          showMenu={(bool) => showMenu(bool)}
+          activeColumn={activeColumn}
+          setterActiveColumn={(column) => setActiveColumn(column)}
+          showFilter={(bool) => showFilter(bool)}
         />
       ))}
 
-      <Filter showFilter={false} />
-      <Modal
-        showModal={showEditForm}
-        drillStateFromModalForm={(bool) => drillStateToApp(bool)}
-      />
+      {isFilter ? <Filter showFilter={(bool) => showFilter(bool)} /> : null}
     </header>
   );
 };
 
 Header.propTypes = {
   cellsNamesConfig: PropTypes.array,
-  showEditForm: PropTypes.bool,
+  isMenu: PropTypes.bool,
+  isFilter: PropTypes.bool,
+  showMenu: PropTypes.func,
+  showFilter: PropTypes.func,
 };
 
 export default Header;

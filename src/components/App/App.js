@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 import Row from "components/Row/";
@@ -7,22 +8,37 @@ import countries from "constants/countries";
 import cellsNamesConfig from "constants/cellsNamesConfig";
 
 import styles from "./App.module.scss";
-import { useState } from "react";
 
 const App = () => {
-  const [showEditForm, setShowEditForm] = useState(false);
+  const [isModal, setIsModal] = useState(false);
+  const [isMenu, setIsMenu] = useState(false);
+  const [isFilter, setIsFilter] = useState(false);
+
+  const showOneDropdown = (setActiveDropdown, bool) => {
+    // eslint-disable-next-line no-unused-expressions
+    isFilter ? setIsFilter(false) : null;
+    // eslint-disable-next-line no-unused-expressions
+    isMenu ? setIsMenu(false) : null;
+    // eslint-disable-next-line no-unused-expressions
+    isModal ? setIsModal(false) : null;
+    setActiveDropdown(bool);
+  };
+
   return (
     <div className={styles.table}>
       <Header
         cellsNamesConfig={cellsNamesConfig}
-        showEditForm={showEditForm}
-        hideEditForm={(bool) => setShowEditForm(bool)}
+        isMenu={isMenu}
+        isFilter={isFilter}
+        showMenu={(bool) => showOneDropdown(setIsMenu, bool)}
+        showFilter={(bool) => showOneDropdown(setIsFilter, bool)}
       />
 
       {countries.map((country) => (
         <Row
           key={country.id}
-          onEditClick={(val) => setShowEditForm(val)}
+          isModal={isModal}
+          showModal={(bool) => showOneDropdown(setIsModal, bool)}
           country={country}
           cellsNamesConfig={cellsNamesConfig}
         />
