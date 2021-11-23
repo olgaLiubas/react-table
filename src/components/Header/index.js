@@ -3,17 +3,14 @@ import PropTypes from "prop-types";
 
 import Filter from "components/Header/Filter";
 import HeaderCell from "components/Header/HeaderCell";
+import cellsNamesConfig from "constants/cellsNamesConfig";
 
 import styles from "./style.module.scss";
 
-const Header = ({
-  cellsNamesConfig,
-  isMenu,
-  isFilter,
-  showMenu,
-  showFilter,
-}) => {
+const Header = () => {
   const [activeColumn, setActiveColumn] = useState();
+  const [isMenu, setIsMenu] = useState(false);
+  const [isFilter, setIsFilter] = useState(false);
 
   return (
     <header className={styles.header}>
@@ -31,14 +28,14 @@ const Header = ({
           field={cell.fieldInCountries}
           extraClass={styles[cell.id]}
           isMenu={isMenu}
-          showMenu={(bool) => showMenu(bool)}
+          showMenu={(bool) => setIsMenu(bool)}
           activeColumn={activeColumn}
           setterActiveColumn={(column) => setActiveColumn(column)}
-          showFilter={(bool) => showFilter(bool)}
+          showFilter={(bool) => setIsFilter(bool)}
         />
       ))}
 
-      {isFilter ? <Filter showFilter={(bool) => showFilter(bool)} /> : null}
+      {isFilter ? <Filter showFilter={(bool) => setIsFilter(bool)} /> : null}
     </header>
   );
 };

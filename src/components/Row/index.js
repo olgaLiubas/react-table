@@ -1,20 +1,22 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
+import cellsNamesConfig from "constants/cellsNamesConfig";
 import RowCell from "components/Row/RowCell";
 import Modal from "components/Row/Modal";
 
 import styles from "./style.module.scss";
 
-const Row = ({ isModal, showModal, country, cellsNamesConfig }) => {
+const Row = ({ country }) => {
   const [modalId, setModalId] = useState(null);
+  const [isModal, setIsModal] = useState(false);
 
   const showModalHelper = (e) => {
     const id = Array.from(e.target.parentElement.children).find((el) =>
       el.className.includes("id")
     );
     setModalId(Number(id.innerText));
-    return showModal(true);
+    return setIsModal(true);
   };
 
   return (
@@ -38,7 +40,7 @@ const Row = ({ isModal, showModal, country, cellsNamesConfig }) => {
         </p>
 
         {country.id === modalId && isModal && (
-          <Modal showModal={(bool) => showModal(bool)} />
+          <Modal showModal={(bool) => setIsModal(bool)} />
         )}
       </div>
     </>
