@@ -1,0 +1,44 @@
+import PropTypes from "prop-types";
+
+import styles from "./style.module.scss";
+
+const Modal = ({ showModal }) => {
+  return (
+    <div className={styles.modalActive}>
+      <div className={styles.modalProp}>
+        <p>ID № </p>
+        <p></p>
+      </div>
+      <div className={styles.modalProp}>
+        <p>Name:</p>
+        <input />
+      </div>
+      <div className={styles.modalProp}>
+        <p>Capital:</p>
+        <input />
+      </div>
+      <div className={styles.modalProp}>
+        <p>Phone code:</p>
+        <input />
+      </div>
+      <div className={styles.modalProp}>
+        <p>Currency:</p>
+        <input />
+      </div>
+      <div className={styles.modalProp}>
+        <p>ISO:</p>
+        <input />
+      </div>
+      <div className={styles.modalButtons}>
+        <button onClick={() => showModal(false)}>CANCEL</button>
+        <button>CHANGE</button>
+      </div>
+    </div>
+  );
+};
+
+Modal.propTypes = {
+  showModal: PropTypes.func,
+};
+
+export default Modal;
