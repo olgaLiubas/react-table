@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
 import cn from "classnames";
+import PropTypes from "prop-types";
 
 import styles from "./style.module.scss";
 

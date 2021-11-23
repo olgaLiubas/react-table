@@ -23,15 +23,30 @@
     height: 25px;
     position: relative;
     button {
-      height: 25px;
-      width: 25px;
+      opacity: 0.3;
+      height: 30px;
+      width: 30px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       background-color: white;
       border-radius: 50%;
+      margin: 2px;
     }
+    svg {
+      opacity: 0.3;
+      margin: 0px 5px;
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+}
+
+.headerCell:hover {
+  button {
+    opacity: 1;
     svg {
       opacity: 1;
       margin: 0px 5px;
@@ -41,13 +56,3 @@
     }
   }
 }
-
-// .headerCell:hover {
-//   svg {
-//     opacity: 1;
-//     margin: 0px 5px;
-//     height: 25px;
-//     width: 25px;
-//     border-radius: 50%;
-//   }
-// }

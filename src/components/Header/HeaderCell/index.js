@@ -1,7 +1,7 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
 
-import Dropdown from "components/Header/HeaderCell/DropdownMenu";
+import Dropdown from "components/Header/DropdownMenu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 // import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
@@ -13,35 +13,17 @@ const HeaderCell = ({
   text,
   field,
   extraClass,
-  isMenu,
-  showMenu,
   activeColumn,
-  setterActiveColumn,
-  showFilter,
+  setActiveColumn,
+  setIsFilter,
 }) => {
-  const showMenuHelper = (e) => {
-    const columnsIds = [
-      "id",
-      "name",
-      "capital",
-      "phoneCode",
-      "currency",
-      "iso",
-    ];
-    const columnName = columnsIds.find((name) =>
-      e.target.parentElement.parentElement.parentElement.className.includes(
-        `${name}`
-      )
-    );
+  const showMenuHelper = (columnName) => () => {
     if (columnName === activeColumn) {
-      showMenu(!isMenu);
-    } else if (columnName !== activeColumn && isMenu) {
-      setterActiveColumn(columnName);
+      setActiveColumn(null);
     } else {
-      setterActiveColumn(columnName);
-      showMenu(!isMenu);
+      setIsFilter(false);
+      setActiveColumn(columnName);
     }
-    e.stopPropagation();
   };
   return (
     <>
@@ -53,14 +35,15 @@ const HeaderCell = ({
             <ArrowUpwardIcon />
           </button>
 
-          <button onClick={(e) => showMenuHelper(e)}>
-            <MoreVertIcon onClick={(e) => showMenuHelper(e)} />
+          <button>
+            <MoreVertIcon onClick={showMenuHelper(id)} />
           </button>
 
-          {id === activeColumn && isMenu && (
+          {id === activeColumn && (
             <Dropdown
               activeColumn={activeColumn}
-              showFilter={(bool) => showFilter(bool)}
+              setActiveColumn={setActiveColumn}
+              setIsFilter={setIsFilter}
             />
           )}
         </div>
@@ -74,10 +57,9 @@ HeaderCell.propTypes = {
   text: PropTypes.string,
   field: PropTypes.string,
   extraClass: PropTypes.string,
-  isMenu: PropTypes.bool,
-  activeColumn: PropTypes.string,
-  setterActiveColumn: PropTypes.func,
-  showFilter: PropTypes.func,
+  activeColumn: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  setActiveColumn: PropTypes.func,
+  setIsFilter: PropTypes.func,
 };
 
 export default HeaderCell;
