@@ -9,7 +9,7 @@ import Header from "components/Header";
 import styles from "./App.module.scss";
 
 const App = () => {
-  const [countries, setCountries] = useState(null);
+  const [countries, setCountries] = useState([]);
 
   useEffect(() => {
     async function getData() {
@@ -23,7 +23,7 @@ const App = () => {
     getData();
   }, []);
 
-  return countries ? (
+  return (
     <div className={styles.table}>
       <Header />
 
@@ -33,8 +33,6 @@ const App = () => {
 
       <Footer />
     </div>
-  ) : (
-    <p>Loading ...</p>
   );
 };
 
