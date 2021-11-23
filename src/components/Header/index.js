@@ -1,5 +1,4 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
 
 import Filter from "components/Header/Filter";
 import HeaderCell from "components/Header/HeaderCell";
@@ -8,8 +7,7 @@ import cellsNamesConfig from "constants/cellsNamesConfig";
 import styles from "./style.module.scss";
 
 const Header = () => {
-  const [activeColumn, setActiveColumn] = useState();
-  const [isMenu, setIsMenu] = useState(false);
+  const [activeColumn, setActiveColumn] = useState(null);
   const [isFilter, setIsFilter] = useState(false);
 
   return (
@@ -27,25 +25,15 @@ const Header = () => {
           text={cell.nameOfHeaderColumn}
           field={cell.fieldInCountries}
           extraClass={styles[cell.id]}
-          isMenu={isMenu}
-          showMenu={(bool) => setIsMenu(bool)}
           activeColumn={activeColumn}
-          setterActiveColumn={(column) => setActiveColumn(column)}
-          showFilter={(bool) => setIsFilter(bool)}
+          setActiveColumn={setActiveColumn}
+          setIsFilter={setIsFilter}
         />
       ))}
 
-      {isFilter ? <Filter showFilter={(bool) => setIsFilter(bool)} /> : null}
+      {isFilter ? <Filter setIsFilter={setIsFilter} /> : null}
     </header>
   );
-};
-
-Header.propTypes = {
-  cellsNamesConfig: PropTypes.array,
-  isMenu: PropTypes.bool,
-  isFilter: PropTypes.bool,
-  showMenu: PropTypes.func,
-  showFilter: PropTypes.func,
 };
 
 export default Header;

@@ -2,7 +2,10 @@ import PropTypes from "prop-types";
 
 import styles from "./style.module.scss";
 
-const Modal = ({ showModal }) => {
+const Modal = ({ setIsModal }) => {
+  const onShowModalHelper = () => {
+    setIsModal(false);
+  };
   return (
     <div className={styles.modalActive}>
       <div className={styles.modalProp}>
@@ -30,7 +33,7 @@ const Modal = ({ showModal }) => {
         <input />
       </div>
       <div className={styles.modalButtons}>
-        <button onClick={() => showModal(false)}>CANCEL</button>
+        <button onClick={onShowModalHelper}>CANCEL</button>
         <button>CHANGE</button>
       </div>
     </div>
@@ -38,7 +41,7 @@ const Modal = ({ showModal }) => {
 };
 
 Modal.propTypes = {
-  showModal: PropTypes.func,
+  setIsModal: PropTypes.func,
 };
 
 export default Modal;
