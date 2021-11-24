@@ -1,21 +1,23 @@
 import React, { useContext, useReducer } from "react";
 
-const MyContext = React.createContext();
+const DropdownsContext = React.createContext();
 
-export const useTableContext = () => {
-  return useContext(MyContext);
+export const useDropdownsContext = () => {
+  return useContext(DropdownsContext);
 };
+
+const SET_DROPDOWNS_STATUSES = "setDropdownsStatuses";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "setDropdownsStatuses":
+    case SET_DROPDOWNS_STATUSES:
       return { ...state, dropdownsStatuses: action.newDropdownsStatuses };
     default:
       return state;
   }
 };
 
-export const MyContextProvider = ({ children }) => {
+export const DropdownsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     dropdownsStatuses: {
       isFilter: false,
@@ -25,16 +27,16 @@ export const MyContextProvider = ({ children }) => {
   });
 
   const setDropdownsStatuses = (newDropdownsStatuses) =>
-    dispatch({ type: "setDropdownsStatuses", newDropdownsStatuses });
+    dispatch({ type: SET_DROPDOWNS_STATUSES, newDropdownsStatuses });
 
   return (
-    <MyContext.Provider
+    <DropdownsContext.Provider
       value={{
         dropdownsStatuses: state.dropdownsStatuses,
         setDropdownsStatuses,
       }}
     >
       {children}
-    </MyContext.Provider>
+    </DropdownsContext.Provider>
   );
 };
