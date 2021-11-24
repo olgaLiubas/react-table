@@ -1,12 +1,15 @@
 import { useState } from "react";
 
 import Filter from "components/Header/Filter";
+// import { useTableContext } from "bus/context";
 import HeaderCell from "components/Header/HeaderCell";
 import cellsNamesConfig from "constants/cellsNamesConfig";
 
 import styles from "./style.module.scss";
 
 const Header = () => {
+  // const data = useTableContext();
+  // console.log(data);
   const [activeColumn, setActiveColumn] = useState(null);
   const [isFilter, setIsFilter] = useState(false);
 
