@@ -1,17 +1,16 @@
-import React, { useContext, useReducer } from "react";
+import { useContext, useReducer } from "react";
 
-const DropdownsContext = React.createContext();
+import DropdownsContext from "bus/UI/creatorContext";
+import actionTypes from "bus/UI/actionTypes";
 
 export const useDropdownsContext = () => {
   return useContext(DropdownsContext);
 };
 
-const SET_DROPDOWNS_STATUSES = "setDropdownsStatuses";
-
 const reducer = (state, action) => {
   switch (action.type) {
-    case SET_DROPDOWNS_STATUSES:
-      return { ...state, dropdownsStatuses: action.newDropdownsStatuses };
+    case actionTypes.SET_DROPDOWNS_STATUSES:
+      return { ...state, dropdownsStatuses: action.payload };
     default:
       return state;
   }
@@ -27,7 +26,10 @@ export const DropdownsContextProvider = ({ children }) => {
   });
 
   const setDropdownsStatuses = (newDropdownsStatuses) =>
-    dispatch({ type: SET_DROPDOWNS_STATUSES, newDropdownsStatuses });
+    dispatch({
+      type: actionTypes.SET_DROPDOWNS_STATUSES,
+      payload: newDropdownsStatuses,
+    });
 
   return (
     <DropdownsContext.Provider

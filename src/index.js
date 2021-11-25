@@ -3,16 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
-import { DropdownsContextProvider } from "bus/dropdownsContext";
-import { FetchContextProvider } from "bus/fetchContext";
+import { DropdownsContextProvider } from "bus/UI/dropdownsContext";
+import { FetchCountriesContextProvider } from "bus/countriesData/fetchCountriesContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <FetchContextProvider>
+    <FetchCountriesContextProvider>
       <DropdownsContextProvider>
         <App />
       </DropdownsContextProvider>
-    </FetchContextProvider>
+    </FetchCountriesContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
