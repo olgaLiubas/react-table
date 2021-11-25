@@ -1,13 +1,20 @@
-import PropTypes from "prop-types";
+import { useDropdownsContext } from "bus/UI/dropdownsContext";
 
 import styles from "./style.module.scss";
 
-const Dropdown = ({ activeColumn, setActiveColumn, setIsFilter }) => {
+const Dropdown = () => {
+  const dropdownsContext = useDropdownsContext();
+
   const consoleText = (action) => () => {
-    console.log(`Button "${action}" from column "${activeColumn}"`);
+    console.log(
+      `Button "${action}" from column "${dropdownsContext.dropdownsStatuses.isMenuColumn}"`
+    );
     if (action === "Filter") {
-      setIsFilter(true);
-      setActiveColumn(null);
+      dropdownsContext.setDropdownsStatuses({
+        isFilter: true,
+        isModal: false,
+        isMenuColumn: null,
+      });
     }
   };
 
@@ -40,12 +47,6 @@ const Dropdown = ({ activeColumn, setActiveColumn, setIsFilter }) => {
       </div>
     </div>
   );
-};
-
-Dropdown.propTypes = {
-  activeColumn: PropTypes.string,
-  setIsFilter: PropTypes.func,
-  setActiveColumn: PropTypes.func,
 };
 
 export default Dropdown;

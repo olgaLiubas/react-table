@@ -1,11 +1,18 @@
-import PropTypes from "prop-types";
+import { useDropdownsContext } from "bus/UI/dropdownsContext";
 
 import styles from "./style.module.scss";
 
-const Modal = ({ setIsModal }) => {
+const Modal = () => {
+  const dropdownsContext = useDropdownsContext();
+
   const onShowModalHelper = () => {
-    setIsModal(false);
+    dropdownsContext.setDropdownsStatuses({
+      isFilter: false,
+      isModal: false,
+      isMenuColumn: null,
+    });
   };
+
   return (
     <div className={styles.modalActive}>
       <div className={styles.modalProp}>
@@ -38,10 +45,6 @@ const Modal = ({ setIsModal }) => {
       </div>
     </div>
   );
-};
-
-Modal.propTypes = {
-  setIsModal: PropTypes.func,
 };
 
 export default Modal;

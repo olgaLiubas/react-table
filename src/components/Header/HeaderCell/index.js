@@ -4,25 +4,27 @@ import PropTypes from "prop-types";
 import Dropdown from "components/Header/DropdownMenu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import { useDropdownsContext } from "bus/UI/dropdownsContext";
 // import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 import styles from "./style.module.scss";
 
-const HeaderCell = ({
-  id,
-  text,
-  field,
-  extraClass,
-  activeColumn,
-  setActiveColumn,
-  setIsFilter,
-}) => {
+const HeaderCell = ({ id, text, field, extraClass }) => {
+  const dropdownsContext = useDropdownsContext();
+
   const showMenuHelper = (columnName) => () => {
-    if (columnName === activeColumn) {
-      setActiveColumn(null);
+    if (columnName === dropdownsContext.dropdownsStatuses.isMenuColumn) {
+      dropdownsContext.setDropdownsStatuses({
+        isFilter: false,
+        isModal: false,
+        isMenuColumn: null,
+      });
     } else {
-      setIsFilter(false);
-      setActiveColumn(columnName);
+      dropdownsContext.setDropdownsStatuses({
+        isFilter: false,
+        isModal: false,
+        isMenuColumn: columnName,
+      });
     }
   };
   return (
@@ -39,12 +41,8 @@ const HeaderCell = ({
             <MoreVertIcon onClick={showMenuHelper(id)} />
           </button>
 
-          {id === activeColumn && (
-            <Dropdown
-              activeColumn={activeColumn}
-              setActiveColumn={setActiveColumn}
-              setIsFilter={setIsFilter}
-            />
+          {id === dropdownsContext.dropdownsStatuses.isMenuColumn && (
+            <Dropdown />
           )}
         </div>
       </div>
@@ -57,9 +55,6 @@ HeaderCell.propTypes = {
   text: PropTypes.string,
   field: PropTypes.string,
   extraClass: PropTypes.string,
-  activeColumn: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  setActiveColumn: PropTypes.func,
-  setIsFilter: PropTypes.func,
 };
 
 export default HeaderCell;

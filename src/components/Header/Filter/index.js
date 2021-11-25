@@ -1,9 +1,16 @@
-import PropTypes from "prop-types";
+import { useDropdownsContext } from "bus/UI/dropdownsContext";
 
 import styles from "./style.module.scss";
 
-const Filter = ({ setIsFilter }) => {
-  const setIsFilterHelper = () => setIsFilter(false);
+const Filter = () => {
+  const dropdownsContext = useDropdownsContext();
+  const setIsFilterHelper = () => {
+    dropdownsContext.setDropdownsStatuses({
+      isFilter: false,
+      isModal: false,
+      isMenuColumn: null,
+    });
+  };
   return (
     <div className={styles.filter}>
       <p className={styles.filterCross} onClick={setIsFilterHelper}>
@@ -36,10 +43,6 @@ const Filter = ({ setIsFilter }) => {
       </div>
     </div>
   );
-};
-
-Filter.propTypes = {
-  setIsFilter: PropTypes.func,
 };
 
 export default Filter;
