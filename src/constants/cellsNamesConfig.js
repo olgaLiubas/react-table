@@ -1,4 +1,4 @@
-const cellsNamesConfig = [
+export const cellsNamesConfig = [
   {
     fieldInCountries: "id",
     id: "id",
@@ -30,5 +30,3 @@ const cellsNamesConfig = [
     nameOfHeaderColumn: "ISO",
   },
 ];
-
-export default cellsNamesConfig;

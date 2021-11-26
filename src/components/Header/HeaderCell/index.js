@@ -10,17 +10,15 @@ import { useDropdownsContext } from "bus/UI/dropdownsContext";
 import styles from "./style.module.scss";
 
 const HeaderCell = ({ id, text, field, extraClass }) => {
-  const dropdownsContext = useDropdownsContext();
+  const { dropdownsStatuses, setDropdownsStatuses } = useDropdownsContext();
 
   const showMenuHelper = (columnName) => () => {
-    if (columnName === dropdownsContext.dropdownsStatuses.isMenuColumn) {
-      dropdownsContext.setDropdownsStatuses({
-        isFilter: false,
-        isModal: false,
+    if (columnName === dropdownsStatuses.isMenuColumn) {
+      setDropdownsStatuses({
         isMenuColumn: null,
       });
     } else {
-      dropdownsContext.setDropdownsStatuses({
+      setDropdownsStatuses({
         isFilter: false,
         isModal: false,
         isMenuColumn: columnName,
@@ -41,9 +39,7 @@ const HeaderCell = ({ id, text, field, extraClass }) => {
             <MoreVertIcon onClick={showMenuHelper(id)} />
           </button>
 
-          {id === dropdownsContext.dropdownsStatuses.isMenuColumn && (
-            <Dropdown />
-          )}
+          {id === dropdownsStatuses.isMenuColumn && <Dropdown />}
         </div>
       </div>
     </>

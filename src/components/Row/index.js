@@ -2,16 +2,16 @@ import PropTypes from "prop-types";
 
 import Modal from "components/Row/Modal";
 import RowCell from "components/Row/RowCell";
-import cellsNamesConfig from "constants/cellsNamesConfig";
+import { cellsNamesConfig } from "constants/cellsNamesConfig";
 import { useDropdownsContext } from "bus/UI/dropdownsContext";
 
 import styles from "./style.module.scss";
 
 const Row = ({ country }) => {
-  const dropdownsContext = useDropdownsContext();
+  const { dropdownsStatuses, setDropdownsStatuses } = useDropdownsContext();
 
   const onShowModalHelper = () => {
-    dropdownsContext.setDropdownsStatuses({
+    setDropdownsStatuses({
       isFilter: false,
       isModal: true,
       isMenuColumn: null,
@@ -39,7 +39,7 @@ const Row = ({ country }) => {
           🖊️
         </p>
 
-        {dropdownsContext.dropdownsStatuses.isModal && <Modal />}
+        {dropdownsStatuses.isModal && <Modal />}
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetRequest = (url) => {
+export const useGetRequest = (url) => {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
@@ -18,5 +18,3 @@ const useGetRequest = (url) => {
   });
   return countries;
 };
-
-export default useGetRequest;

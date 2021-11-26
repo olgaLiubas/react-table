@@ -3,13 +3,11 @@ import { useDropdownsContext } from "bus/UI/dropdownsContext";
 import styles from "./style.module.scss";
 
 const Modal = () => {
-  const dropdownsContext = useDropdownsContext();
+  const { setDropdownsStatuses } = useDropdownsContext();
 
   const onShowModalHelper = () => {
-    dropdownsContext.setDropdownsStatuses({
-      isFilter: false,
+    setDropdownsStatuses({
       isModal: false,
-      isMenuColumn: null,
     });
   };
 

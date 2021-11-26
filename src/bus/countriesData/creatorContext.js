@@ -1,5 +1,3 @@
 import React from "react";
 
-const FetchCountriesContext = React.createContext();
-
-export default FetchCountriesContext;
+export const FetchCountriesContext = React.createContext();

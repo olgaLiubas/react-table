@@ -3,14 +3,14 @@ import { useDropdownsContext } from "bus/UI/dropdownsContext";
 import styles from "./style.module.scss";
 
 const Dropdown = () => {
-  const dropdownsContext = useDropdownsContext();
+  const { dropdownsStatuses, setDropdownsStatuses } = useDropdownsContext();
 
   const consoleText = (action) => () => {
     console.log(
-      `Button "${action}" from column "${dropdownsContext.dropdownsStatuses.isMenuColumn}"`
+      `Button "${action}" from column "${dropdownsStatuses.isMenuColumn}"`
     );
     if (action === "Filter") {
-      dropdownsContext.setDropdownsStatuses({
+      setDropdownsStatuses({
         isFilter: true,
         isModal: false,
         isMenuColumn: null,

@@ -1,9 +1,9 @@
-import React, { useEffect, useContext, useReducer } from "react";
+import { useEffect, useContext, useReducer } from "react";
 
-import getData from "bus/countriesData/getData";
-import initialUrl from "constants/initialUrl";
-import actionTypes from "bus/countriesData/actionTypes";
-import FetchCountriesContext from "bus/countriesData/creatorContext";
+import { getData } from "bus/countriesData/getData";
+import { initialUrl } from "constants/initialUrl";
+import { actionTypes } from "bus/countriesData/actionTypes";
+import { FetchCountriesContext } from "bus/countriesData/creatorContext";
 
 export const useFetchCountriesContext = () => {
   return useContext(FetchCountriesContext);
@@ -23,17 +23,14 @@ export const FetchCountriesContextProvider = ({ children }) => {
     countries: [],
   });
 
-  const useSetCountries = (url = initialUrl) => {
-    useEffect(() => {
-      getData(initialUrl, actionTypes.SET_COUNTRIES, dispatch);
-    }, [getData]);
-  };
+  useEffect(() => {
+    getData(initialUrl, actionTypes.SET_COUNTRIES, dispatch);
+  }, [getData]);
 
   return (
     <FetchCountriesContext.Provider
       value={{
         countries: state.countries,
-        useSetCountries,
       }}
     >
       {children}

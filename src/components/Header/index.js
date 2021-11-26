@@ -2,13 +2,13 @@ import { useState } from "react";
 
 import Filter from "components/Header/Filter";
 import HeaderCell from "components/Header/HeaderCell";
-import cellsNamesConfig from "constants/cellsNamesConfig";
+import { cellsNamesConfig } from "constants/cellsNamesConfig";
 import { useDropdownsContext } from "bus/UI/dropdownsContext";
 
 import styles from "./style.module.scss";
 
 const Header = () => {
-  const dropdownsContext = useDropdownsContext();
+  const { dropdownsStatuses } = useDropdownsContext();
 
   return (
     <header className={styles.header}>
@@ -28,7 +28,7 @@ const Header = () => {
         />
       ))}
 
-      {dropdownsContext.dropdownsStatuses.isFilter ? <Filter /> : null}
+      {dropdownsStatuses.isFilter ? <Filter /> : null}
     </header>
   );
 };

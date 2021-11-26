@@ -1,7 +1,7 @@
 import { useContext, useReducer } from "react";
 
-import DropdownsContext from "bus/UI/creatorContext";
-import actionTypes from "bus/UI/actionTypes";
+import { DropdownsContext } from "bus/UI/creatorContext";
+import { actionTypes } from "bus/UI/actionTypes";
 
 export const useDropdownsContext = () => {
   return useContext(DropdownsContext);
@@ -10,7 +10,10 @@ export const useDropdownsContext = () => {
 const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.SET_DROPDOWNS_STATUSES:
-      return { ...state, dropdownsStatuses: action.payload };
+      return {
+        ...state,
+        dropdownsStatuses: { ...state.dropdownsStatuses, ...action.payload },
+      };
     default:
       return state;
   }

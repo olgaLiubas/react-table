@@ -1,5 +1,3 @@
 import React from "react";
 
-const DropdownsContext = React.createContext();
-
-export default DropdownsContext;
+export const DropdownsContext = React.createContext();

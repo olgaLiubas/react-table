@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getData = async (url, typeValue, dispatch) => {
+export const getData = async (url, typeValue, dispatch) => {
   try {
     const response = await axios.get(url);
     const payloadValue = response.data;
@@ -10,5 +10,3 @@ const getData = async (url, typeValue, dispatch) => {
     ${e}`);
   }
 };
-
-export default getData;
