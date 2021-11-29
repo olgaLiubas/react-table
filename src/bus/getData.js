@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const getData = async (url, typeValue, dispatch) => {
+export const getData = async (url, action, dispatch) => {
   try {
     const response = await axios.get(url);
     const payloadValue = response.data;
-    dispatch({ type: typeValue, payload: payloadValue });
+    dispatch(action(payloadValue));
   } catch (e) {
     alert(`Sorry, something go wrong. Try later! 
     ${e}`);

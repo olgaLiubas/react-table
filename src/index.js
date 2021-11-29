@@ -5,16 +5,13 @@ import reportWebVitals from "./reportWebVitals";
 
 import { store } from "./redux/store";
 import App from "./components/App/App";
-import { FetchCountriesContextProvider } from "bus/countriesData/fetchCountriesContext";
 
 import "./index.scss";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <FetchCountriesContextProvider>
-        <App />
-      </FetchCountriesContextProvider>
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
