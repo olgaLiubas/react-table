@@ -1,17 +1,20 @@
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // import Row from "components/Row/";
 // import Footer from "components/Footer";
 // import Header from "components/Header";
-// import { useFetchCountriesContext } from "bus/countriesData/fetchCountriesContext";
 import { decrementCounter, incrementCounter } from "redux/actions";
+// import { useFetchCountriesContext } from "bus/countriesData/fetchCountriesContext";
 
 import styles from "./App.module.scss";
 
-const App = (props) => {
+const App = () => {
   // const { countries } = useFetchCountriesContext();
-  const { counter, onIncrement, onDecrement } = props;
-  console.log(props);
+  const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counterState.counter);
+
+  const onIncrement = () => dispatch(incrementCounter());
+  const onDecrement = () => dispatch(decrementCounter());
 
   return (
     <div className={styles.table}>
@@ -29,13 +32,4 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  counter: state.counterState.counter,
-});
-
-const mapDispatchToProps = {
-  onIncrement: incrementCounter,
-  onDecrement: decrementCounter,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
