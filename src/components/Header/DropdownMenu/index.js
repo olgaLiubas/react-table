@@ -1,20 +1,26 @@
-import { useDropdownsContext } from "bus/UI/dropdownsContext";
+import { setDropdownsStatuses } from "redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./style.module.scss";
 
 const Dropdown = () => {
-  const { dropdownsStatuses, setDropdownsStatuses } = useDropdownsContext();
+  const dispatch = useDispatch();
+  const dropdownsStatuses = useSelector(
+    (state) => state.dropdownsState.dropdownsStatuses
+  );
 
   const consoleText = (action) => () => {
     console.log(
       `Button "${action}" from column "${dropdownsStatuses.isMenuColumn}"`
     );
     if (action === "Filter") {
-      setDropdownsStatuses({
-        isFilter: true,
-        isModal: false,
-        isMenuColumn: null,
-      });
+      dispatch(
+        setDropdownsStatuses({
+          isFilter: true,
+          isModal: false,
+          isMenuColumn: null,
+        })
+      );
     }
   };
 

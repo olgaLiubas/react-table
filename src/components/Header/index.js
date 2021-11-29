@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import Filter from "components/Header/Filter";
 import HeaderCell from "components/Header/HeaderCell";
 import { cellsNamesConfig } from "constants/cellsNamesConfig";
-import { useDropdownsContext } from "bus/UI/dropdownsContext";
 
 import styles from "./style.module.scss";
 
 const Header = () => {
-  const { dropdownsStatuses } = useDropdownsContext();
+  const dropdownsStatuses = useSelector(
+    (state) => state.dropdownsState.dropdownsStatuses
+  );
 
   return (
     <header className={styles.header}>

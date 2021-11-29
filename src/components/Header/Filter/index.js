@@ -1,14 +1,18 @@
-import { useDropdownsContext } from "bus/UI/dropdownsContext";
+import { useDispatch } from "react-redux";
+
+import { setDropdownsStatuses } from "redux/actions";
 
 import styles from "./style.module.scss";
 
 const Filter = () => {
-  const { setDropdownsStatuses } = useDropdownsContext();
+  const dispatch = useDispatch();
 
   const setIsFilterHelper = () => {
-    setDropdownsStatuses({
-      isFilter: false,
-    });
+    dispatch(
+      setDropdownsStatuses({
+        isFilter: false,
+      })
+    );
   };
   return (
     <div className={styles.filter}>

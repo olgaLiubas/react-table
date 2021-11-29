@@ -1,14 +1,18 @@
-import { useDropdownsContext } from "bus/UI/dropdownsContext";
+import { useDispatch } from "react-redux";
+
+import { setDropdownsStatuses } from "redux/actions";
 
 import styles from "./style.module.scss";
 
 const Modal = () => {
-  const { setDropdownsStatuses } = useDropdownsContext();
+  const dispatch = useDispatch();
 
   const onShowModalHelper = () => {
-    setDropdownsStatuses({
-      isModal: false,
-    });
+    dispatch(
+      setDropdownsStatuses({
+        isModal: false,
+      })
+    );
   };
 
   return (

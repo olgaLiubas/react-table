@@ -5,7 +5,6 @@ import reportWebVitals from "./reportWebVitals";
 
 import { store } from "./redux/store";
 import App from "./components/App/App";
-import { DropdownsContextProvider } from "bus/UI/dropdownsContext";
 import { FetchCountriesContextProvider } from "bus/countriesData/fetchCountriesContext";
 
 import "./index.scss";
@@ -14,9 +13,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <FetchCountriesContextProvider>
-        <DropdownsContextProvider>
-          <App />
-        </DropdownsContextProvider>
+        <App />
       </FetchCountriesContextProvider>
     </Provider>
   </React.StrictMode>,

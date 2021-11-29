@@ -1,9 +1,6 @@
-import { INCREMENT, DECREMENT } from "redux/types";
+import { SET_DROPDOWNS_STATUSES } from "redux/types";
 
-export const incrementCounter = () => ({
-  type: INCREMENT,
-});
-
-export const decrementCounter = () => ({
-  type: DECREMENT,
+export const setDropdownsStatuses = (newDropdownsStatuses) => ({
+  type: SET_DROPDOWNS_STATUSES,
+  payload: newDropdownsStatuses,
 });

@@ -1,2 +1,1 @@
-export const INCREMENT = "increment";
-export const DECREMENT = "decrement";
+export const SET_DROPDOWNS_STATUSES = "DROPDOWNS/setDropdownsStatuses";

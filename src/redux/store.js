@@ -1,9 +1,10 @@
-import { counterReducer } from "./counterReducer";
 import { createStore, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
+import { dropdownsReducer } from "redux/dropdownsReducer";
+
 const rootReducer = combineReducers({
-  counterState: counterReducer,
+  dropdownsState: dropdownsReducer,
 });
 
 export const store = createStore(rootReducer, composeWithDevTools());

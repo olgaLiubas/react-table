@@ -1,28 +1,36 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
 
+import { setDropdownsStatuses } from "redux/actions";
 import Dropdown from "components/Header/DropdownMenu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import { useDropdownsContext } from "bus/UI/dropdownsContext";
 // import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 import styles from "./style.module.scss";
 
 const HeaderCell = ({ id, text, field, extraClass }) => {
-  const { dropdownsStatuses, setDropdownsStatuses } = useDropdownsContext();
+  const dispatch = useDispatch();
+  const dropdownsStatuses = useSelector(
+    (state) => state.dropdownsState.dropdownsStatuses
+  );
 
   const showMenuHelper = (columnName) => () => {
     if (columnName === dropdownsStatuses.isMenuColumn) {
-      setDropdownsStatuses({
-        isMenuColumn: null,
-      });
+      dispatch(
+        setDropdownsStatuses({
+          isMenuColumn: null,
+        })
+      );
     } else {
-      setDropdownsStatuses({
-        isFilter: false,
-        isModal: false,
-        isMenuColumn: columnName,
-      });
+      dispatch(
+        setDropdownsStatuses({
+          isFilter: false,
+          isModal: false,
+          isMenuColumn: columnName,
+        })
+      );
     }
   };
   return (
