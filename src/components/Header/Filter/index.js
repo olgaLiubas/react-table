@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { setDropdownsStatuses } from "redux/actions";
+import { setStatus } from "redux/actions";
 
 import styles from "./style.module.scss";
 
@@ -8,11 +8,7 @@ const Filter = () => {
   const dispatch = useDispatch();
 
   const setIsFilterHelper = () => {
-    dispatch(
-      setDropdownsStatuses({
-        isFilter: false,
-      })
-    );
+    dispatch(setStatus({ isFilter: false }));
   };
   return (
     <div className={styles.filter}>

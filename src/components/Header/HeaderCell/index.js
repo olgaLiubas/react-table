@@ -2,7 +2,7 @@ import cn from "classnames";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setDropdownsStatuses } from "redux/actions";
+import { setStatus } from "redux/actions";
 import Dropdown from "components/Header/DropdownMenu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -12,25 +12,15 @@ import styles from "./style.module.scss";
 
 const HeaderCell = ({ id, text, field, extraClass }) => {
   const dispatch = useDispatch();
-  const dropdownsStatuses = useSelector(
-    (state) => state.dropdownsState.dropdownsStatuses
-  );
+  const UIState = useSelector((state) => state.UIState);
 
   const showMenuHelper = (columnName) => () => {
-    if (columnName === dropdownsStatuses.isMenuColumn) {
-      dispatch(
-        setDropdownsStatuses({
-          isMenuColumn: null,
-        })
-      );
+    if (columnName === UIState.isMenuColumn) {
+      dispatch(setStatus({ isMenuColumn: null }));
     } else {
-      dispatch(
-        setDropdownsStatuses({
-          isFilter: false,
-          isModal: false,
-          isMenuColumn: columnName,
-        })
-      );
+      dispatch(setStatus({ isMenuColumn: columnName }));
+      dispatch(setStatus({ isFilter: false }));
+      dispatch(setStatus({ isModal: false }));
     }
   };
   return (
@@ -47,7 +37,7 @@ const HeaderCell = ({ id, text, field, extraClass }) => {
             <MoreVertIcon onClick={showMenuHelper(id)} />
           </button>
 
-          {id === dropdownsStatuses.isMenuColumn && <Dropdown />}
+          {id === UIState.isMenuColumn && <Dropdown />}
         </div>
       </div>
     </>

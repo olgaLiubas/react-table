@@ -2,26 +2,20 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
 import Modal from "components/Row/Modal";
+import { setStatus } from "redux/actions";
 import RowCell from "components/Row/RowCell";
-import { setDropdownsStatuses } from "redux/actions";
 import { cellsNamesConfig } from "constants/cellsNamesConfig";
 
 import styles from "./style.module.scss";
 
 const Row = ({ country }) => {
   const dispatch = useDispatch();
-  const dropdownsStatuses = useSelector(
-    (state) => state.dropdownsState.dropdownsStatuses
-  );
+  const UIState = useSelector((state) => state.UIState);
 
   const onShowModalHelper = () => {
-    dispatch(
-      setDropdownsStatuses({
-        isFilter: false,
-        isModal: true,
-        isMenuColumn: null,
-      })
-    );
+    dispatch(setStatus({ isMenuColumn: null }));
+    dispatch(setStatus({ isFilter: false }));
+    dispatch(setStatus({ isModal: true }));
   };
 
   return (
@@ -45,7 +39,7 @@ const Row = ({ country }) => {
           🖊️
         </p>
 
-        {dropdownsStatuses.isModal && <Modal />}
+        {UIState.isModal && <Modal />}
       </div>
     </>
   );

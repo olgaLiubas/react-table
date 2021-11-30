@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { setDropdownsStatuses } from "redux/actions";
+import { setStatus } from "redux/actions";
 
 import styles from "./style.module.scss";
 
@@ -8,11 +8,7 @@ const Modal = () => {
   const dispatch = useDispatch();
 
   const onShowModalHelper = () => {
-    dispatch(
-      setDropdownsStatuses({
-        isModal: false,
-      })
-    );
+    dispatch(setStatus({ isModal: false }));
   };
 
   return (

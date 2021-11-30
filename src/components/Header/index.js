@@ -7,9 +7,7 @@ import { cellsNamesConfig } from "constants/cellsNamesConfig";
 import styles from "./style.module.scss";
 
 const Header = () => {
-  const dropdownsStatuses = useSelector(
-    (state) => state.dropdownsState.dropdownsStatuses
-  );
+  const UIState = useSelector((state) => state.UIState);
 
   return (
     <header className={styles.header}>
@@ -29,7 +27,7 @@ const Header = () => {
         />
       ))}
 
-      {dropdownsStatuses.isFilter ? <Filter /> : null}
+      {UIState.isFilter ? <Filter /> : null}
     </header>
   );
 };
