@@ -1,4 +1,4 @@
-import { SET_STATUS } from "redux/types";
+import { SHOW_FILTER, SHOW_MODAL, SHOW_MENU_COLUMN } from "redux/types";
 
 const initialState = {
   isFilter: false,
@@ -8,10 +8,20 @@ const initialState = {
 
 export const UIReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_STATUS:
+    case SHOW_FILTER:
       return {
         ...state,
-        ...action.payload,
+        isFilter: action.payload,
+      };
+    case SHOW_MODAL:
+      return {
+        ...state,
+        isModal: action.payload,
+      };
+    case SHOW_MENU_COLUMN:
+      return {
+        ...state,
+        isMenuColumn: action.payload,
       };
     default:
       return state;

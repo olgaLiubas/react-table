@@ -7,7 +7,7 @@ import { cellsNamesConfig } from "constants/cellsNamesConfig";
 import styles from "./style.module.scss";
 
 const Header = () => {
-  const UIState = useSelector((state) => state.UIState);
+  const ui = useSelector((state) => state.ui);
 
   return (
     <header className={styles.header}>
@@ -27,7 +27,7 @@ const Header = () => {
         />
       ))}
 
-      {UIState.isFilter ? <Filter /> : null}
+      {ui.isFilter ? <Filter /> : null}
     </header>
   );
 };

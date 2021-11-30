@@ -2,20 +2,20 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
 import Modal from "components/Row/Modal";
-import { setStatus } from "redux/actions";
 import RowCell from "components/Row/RowCell";
 import { cellsNamesConfig } from "constants/cellsNamesConfig";
+import { showMenuColumn, showFilter, showModal } from "redux/actions";
 
 import styles from "./style.module.scss";
 
 const Row = ({ country }) => {
   const dispatch = useDispatch();
-  const UIState = useSelector((state) => state.UIState);
+  const ui = useSelector((state) => state.ui);
 
   const onShowModalHelper = () => {
-    dispatch(setStatus({ isMenuColumn: null }));
-    dispatch(setStatus({ isFilter: false }));
-    dispatch(setStatus({ isModal: true }));
+    dispatch(showMenuColumn(null));
+    dispatch(showFilter(false));
+    dispatch(showModal(true));
   };
 
   return (
@@ -39,7 +39,7 @@ const Row = ({ country }) => {
           🖊️
         </p>
 
-        {UIState.isModal && <Modal />}
+        {ui.isModal && <Modal />}
       </div>
     </>
   );

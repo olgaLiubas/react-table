@@ -5,7 +5,7 @@ import { UIReducer } from "redux/UIReducer";
 import { countriesReducer } from "./countriesReducer";
 
 const rootReducer = combineReducers({
-  UIState: UIReducer,
+  ui: UIReducer,
   countriesState: countriesReducer,
 });
 

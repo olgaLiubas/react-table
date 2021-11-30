@@ -1,15 +1,13 @@
 import { useDispatch } from "react-redux";
 
-import { setStatus } from "redux/actions";
+import { showModal } from "redux/actions";
 
 import styles from "./style.module.scss";
 
 const Modal = () => {
   const dispatch = useDispatch();
 
-  const onShowModalHelper = () => {
-    dispatch(setStatus({ isModal: false }));
-  };
+  const onShowModalHelper = () => dispatch(showModal(false));
 
   return (
     <div className={styles.modalActive}>

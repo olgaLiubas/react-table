@@ -1,53 +1,51 @@
-import { setStatus, setFilter } from "redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+
+import { setOrder, showFilter, showModal, showMenuColumn } from "redux/actions";
 
 import styles from "./style.module.scss";
 
 const Dropdown = () => {
   const dispatch = useDispatch();
-  const UIState = useSelector((state) => state.UIState);
+  const ui = useSelector((state) => state.ui);
 
-  const changeSortingOrderToASC = () => {
-    dispatch(setFilter({ sortingOrder: "asc" }));
-  };
-
-  const changeSortingOrderToDESC = () => {
-    dispatch(setFilter({ sortingOrder: "desc" }));
-  };
+  const changeSortingOrder = () => dispatch(setOrder());
 
   const consoleText = (action) => () => {
-    console.log(`Button "${action}" from column "${UIState.isMenuColumn}"`);
+    console.log(`Button "${action}" from column "${ui.isMenuColumn}"`);
     if (action === "Filter") {
-      dispatch(setStatus({ isMenuColumn: null }));
-      dispatch(setStatus({ isFilter: true }));
-      dispatch(setStatus({ isModal: false }));
+      dispatch(showMenuColumn(null));
+      dispatch(showFilter(true));
+      dispatch(showModal(false));
     }
   };
 
   return (
     <div className={styles.dropdown}>
-      <div className={styles.dropdownItem} onClick={changeSortingOrderToASC}>
+      <button className={styles.dropdownItem} onClick={changeSortingOrder}>
         Sort by ASC
-      </div>
+      </button>
 
-      <div className={styles.dropdownItem} onClick={changeSortingOrderToDESC}>
+      <button className={styles.dropdownItem} onClick={changeSortingOrder}>
         Sort by DESC
-      </div>
+      </button>
 
-      <div className={styles.dropdownItem} onClick={consoleText("Filter")}>
+      <button className={styles.dropdownItem} onClick={consoleText("Filter")}>
         Filter
-      </div>
+      </button>
 
-      <div className={styles.dropdownItem} onClick={consoleText("Hide column")}>
+      <button
+        className={styles.dropdownItem}
+        onClick={consoleText("Hide column")}
+      >
         Hide column
-      </div>
+      </button>
 
-      <div
+      <button
         className={styles.dropdownItem}
         onClick={consoleText("Show columns")}
       >
         Show columns
-      </div>
+      </button>
     </div>
   );
 };
