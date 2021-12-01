@@ -5,12 +5,12 @@ import {
   SET_FILTER_OPERATOR,
   SET_FILTER_VALUE,
 } from "redux/types";
-import { asc } from "constants/sortingOrders";
+import { ASC } from "constants/sortingOrders";
 import { changeOrderHelper } from "bus/changeOrderHelper";
 
 const initialState = {
   countries: [],
-  sortingOrder: asc,
+  sortingOrder: ASC,
   filterColumn: "Name",
   filterOperator: "contains",
   filterValue: "",

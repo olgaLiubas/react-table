@@ -21,21 +21,34 @@ const Dropdown = () => {
 
   return (
     <div className={styles.dropdown}>
-      <button className={styles.dropdownItem} onClick={changeSortingOrder}>
+      <button
+        className={styles.dropdownItem}
+        onClick={changeSortingOrder}
+        type="button"
+      >
         Sort by ASC
       </button>
 
-      <button className={styles.dropdownItem} onClick={changeSortingOrder}>
+      <button
+        className={styles.dropdownItem}
+        onClick={changeSortingOrder}
+        type="button"
+      >
         Sort by DESC
       </button>
 
-      <button className={styles.dropdownItem} onClick={consoleText("Filter")}>
+      <button
+        className={styles.dropdownItem}
+        onClick={consoleText("Filter")}
+        type="button"
+      >
         Filter
       </button>
 
       <button
         className={styles.dropdownItem}
         onClick={consoleText("Hide column")}
+        type="button"
       >
         Hide column
       </button>
@@ -43,6 +56,7 @@ const Dropdown = () => {
       <button
         className={styles.dropdownItem}
         onClick={consoleText("Show columns")}
+        type="button"
       >
         Show columns
       </button>

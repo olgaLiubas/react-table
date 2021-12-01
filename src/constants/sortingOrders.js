@@ -1,2 +1,2 @@
-export const asc = "asc";
-export const desc = "desc";
+export const ASC = "asc";
+export const DESC = "desc";

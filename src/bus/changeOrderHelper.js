@@ -1,9 +1,9 @@
-import { asc, desc } from "constants/sortingOrders";
+import { ASC, DESC } from "constants/sortingOrders";
 
 export const changeOrderHelper = (currentOrder) => {
-  if (currentOrder === asc) {
-    return desc;
+  if (currentOrder === ASC) {
+    return DESC;
   } else {
-    return asc;
+    return ASC;
   }
 };
