@@ -5,20 +5,18 @@ import Footer from "components/Footer";
 import Header from "components/Header";
 
 import styles from "./App.module.scss";
+import { useEffect } from "react";
 
 const App = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countriesState.countries);
 
+  useEffect(() => {
+    dispatch({ type: "FETCH" });
+  }, []);
+
   return (
     <div className={styles.table}>
-      <button
-        className={styles.fetchButton}
-        onClick={() => dispatch({ type: "FETCH" })}
-        type="button"
-      >
-        FETCH COUNTRIES
-      </button>
       <Header />
 
       {countries.map((country) => (
