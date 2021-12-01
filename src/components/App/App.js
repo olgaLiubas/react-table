@@ -1,12 +1,8 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Row from "components/Row/";
-import { getData } from "bus/getData";
 import Footer from "components/Footer";
 import Header from "components/Header";
-import { setCountries } from "redux/actions";
-import { initialUrl } from "constants/initialUrl";
 
 import styles from "./App.module.scss";
 
@@ -14,12 +10,15 @@ const App = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countriesState.countries);
 
-  useEffect(() => {
-    getData(initialUrl, setCountries, dispatch);
-  }, []);
-
   return (
     <div className={styles.table}>
+      <button
+        className={styles.fetchButton}
+        onClick={() => dispatch({ type: "FETCH" })}
+        type="button"
+      >
+        FETCH COUNTRIES
+      </button>
       <Header />
 
       {countries.map((country) => (
