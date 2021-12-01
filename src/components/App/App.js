@@ -1,33 +1,32 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// import Row from "components/Row/";
-// import Footer from "components/Footer";
-// import Header from "components/Header";
-import { decrementCounter, incrementCounter } from "redux/actions";
-// import { useFetchCountriesContext } from "bus/countriesData/fetchCountriesContext";
+import Row from "components/Row/";
+import { getData } from "bus/getData";
+import Footer from "components/Footer";
+import Header from "components/Header";
+import { setCountries } from "redux/actions";
+import { initialUrl } from "constants/initialUrl";
 
 import styles from "./App.module.scss";
 
 const App = () => {
-  // const { countries } = useFetchCountriesContext();
   const dispatch = useDispatch();
-  const counter = useSelector((state) => state.counterState.counter);
+  const countries = useSelector((state) => state.countriesState.countries);
 
-  const onIncrement = () => dispatch(incrementCounter());
-  const onDecrement = () => dispatch(decrementCounter());
+  useEffect(() => {
+    getData(initialUrl, setCountries, dispatch);
+  }, []);
 
   return (
     <div className={styles.table}>
-      <p>Counter: {counter}</p>
-      <button onClick={onIncrement}>"+1"</button>
-      <button onClick={onDecrement}>"-1"</button>
-      {/* <Header />
+      <Header />
 
       {countries.map((country) => (
         <Row key={country.id} country={country} />
       ))}
 
-      <Footer /> */}
+      <Footer />
     </div>
   );
 };
