@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { setOrder, showFilter, showModal, showMenuColumn } from "redux/actions";
+import { setOrder } from "bus/country/actions";
+import { showFilter, showModal, showMenuColumn } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 

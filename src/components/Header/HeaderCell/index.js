@@ -2,11 +2,12 @@ import cn from "classnames";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
+import { setOrder } from "bus/country/actions";
 import Dropdown from "components/Header/DropdownMenu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { setOrder, showFilter, showMenuColumn, showModal } from "redux/actions";
+import { showFilter, showModal, showMenuColumn } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 
