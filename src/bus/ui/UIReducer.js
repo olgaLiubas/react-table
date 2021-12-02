@@ -1,4 +1,4 @@
-import { SHOW_FILTER, SHOW_MODAL, SHOW_MENU_COLUMN } from "redux/types";
+import { SHOW_FILTER, SHOW_MODAL, SHOW_MENU_COLUMN } from "bus/ui/types";
 
 const initialState = {
   isFilter: false,

@@ -1,32 +1,30 @@
 import {
-  SET_COUNTRIES,
-  SHOW_FILTER,
-  SHOW_MODAL,
-  SHOW_MENU_COLUMN,
+  FETCH_FOR_SAGA,
+  FETCH_COUNTRIES,
+  FETCH_COUNTRIES_START,
+  FETCH_COUNTRIES_ERROR,
   SET_ORDER,
   SET_FILTER_COLUMN,
   SET_FILTER_OPERATOR,
   SET_FILTER_VALUE,
-} from "redux/types";
+} from "bus/country/types";
 
-export const showFilter = (newStatus) => ({
-  type: SHOW_FILTER,
-  payload: newStatus,
+export const fetchForSaga = () => ({
+  type: FETCH_FOR_SAGA,
 });
 
-export const showModal = (newStatus) => ({
-  type: SHOW_MODAL,
-  payload: newStatus,
+export const fetchCountriesStart = () => ({
+  type: FETCH_COUNTRIES_START,
 });
 
-export const showMenuColumn = (newStatus) => ({
-  type: SHOW_MENU_COLUMN,
-  payload: newStatus,
-});
-
-export const setCountries = (newCountries) => ({
-  type: SET_COUNTRIES,
+export const fetchCountries = (newCountries) => ({
+  type: FETCH_COUNTRIES,
   payload: newCountries,
+});
+
+export const fetchCountriesError = (error) => ({
+  type: FETCH_COUNTRIES_ERROR,
+  payload: error,
 });
 
 export const setOrder = (newFilter) => ({

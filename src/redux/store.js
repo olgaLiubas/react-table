@@ -3,8 +3,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 
 import { rootSaga } from "./saga/rootSaga";
-import { UIReducer } from "redux/UIReducer";
-import { countriesReducer } from "./countriesReducer";
+import { UIReducer } from "bus/ui/UIReducer";
+import { countriesReducer } from "../bus/country/countriesReducer";
 
 const sagaMiddleware = createSagaMiddleware();
 

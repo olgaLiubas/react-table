@@ -1,4 +1,4 @@
-import { watchCountriesSaga } from "redux/saga/countriesSaga";
+import { watchCountriesSaga } from "bus/country/countriesSaga";
 
 export const rootSaga = function* () {
   yield watchCountriesSaga();

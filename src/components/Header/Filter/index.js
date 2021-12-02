@@ -4,8 +4,8 @@ import {
   setFilterColumn,
   setFilterOperator,
   setFilterValue,
-  showFilter,
-} from "redux/actions";
+} from "bus/country/actions";
+import { showFilter } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 

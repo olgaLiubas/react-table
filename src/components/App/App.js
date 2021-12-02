@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Row from "components/Row/";
@@ -5,14 +6,14 @@ import Footer from "components/Footer";
 import Header from "components/Header";
 
 import styles from "./App.module.scss";
-import { useEffect } from "react";
+import { fetchForSaga } from "bus/country/actions";
 
 const App = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countriesState.countries);
 
   useEffect(() => {
-    dispatch({ type: "FETCH" });
+    dispatch(fetchForSaga());
   }, []);
 
   return (
