@@ -27,9 +27,8 @@ export const fetchCountriesError = (error) => ({
   payload: error,
 });
 
-export const setOrder = (newFilter) => ({
+export const setOrder = () => ({
   type: SET_ORDER,
-  payload: newFilter,
 });
 
 export const setFilterColumn = (newFilter) => ({

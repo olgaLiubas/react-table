@@ -8,7 +8,7 @@ import {
   SET_FILTER_VALUE,
 } from "bus/country/types";
 import { ASC } from "constants/sortingOrders";
-import { changeOrderHelper } from "bus/ui/changeOrderHelper";
+import { changeOrderHelper } from "bus/country/changeOrderHelper";
 
 const initialState = {
   loading: false,
@@ -48,7 +48,7 @@ export const countriesReducer = (state = initialState, action) => {
     case SET_ORDER:
       return {
         ...state,
-        sortingOrder: changeOrderHelper(action.payload),
+        sortingOrder: changeOrderHelper(state.sortingOrder),
       };
     case SET_FILTER_COLUMN:
       return {
