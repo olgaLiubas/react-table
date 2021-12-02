@@ -2,20 +2,18 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Row from "components/Row/";
-import { getData } from "bus/getData";
 import Footer from "components/Footer";
 import Header from "components/Header";
-import { setCountries } from "redux/actions";
-import { initialUrl } from "constants/initialUrl";
 
 import styles from "./App.module.scss";
+import { fetchForSaga } from "bus/country/actions";
 
 const App = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countriesState.countries);
 
   useEffect(() => {
-    getData(initialUrl, setCountries, dispatch);
+    dispatch(fetchForSaga());
   }, []);
 
   return (

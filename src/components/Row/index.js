@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from "components/Row/Modal";
 import RowCell from "components/Row/RowCell";
 import { cellsNamesConfig } from "constants/cellsNamesConfig";
-import { showMenuColumn, showFilter, showModal } from "redux/actions";
+import { showFilter, showModal, showMenuColumn } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 

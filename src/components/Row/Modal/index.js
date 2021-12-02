@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { showModal } from "redux/actions";
+import { showModal } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 
