@@ -1,15 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { setOrder } from "bus/country/actions";
-import { showFilter, showModal, showMenuColumn } from "bus/ui/actions";
+import {
+  setOrder,
+  setSortingColumn,
+  fetchForNextTimes,
+} from "bus/country/actions";
+import * as uiActions from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 
-const Dropdown = () => {
+const Dropdown = ({ columnName, fieldInArray }) => {
+  const { showFilter, showModal, showMenuColumn, hideColumn } = uiActions;
+
   const dispatch = useDispatch();
   const ui = useSelector((state) => state.ui);
 
-  const changeSortingOrder = () => dispatch(setOrder());
+  const changeSortingOrder = () => {
+    dispatch(setOrder());
+    dispatch(setSortingColumn(fieldInArray));
+    dispatch(fetchForNextTimes());
+  };
+
+  const hideColumnHelper = () =>
+    dispatch(hideColumn({ [columnName]: !ui[columnName] }));
 
   const consoleText = (action) => () => {
     console.log(`Button "${action}" from column "${ui.isMenuColumn}"`);
@@ -48,7 +61,7 @@ const Dropdown = () => {
 
       <button
         className={styles.dropdownItem}
-        onClick={consoleText("Hide column")}
+        onClick={hideColumnHelper}
         type="button"
       >
         Hide column

@@ -1,13 +1,29 @@
-import { SHOW_FILTER, SHOW_MODAL, SHOW_MENU_COLUMN } from "bus/ui/types";
+import {
+  SHOW_FILTER,
+  SHOW_MODAL,
+  SHOW_MENU_COLUMN,
+  HIDE_COLUMN,
+} from "bus/ui/types";
 
 const initialState = {
   isFilter: false,
   isModal: false,
   isMenuColumn: null,
+  idColumn: true,
+  nameColumn: true,
+  capitalColumn: true,
+  phoneCodeColumn: true,
+  isoColumn: true,
+  currencyColumn: true,
 };
 
 export const UIReducer = (state = initialState, action) => {
   switch (action.type) {
+    case HIDE_COLUMN:
+      return {
+        ...state,
+        ...action.payload,
+      };
     case SHOW_FILTER:
       return {
         ...state,

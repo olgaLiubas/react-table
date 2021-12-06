@@ -1,4 +1,4 @@
-import { takeEvery, put, call } from "redux-saga/effects";
+import { takeEvery, put, call, select } from "redux-saga/effects";
 
 import {
   fetchCountries,
@@ -6,13 +6,17 @@ import {
   fetchCountriesError,
 } from "bus/country/actions";
 import { getData } from "bus/country/getData";
-import { initialUrl } from "constants/initialUrl";
-import { FETCH_FOR_SAGA } from "bus/country/types";
+import { urlGenerator } from "bus/country/urlGenerator";
+import { FETCH_FOR_SAGA, FETCH_FOR_NEXT_TIMES } from "bus/country/types";
 
 export const workerCountriesSaga = function* () {
   try {
     yield put(fetchCountriesStart());
-    const countries = yield call(getData, initialUrl);
+    const functionality = yield select(
+      (state) => state.countriesState.functionality
+    );
+    const url = urlGenerator(functionality);
+    const countries = yield call(getData, url);
     yield put(fetchCountries(countries));
   } catch (e) {
     yield put(fetchCountriesError(e));
@@ -21,4 +25,5 @@ export const workerCountriesSaga = function* () {
 
 export const watchCountriesSaga = function* () {
   yield takeEvery(FETCH_FOR_SAGA, workerCountriesSaga);
+  yield takeEvery(FETCH_FOR_NEXT_TIMES, workerCountriesSaga);
 };

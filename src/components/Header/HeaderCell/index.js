@@ -2,7 +2,11 @@ import cn from "classnames";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setOrder } from "bus/country/actions";
+import {
+  setOrder,
+  setSortingColumn,
+  fetchForNextTimes,
+} from "bus/country/actions";
 import Dropdown from "components/Header/DropdownMenu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -11,15 +15,19 @@ import { showFilter, showModal, showMenuColumn } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 
-const HeaderCell = ({ id, text, field, extraClass }) => {
+const HeaderCell = ({ id, text, extraClass, columnName, fieldInArray }) => {
   const dispatch = useDispatch();
 
   const ui = useSelector((state) => state.ui);
-  const sortingOrder = useSelector(
-    (state) => state.countriesState.sortingOrder
+  const { sortingOrder } = useSelector(
+    (state) => state.countriesState.functionality
   );
 
-  const changeSortingOrder = () => dispatch(setOrder());
+  const changeSortingOrder = () => {
+    dispatch(setOrder());
+    dispatch(setSortingColumn(fieldInArray));
+    dispatch(fetchForNextTimes());
+  };
 
   const showMenuHelper = (columnName) => () => {
     if (columnName === ui.isMenuColumn) {
@@ -48,7 +56,9 @@ const HeaderCell = ({ id, text, field, extraClass }) => {
             <MoreVertIcon />
           </button>
 
-          {id === ui.isMenuColumn && <Dropdown />}
+          {id === ui.isMenuColumn && (
+            <Dropdown columnName={columnName} fieldInArray={fieldInArray} />
+          )}
         </div>
       </div>
     </>

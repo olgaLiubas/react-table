@@ -6,6 +6,10 @@ import {
   SET_FILTER_COLUMN,
   SET_FILTER_OPERATOR,
   SET_FILTER_VALUE,
+  SET_ROWS_AMOUNT,
+  SET_PAGE_NUMBER,
+  SET_SORTING_COLUMN,
+  SORT_OR_FILTER,
 } from "bus/country/types";
 import { ASC } from "constants/sortingOrders";
 import { changeOrderHelper } from "bus/country/changeOrderHelper";
@@ -15,10 +19,17 @@ const initialState = {
   countries: [],
   succes: false,
   error: null,
-  sortingOrder: ASC,
-  filterColumn: "Name",
-  filterOperator: "contains",
-  filterValue: "",
+
+  functionality: {
+    sortOrFilter: "sort",
+    sortingColumn: "id",
+    sortingOrder: ASC,
+    filterColumn: "name",
+    filterOperator: "contains",
+    filterValue: "",
+    rowsAmount: 20,
+    pageNumber: 1,
+  },
 };
 
 export const countriesReducer = (state = initialState, action) => {
@@ -26,9 +37,7 @@ export const countriesReducer = (state = initialState, action) => {
     case FETCH_COUNTRIES_START:
       return {
         ...state,
-        succes: false,
         loading: true,
-        countries: [],
       };
     case FETCH_COUNTRIES:
       return {
@@ -40,30 +49,57 @@ export const countriesReducer = (state = initialState, action) => {
     case FETCH_COUNTRIES_ERROR:
       return {
         ...state,
-        succes: false,
         loading: false,
-        countries: [],
         error: action.payload,
       };
     case SET_ORDER:
       return {
         ...state,
-        sortingOrder: changeOrderHelper(state.sortingOrder),
+        functionality: {
+          ...state.functionality,
+          sortingOrder: changeOrderHelper(state.functionality.sortingOrder),
+        },
+      };
+    case SORT_OR_FILTER:
+      return {
+        ...state,
+        functionality: { ...state.functionality, sortOrFilter: action.payload },
+      };
+    case SET_SORTING_COLUMN:
+      return {
+        ...state,
+        functionality: {
+          ...state.functionality,
+          sortingColumn: action.payload,
+        },
       };
     case SET_FILTER_COLUMN:
       return {
         ...state,
-        filterColumn: action.payload,
+        functionality: { ...state.functionality, filterColum: action.payload },
       };
     case SET_FILTER_OPERATOR:
       return {
         ...state,
-        filterOperator: action.payload,
+        functionality: {
+          ...state.functionality,
+          filterOperator: action.payload,
+        },
       };
     case SET_FILTER_VALUE:
       return {
         ...state,
-        filterValue: action.payload,
+        functionality: { ...state.functionality, filterValue: action.payload },
+      };
+    case SET_PAGE_NUMBER:
+      return {
+        ...state,
+        functionality: { ...state.functionality, pageNumber: action.payload },
+      };
+    case SET_ROWS_AMOUNT:
+      return {
+        ...state,
+        functionality: { ...state.functionality, rowsAmount: action.payload },
       };
     default:
       return state;

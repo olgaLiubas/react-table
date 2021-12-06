@@ -27,13 +27,16 @@ const Row = ({ country }) => {
           className={styles.rowCheckbox}
         />
 
-        {cellsNamesConfig.map((cell) => (
-          <RowCell
-            key={cell.id}
-            extraClass={styles[cell.id]}
-            text={country[cell.fieldInCountries]}
-          />
-        ))}
+        {cellsNamesConfig.map(
+          (cell) =>
+            ui[cell.nameInUiState] && (
+              <RowCell
+                key={cell.id}
+                extraClass={styles[cell.id]}
+                text={country[cell.fieldInCountries]}
+              />
+            )
+        )}
 
         <p className={styles.editButton} onClick={onShowModalHelper}>
           🖊️
