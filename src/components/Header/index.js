@@ -17,15 +17,19 @@ const Header = () => {
         className={styles.headerCheckbox}
       />
 
-      {cellsNamesConfig.map((cell) => (
-        <HeaderCell
-          key={cell.id}
-          id={cell.id}
-          text={cell.nameOfHeaderColumn}
-          field={cell.fieldInCountries}
-          extraClass={styles[cell.id]}
-        />
-      ))}
+      {cellsNamesConfig.map(
+        (cell) =>
+          ui[cell.nameInUiState] && (
+            <HeaderCell
+              key={cell.id}
+              id={cell.id}
+              text={cell.nameOfHeaderColumn}
+              extraClass={styles[cell.id]}
+              columnName={cell.nameInUiState}
+              fieldInArray={cell.fieldInCountries}
+            />
+          )
+      )}
 
       {ui.isFilter ? <Filter /> : null}
     </header>

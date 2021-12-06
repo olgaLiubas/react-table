@@ -4,6 +4,8 @@ import {
   setFilterColumn,
   setFilterOperator,
   setFilterValue,
+  fetchForNextTimes,
+  setSortOrFilter,
 } from "bus/country/actions";
 import { showFilter } from "bus/ui/actions";
 
@@ -12,20 +14,28 @@ import styles from "./style.module.scss";
 const Filter = () => {
   const dispatch = useDispatch();
 
-  const filterValue = useSelector((state) => state.countriesState.filterValue);
+  const { filterValue } = useSelector(
+    (state) => state.countriesState.functionality
+  );
 
   const onChangeFilterColumn = (e) => dispatch(setFilterColumn(e.target.value));
 
   const onChangeFilterOperator = (e) =>
     dispatch(setFilterOperator(e.target.value));
 
-  const onInputFilterValue = (e) => dispatch(setFilterValue(e.target.value));
+  const onInputFilterValue = (e) => {
+    dispatch(setSortOrFilter("filter"));
+    dispatch(setFilterValue(e.target.value));
+    dispatch(fetchForNextTimes());
+  };
 
   const setIsFilterHelper = () => {
     dispatch(showFilter(false));
     dispatch(setFilterColumn("Name"));
     dispatch(setFilterOperator("contains"));
     dispatch(setFilterValue(""));
+    dispatch(setSortOrFilter("sort"));
+    dispatch(fetchForNextTimes());
   };
 
   return (
@@ -35,22 +45,18 @@ const Filter = () => {
       </p>
       <div className={styles.filterItem}>
         <p>Columns</p>
-        <select onChange={(e) => onChangeFilterColumn(e)}>
-          <option selected value="Name">
-            Name
-          </option>
-          <option value="Capital">Capital</option>
-          <option value="Phone code">Phone code</option>
-          <option value="Currency">Currency</option>
-          <option value="ISO">ISO</option>
+        <select defaultValue="name" onChange={(e) => onChangeFilterColumn(e)}>
+          <option value="name">Name</option>
+          <option value="capital">Capital</option>
+          <option value="phone_code">Phone code</option>
+          <option value="currency">Currency</option>
+          <option value="iso3">ISO</option>
         </select>
       </div>
       <div className={styles.filterItem}>
         <p>Operators</p>
         <select onChange={(e) => onChangeFilterOperator(e)}>
-          <option selected value="contains">
-            contains
-          </option>
+          <option value="contains">contains</option>
           <option value="equals">equals</option>
           <option value="starts with">starts with</option>
           <option value="ends with">ends with</option>

@@ -1,21 +1,59 @@
+import { useDispatch, useSelector } from "react-redux";
+
+import { fetchForNextTimes } from "bus/country/actions";
+import { setPageNumber, setRowsAmount } from "bus/country/actions";
+
 import styles from "./style.module.scss";
 
-const Footer = () => (
-  <div className={styles.footer}>
-    <div className={styles.wrapperSelector}>
-      <p>Amount of rows:</p>
-      <select>
-        <option>20</option>
-        <option>50</option>
-        <option>100</option>
-      </select>
+const Footer = () => {
+  const dispatch = useDispatch();
+  const { rowsAmount, pageNumber } = useSelector(
+    (state) => state.countriesState.functionality
+  );
+
+  const maxAmount = Math.ceil(250 / rowsAmount);
+
+  const goBackHelper = () => {
+    if (pageNumber > 1) {
+      dispatch(setPageNumber(pageNumber - 1));
+      dispatch(fetchForNextTimes());
+    }
+  };
+  const goForwardHelper = () => {
+    if (pageNumber < maxAmount) {
+      dispatch(setPageNumber(pageNumber + 1));
+      dispatch(fetchForNextTimes());
+    }
+  };
+  const changeAmountHelper = (e) => {
+    dispatch(setRowsAmount(Number(e.target.value)));
+
+    dispatch(fetchForNextTimes());
+  };
+
+  return (
+    <div className={styles.footer}>
+      <div className={styles.wrapperSelector}>
+        <p>Amount of rows:</p>
+        <select onChange={(event) => changeAmountHelper(event)}>
+          <option>20</option>
+          <option>50</option>
+          <option>100</option>
+        </select>
+      </div>
+      <p>
+        Page: {pageNumber} of {maxAmount}
+      </p>
+      <div className={styles.wrapperButtons}>
+        <p className={styles.backButton} onClick={goBackHelper}>
+          ◀
+        </p>
+        <p className={styles.forwardButton} onClick={goForwardHelper}>
+          ▶
+        </p>
+      </div>
     </div>
-    <p>Page: 1 of 1</p>
-    <div className={styles.wrapperButtons}>
-      <p className={styles.backButton}>◀</p>
-      <p className={styles.forwardButton}>▶</p>
-    </div>
-  </div>
-);
+  );
+};
 
 export default Footer;
