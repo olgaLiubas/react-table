@@ -16,15 +16,23 @@ import {
   SET_EDIT_COUNTRY_PHONE_CODE,
   SET_EDIT_COUNTRY_CURRENCY,
   SET_EDIT_COUNTRY_ISO,
+  PUT_COUNTRY_SUCCESS,
+  PUT_COUNTRY_ERROR,
+  PUT_COUNTRY_START,
 } from "bus/country/types";
 import { ASC } from "constants/sortingOrders";
 import { changeOrderHelper } from "bus/country/changeOrderHelper";
 
 const initialState = {
-  loading: false,
   countries: [],
-  succes: false,
-  error: null,
+
+  loadingGet: false,
+  succesGet: false,
+  errorGet: null,
+
+  loadingPut: false,
+  succesPut: false,
+  errorPut: null,
 
   functionality: {
     sortOrFilter: "sort",
@@ -52,20 +60,37 @@ export const countriesReducer = (state = initialState, action) => {
     case FETCH_COUNTRIES_START:
       return {
         ...state,
-        loading: true,
+        loadingGet: true,
       };
     case FETCH_COUNTRIES:
       return {
         ...state,
-        succes: true,
-        loading: false,
+        succesGet: true,
+        loadingGet: false,
         countries: action.payload,
       };
     case FETCH_COUNTRIES_ERROR:
       return {
         ...state,
-        loading: false,
-        error: action.payload,
+        loadingGet: false,
+        errorGet: action.payload,
+      };
+    case PUT_COUNTRY_START:
+      return {
+        ...state,
+        loadingPut: true,
+      };
+    case PUT_COUNTRY_SUCCESS:
+      return {
+        ...state,
+        succesPut: true,
+        loadingPut: false,
+      };
+    case PUT_COUNTRY_ERROR:
+      return {
+        ...state,
+        loadingPut: false,
+        errorPut: action.payload,
       };
     case SET_ORDER:
       return {

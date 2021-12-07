@@ -1,9 +1,14 @@
 export const FETCH_FOR_SAGA = "fetchForSaga";
 export const FETCH_FOR_NEXT_TIMES = "fetchForNextTimes";
+export const PUT_FOR_SAGA = "putForSaga";
 
 export const FETCH_COUNTRIES = "fetchCountries";
 export const FETCH_COUNTRIES_START = "fetchCountriesStart";
 export const FETCH_COUNTRIES_ERROR = "fetchCountriesError";
+
+export const PUT_COUNTRY_SUCCESS = "putCountrySuccess";
+export const PUT_COUNTRY_START = "putCountryStart";
+export const PUT_COUNTRY_ERROR = "putCountryError";
 
 export const SORT_OR_FILTER = "sortOrFilter";
 export const SET_ORDER = "setSortingOrder";

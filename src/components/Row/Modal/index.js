@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { showModal } from "bus/ui/actions";
 import {
   setEditCountry,
   setEditCountryName,
@@ -8,7 +7,9 @@ import {
   setEditCountryPhoneCode,
   setEditCountryCurrency,
   setEditCountryIso,
+  putForSaga,
 } from "bus/country/actions";
+import { showModal } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 
@@ -20,30 +21,32 @@ const Modal = ({ country }) => {
   const onShowModalHelper = () => {
     dispatch(showModal(null));
     dispatch(setEditCountry(country));
+    dispatch(showModal(null));
+  };
+
+  const onPutRequestHelper = () => {
+    dispatch(putForSaga());
+    dispatch(showModal(null));
+    dispatch(setEditCountry(null));
   };
 
   const onChangeNameHelper = (e) => {
-    console.log(e.target.value);
     dispatch(setEditCountryName(e.target.value));
   };
 
   const onChangeCapitalHelper = (e) => {
-    console.log(e.target.value);
     dispatch(setEditCountryCapital(e.target.value));
   };
 
   const onChangePhoneCodeHelper = (e) => {
-    console.log(e.target.value);
     dispatch(setEditCountryPhoneCode(e.target.value));
   };
 
   const onChangeCurrencyHelper = (e) => {
-    console.log(e.target.value);
     dispatch(setEditCountryCurrency(e.target.value));
   };
 
   const onChangeIsoHelper = (e) => {
-    console.log(e.target.value);
     dispatch(setEditCountryIso(e.target.value));
   };
 
@@ -89,8 +92,12 @@ const Modal = ({ country }) => {
         />
       </div>
       <div className={styles.modalButtons}>
-        <button onClick={onShowModalHelper}>CANCEL</button>
-        <button>CHANGE</button>
+        <button type="button" onClick={onShowModalHelper}>
+          CANCEL
+        </button>
+        <button type="button" onClick={onPutRequestHelper}>
+          CHANGE
+        </button>
       </div>
     </div>
   );

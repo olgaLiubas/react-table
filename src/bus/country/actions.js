@@ -18,11 +18,19 @@ import {
   SET_EDIT_COUNTRY_PHONE_CODE,
   SET_EDIT_COUNTRY_CURRENCY,
   SET_EDIT_COUNTRY_ISO,
+  PUT_FOR_SAGA,
+  PUT_COUNTRY_SUCCESS,
+  PUT_COUNTRY_ERROR,
+  PUT_COUNTRY_START,
 } from "bus/country/types";
 
 export const fetchForSaga = (initialUrl) => ({
   type: FETCH_FOR_SAGA,
   payload: initialUrl,
+});
+
+export const putForSaga = () => ({
+  type: PUT_FOR_SAGA,
 });
 
 export const fetchForNextTimes = (newUrl) => ({
@@ -41,6 +49,19 @@ export const fetchCountries = (newCountries) => ({
 
 export const fetchCountriesError = (error) => ({
   type: FETCH_COUNTRIES_ERROR,
+  payload: error,
+});
+
+export const putCountryStart = () => ({
+  type: PUT_COUNTRY_START,
+});
+
+export const putCountrySuccess = () => ({
+  type: PUT_COUNTRY_SUCCESS,
+});
+
+export const putCountryError = (error) => ({
+  type: PUT_COUNTRY_ERROR,
   payload: error,
 });
 
