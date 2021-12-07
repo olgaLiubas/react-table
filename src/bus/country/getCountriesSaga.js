@@ -9,7 +9,7 @@ import { getData } from "bus/country/getData";
 import { urlGenerator } from "bus/country/urlGenerator";
 import { FETCH_FOR_SAGA, FETCH_FOR_NEXT_TIMES } from "bus/country/types";
 
-export const workerCountriesSaga = function* () {
+export const workerGetCountriesSaga = function* () {
   try {
     yield put(fetchCountriesStart());
     const functionality = yield select(
@@ -23,7 +23,7 @@ export const workerCountriesSaga = function* () {
   }
 };
 
-export const watchCountriesSaga = function* () {
-  yield takeEvery(FETCH_FOR_SAGA, workerCountriesSaga);
-  yield takeEvery(FETCH_FOR_NEXT_TIMES, workerCountriesSaga);
+export const watchGetCountriesSaga = function* () {
+  yield takeEvery(FETCH_FOR_SAGA, workerGetCountriesSaga);
+  yield takeEvery(FETCH_FOR_NEXT_TIMES, workerGetCountriesSaga);
 };
