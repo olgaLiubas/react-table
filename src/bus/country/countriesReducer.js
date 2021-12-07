@@ -10,6 +10,12 @@ import {
   SET_PAGE_NUMBER,
   SET_SORTING_COLUMN,
   SORT_OR_FILTER,
+  SET_EDIT_COUNTRY,
+  SET_EDIT_COUNTRY_NAME,
+  SET_EDIT_COUNTRY_CAPITAL,
+  SET_EDIT_COUNTRY_PHONE_CODE,
+  SET_EDIT_COUNTRY_CURRENCY,
+  SET_EDIT_COUNTRY_ISO,
 } from "bus/country/types";
 import { ASC } from "constants/sortingOrders";
 import { changeOrderHelper } from "bus/country/changeOrderHelper";
@@ -29,6 +35,15 @@ const initialState = {
     filterValue: "",
     rowsAmount: 20,
     pageNumber: 1,
+  },
+
+  editCountry: {
+    id: null,
+    name: null,
+    capital: null,
+    phone_code: null,
+    currency: null,
+    iso3: null,
   },
 };
 
@@ -100,6 +115,36 @@ export const countriesReducer = (state = initialState, action) => {
       return {
         ...state,
         functionality: { ...state.functionality, rowsAmount: action.payload },
+      };
+    case SET_EDIT_COUNTRY:
+      return {
+        ...state,
+        editCountry: action.payload,
+      };
+    case SET_EDIT_COUNTRY_NAME:
+      return {
+        ...state,
+        editCountry: { ...state.editCountry, name: action.payload },
+      };
+    case SET_EDIT_COUNTRY_CAPITAL:
+      return {
+        ...state,
+        editCountry: { ...state.editCountry, capital: action.payload },
+      };
+    case SET_EDIT_COUNTRY_PHONE_CODE:
+      return {
+        ...state,
+        editCountry: { ...state.editCountry, phone_code: action.payload },
+      };
+    case SET_EDIT_COUNTRY_CURRENCY:
+      return {
+        ...state,
+        editCountry: { ...state.editCountry, currency: action.payload },
+      };
+    case SET_EDIT_COUNTRY_ISO:
+      return {
+        ...state,
+        editCountry: { ...state.editCountry, iso3: action.payload },
       };
     default:
       return state;

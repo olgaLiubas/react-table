@@ -14,3 +14,10 @@ export const SET_FILTER_VALUE = "setFilterValue";
 
 export const SET_ROWS_AMOUNT = "setRowsAmount";
 export const SET_PAGE_NUMBER = "setPageNumber";
+
+export const SET_EDIT_COUNTRY = "setEditCountry";
+export const SET_EDIT_COUNTRY_NAME = "setEditCountryName";
+export const SET_EDIT_COUNTRY_CAPITAL = "setEditCountryCapital";
+export const SET_EDIT_COUNTRY_PHONE_CODE = "setEditCountryPhoneCode";
+export const SET_EDIT_COUNTRY_CURRENCY = "setEditCountryCurrency";
+export const SET_EDIT_COUNTRY_ISO = "setEditCountryIso";

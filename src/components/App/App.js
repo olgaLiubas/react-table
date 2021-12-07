@@ -5,8 +5,9 @@ import Row from "components/Row/";
 import Footer from "components/Footer";
 import Header from "components/Header";
 
-import styles from "./App.module.scss";
 import { fetchForSaga } from "bus/country/actions";
+
+import styles from "./App.module.scss";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const App = () => {
   return (
     <div className={styles.table}>
       <Header />
+
+      <div id="modal_place"></div>
 
       {countries.map((country) => (
         <Row key={country.id} country={country} />

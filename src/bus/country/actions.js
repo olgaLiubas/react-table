@@ -12,6 +12,12 @@ import {
   SET_ROWS_AMOUNT,
   SET_PAGE_NUMBER,
   SORT_OR_FILTER,
+  SET_EDIT_COUNTRY,
+  SET_EDIT_COUNTRY_NAME,
+  SET_EDIT_COUNTRY_CAPITAL,
+  SET_EDIT_COUNTRY_PHONE_CODE,
+  SET_EDIT_COUNTRY_CURRENCY,
+  SET_EDIT_COUNTRY_ISO,
 } from "bus/country/types";
 
 export const fetchForSaga = (initialUrl) => ({
@@ -75,4 +81,34 @@ export const setRowsAmount = (newAmount) => ({
 export const setPageNumber = (newNumber) => ({
   type: SET_PAGE_NUMBER,
   payload: newNumber,
+});
+
+export const setEditCountry = (newCountry) => ({
+  type: SET_EDIT_COUNTRY,
+  payload: newCountry,
+});
+
+export const setEditCountryName = (newValue) => ({
+  type: SET_EDIT_COUNTRY_NAME,
+  payload: newValue,
+});
+
+export const setEditCountryCapital = (newValue) => ({
+  type: SET_EDIT_COUNTRY_CAPITAL,
+  payload: newValue,
+});
+
+export const setEditCountryPhoneCode = (newValue) => ({
+  type: SET_EDIT_COUNTRY_PHONE_CODE,
+  payload: newValue,
+});
+
+export const setEditCountryCurrency = (newValue) => ({
+  type: SET_EDIT_COUNTRY_CURRENCY,
+  payload: newValue,
+});
+
+export const setEditCountryIso = (newValue) => ({
+  type: SET_EDIT_COUNTRY_ISO,
+  payload: newValue,
 });

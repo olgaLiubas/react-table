@@ -1,8 +1,10 @@
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
 import Modal from "components/Row/Modal";
 import RowCell from "components/Row/RowCell";
+import { setEditCountry } from "bus/country/actions";
 import { cellsNamesConfig } from "constants/cellsNamesConfig";
 import { showFilter, showModal, showMenuColumn } from "bus/ui/actions";
 
@@ -15,7 +17,8 @@ const Row = ({ country }) => {
   const onShowModalHelper = () => {
     dispatch(showMenuColumn(null));
     dispatch(showFilter(false));
-    dispatch(showModal(true));
+    dispatch(showModal(country.id));
+    dispatch(setEditCountry(country));
   };
 
   return (
@@ -42,7 +45,11 @@ const Row = ({ country }) => {
           🖊️
         </p>
 
-        {ui.isModal && <Modal />}
+        {country.id === ui.isModal &&
+          ReactDOM.createPortal(
+            <Modal country={country} />,
+            document.getElementById("modal_place")
+          )}
       </div>
     </>
   );
