@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import {
-  setEditCountry,
   setEditCountryName,
   setEditCountryCapital,
   setEditCountryPhoneCode,
@@ -11,11 +10,10 @@ import {
   setEditCountryIso,
   putForSaga,
 } from "bus/country/actions";
-import { showModal } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 
-const Modal = ({ country }) => {
+const ChangeCountryDataForm = () => {
   const editCountry = useSelector((state) => state.countriesState.editCountry);
 
   const dispatch = useDispatch();
@@ -28,7 +26,7 @@ const Modal = ({ country }) => {
     iso3: editCountry.iso3,
   };
 
-  const signInSchema = Yup.object().shape({
+  const validationSchema = Yup.object().shape({
     name: Yup.string()
       .required("Name is required")
       .min(3, "Name is too short - should be 3 chars min"),
@@ -54,26 +52,18 @@ const Modal = ({ country }) => {
     dispatch(setEditCountryCurrency(values.currency));
     dispatch(setEditCountryIso(values.iso3));
     dispatch(putForSaga());
-    dispatch(showModal(null));
-    dispatch(setEditCountry(null));
-  };
-
-  const onShowModalHelper = () => {
-    dispatch(showModal(null));
-    dispatch(setEditCountry(country));
-    dispatch(showModal(null));
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={signInSchema}
+      validationSchema={validationSchema}
       onSubmit={submitForm}
     >
       {(formik) => {
         const { errors, touched, isValid, dirty } = formik;
         return (
-          <Form className={styles.modalActive}>
+          <Form className={styles.modalForm}>
             <div className={styles.modalId}>
               <p>ID № </p>
               <p>{editCountry.id}</p>
@@ -183,19 +173,13 @@ const Modal = ({ country }) => {
               />
             </div>
 
-            <div className={styles.modalButtons}>
-              <button type="reset" onClick={onShowModalHelper}>
-                CANCEL
-              </button>
-
-              <button
-                type="submit"
-                className={!(dirty && isValid) ? styles.disabledBtn : null}
-                disabled={!(dirty && isValid)}
-              >
-                CHANGE
-              </button>
-            </div>
+            <button
+              type="submit"
+              className={!(dirty && isValid) ? styles.disabledBtn : null}
+              disabled={!(dirty && isValid)}
+            >
+              CHANGE
+            </button>
           </Form>
         );
       }}
@@ -203,4 +187,4 @@ const Modal = ({ country }) => {
   );
 };
 
-export default Modal;
+export default ChangeCountryDataForm;

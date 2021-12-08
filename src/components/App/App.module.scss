@@ -3,6 +3,18 @@
   flex-direction: column;
   z-index: 1;
   padding-bottom: 50px;
+  .loader {
+    align-self: center;
+    margin-top: 40vh;
+  }
+  .error {
+    align-self: center;
+    margin-top: 40vh;
+  }
+  .modalPlace {
+    height: 1px;
+    width: 1px;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -17,8 +29,4 @@
     max-width: 1230px;
     width: 1230px;
   }
-}
-
-.fetchButton {
-  height: 50px;
 }
