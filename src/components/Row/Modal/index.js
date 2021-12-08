@@ -74,19 +74,23 @@ const Modal = ({ country }) => {
         const { errors, touched, isValid, dirty } = formik;
         return (
           <Form className={styles.modalActive}>
-            <div className={styles.modalProp}>
+            <div className={styles.modalId}>
               <p>ID № </p>
               <p>{editCountry.id}</p>
             </div>
 
             <div className={styles.modalProp}>
-              <p htmlFor="name">Name:</p>
-              <Field
-                type="name"
-                name="name"
-                id="name"
-                className={errors.name && touched.name ? "input-error" : null}
-              />
+              <div className={styles.modalInput}>
+                <p htmlFor="name">Name:</p>
+                <Field
+                  type="name"
+                  name="name"
+                  id="name"
+                  className={
+                    errors.name && touched.name ? styles.inputError : null
+                  }
+                />
+              </div>
 
               <ErrorMessage
                 name="name"
@@ -96,15 +100,17 @@ const Modal = ({ country }) => {
             </div>
 
             <div className={styles.modalProp}>
-              <p htmlFor="capital">Capital:</p>
-              <Field
-                type="capital"
-                name="capital"
-                id="capital"
-                className={
-                  errors.capital && touched.capital ? "input-error" : null
-                }
-              />
+              <div className={styles.modalInput}>
+                <p htmlFor="capital">Capital:</p>
+                <Field
+                  type="capital"
+                  name="capital"
+                  id="capital"
+                  className={
+                    errors.capital && touched.capital ? styles.inputError : null
+                  }
+                />
+              </div>
 
               <ErrorMessage
                 name="capital"
@@ -114,15 +120,19 @@ const Modal = ({ country }) => {
             </div>
 
             <div className={styles.modalProp}>
-              <p htmlFor="phone_code">Phone code:</p>
-              <Field
-                type="phone_code"
-                name="phone_code"
-                id="phone_code"
-                className={
-                  errors.phone_code && touched.phone_code ? "input-error" : null
-                }
-              />
+              <div className={styles.modalInput}>
+                <p htmlFor="phone_code">Phone code:</p>
+                <Field
+                  type="phone_code"
+                  name="phone_code"
+                  id="phone_code"
+                  className={
+                    errors.phone_code && touched.phone_code
+                      ? styles.inputError
+                      : null
+                  }
+                />
+              </div>
 
               <ErrorMessage
                 name="phone_code"
@@ -132,15 +142,19 @@ const Modal = ({ country }) => {
             </div>
 
             <div className={styles.modalProp}>
-              <p htmlFor="currency">Currency:</p>
-              <Field
-                type="currency"
-                name="currency"
-                id="currency"
-                className={
-                  errors.currency && touched.currency ? "input-error" : null
-                }
-              />
+              <div className={styles.modalInput}>
+                <p htmlFor="currency">Currency:</p>
+                <Field
+                  type="currency"
+                  name="currency"
+                  id="currency"
+                  className={
+                    errors.currency && touched.currency
+                      ? styles.inputError
+                      : null
+                  }
+                />
+              </div>
 
               <ErrorMessage
                 name="currency"
@@ -150,13 +164,17 @@ const Modal = ({ country }) => {
             </div>
 
             <div className={styles.modalProp}>
-              <p htmlFor="iso3">ISO:</p>
-              <Field
-                type="iso3"
-                name="iso3"
-                id="iso3"
-                className={errors.iso3 && touched.iso3 ? "input-error" : null}
-              />
+              <div className={styles.modalInput}>
+                <p htmlFor="iso3">ISO:</p>
+                <Field
+                  type="iso3"
+                  name="iso3"
+                  id="iso3"
+                  className={
+                    errors.iso3 && touched.iso3 ? styles.inputError : null
+                  }
+                />
+              </div>
 
               <ErrorMessage
                 name="iso3"
@@ -172,7 +190,7 @@ const Modal = ({ country }) => {
 
               <button
                 type="submit"
-                className={!(dirty && isValid) ? "disabled-btn" : ""}
+                className={!(dirty && isValid) ? styles.disabledBtn : null}
                 disabled={!(dirty && isValid)}
               >
                 CHANGE
