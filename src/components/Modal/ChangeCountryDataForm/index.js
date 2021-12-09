@@ -45,7 +45,6 @@ const ChangeCountryDataForm = () => {
   });
 
   const submitForm = (values) => {
-    console.log(values);
     dispatch(setEditCountryName(values.name));
     dispatch(setEditCountryCapital(values.capital));
     dispatch(setEditCountryPhoneCode(values.phone_code));
