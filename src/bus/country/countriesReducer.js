@@ -54,7 +54,6 @@ export const countriesReducer = (state = initialState, action) => {
     case PREPARE_NEW_PUT_REQ:
       return {
         ...state,
-        loadingPut: false,
         successPut: false,
         errorPut: null,
       };
