@@ -6,6 +6,7 @@ export const FETCH_COUNTRIES = "fetchCountries";
 export const FETCH_COUNTRIES_START = "fetchCountriesStart";
 export const FETCH_COUNTRIES_ERROR = "fetchCountriesError";
 
+export const PREPARE_NEW_PUT_REQ = "prepareNewPutReg";
 export const PUT_COUNTRY_SUCCESS = "putCountrySuccess";
 export const PUT_COUNTRY_START = "putCountryStart";
 export const PUT_COUNTRY_ERROR = "putCountryError";

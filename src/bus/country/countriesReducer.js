@@ -19,6 +19,7 @@ import {
   PUT_COUNTRY_SUCCESS,
   PUT_COUNTRY_ERROR,
   PUT_COUNTRY_START,
+  PREPARE_NEW_PUT_REQ,
 } from "bus/country/types";
 import { ASC } from "constants/sortingOrders";
 import { changeOrderHelper } from "bus/country/changeOrderHelper";
@@ -27,11 +28,11 @@ const initialState = {
   countries: [],
 
   loadingGet: false,
-  succesGet: false,
+  successGet: false,
   errorGet: null,
 
   loadingPut: false,
-  succesPut: false,
+  successPut: false,
   errorPut: null,
 
   functionality: {
@@ -45,18 +46,17 @@ const initialState = {
     pageNumber: 1,
   },
 
-  editCountry: {
-    id: null,
-    name: null,
-    capital: null,
-    phone_code: null,
-    currency: null,
-    iso3: null,
-  },
+  editCountry: null,
 };
 
 export const countriesReducer = (state = initialState, action) => {
   switch (action.type) {
+    case PREPARE_NEW_PUT_REQ:
+      return {
+        ...state,
+        successPut: false,
+        errorPut: null,
+      };
     case FETCH_COUNTRIES_START:
       return {
         ...state,
@@ -65,7 +65,7 @@ export const countriesReducer = (state = initialState, action) => {
     case FETCH_COUNTRIES:
       return {
         ...state,
-        succesGet: true,
+        successGet: true,
         loadingGet: false,
         countries: action.payload,
       };
@@ -83,7 +83,7 @@ export const countriesReducer = (state = initialState, action) => {
     case PUT_COUNTRY_SUCCESS:
       return {
         ...state,
-        succesPut: true,
+        successPut: true,
         loadingPut: false,
       };
     case PUT_COUNTRY_ERROR:

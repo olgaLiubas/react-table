@@ -22,6 +22,7 @@ import {
   PUT_COUNTRY_SUCCESS,
   PUT_COUNTRY_ERROR,
   PUT_COUNTRY_START,
+  PREPARE_NEW_PUT_REQ,
 } from "bus/country/types";
 
 export const fetchForSaga = (initialUrl) => ({
@@ -50,6 +51,10 @@ export const fetchCountries = (newCountries) => ({
 export const fetchCountriesError = (error) => ({
   type: FETCH_COUNTRIES_ERROR,
   payload: error,
+});
+
+export const prepareNewPutReguest = () => ({
+  type: PREPARE_NEW_PUT_REQ,
 });
 
 export const putCountryStart = () => ({
