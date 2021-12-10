@@ -20,6 +20,7 @@ import {
   PUT_COUNTRY_ERROR,
   PUT_COUNTRY_START,
   PREPARE_NEW_PUT_REQ,
+  PREPARE_NEW_GET_REQ,
 } from "bus/country/types";
 import { ASC } from "constants/sortingOrders";
 import { changeOrderHelper } from "bus/country/changeOrderHelper";
@@ -56,6 +57,12 @@ export const countriesReducer = (state = initialState, action) => {
         ...state,
         successPut: false,
         errorPut: null,
+      };
+    case PREPARE_NEW_GET_REQ:
+      return {
+        ...state,
+        successGet: false,
+        errorGet: null,
       };
     case FETCH_COUNTRIES_START:
       return {

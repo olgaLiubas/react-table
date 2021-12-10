@@ -4,7 +4,6 @@ import {
   putCountryError,
   putCountrySuccess,
   putCountryStart,
-  fetchForNextTimes,
 } from "bus/country/actions";
 import { putData } from "bus/country/putData";
 import { PUT_FOR_SAGA } from "bus/country/types";
@@ -19,7 +18,6 @@ export const workerPutCountriesSaga = function* () {
     const url = `${initialUrl}/${editCountry.id}`;
     yield call(putData, url, editCountry);
     yield put(putCountrySuccess());
-    yield put(fetchForNextTimes());
   } catch (e) {
     yield put(putCountryError(e));
   }

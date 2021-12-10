@@ -1,8 +1,6 @@
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
-import Modal from "components/Modal";
 import RowCell from "components/Row/RowCell";
 import { setEditCountry } from "bus/country/actions";
 import { cellsNamesConfig } from "constants/cellsNamesConfig";
@@ -13,12 +11,11 @@ import styles from "./style.module.scss";
 const Row = ({ country }) => {
   const dispatch = useDispatch();
   const ui = useSelector((state) => state.ui);
-  const editCountry = useSelector((state) => state.countriesState.editCountry);
 
   const onShowModalHelper = () => {
     dispatch(showMenuColumn(null));
     dispatch(showFilter(false));
-    dispatch(showModal(country.id));
+    dispatch(showModal(true));
     dispatch(setEditCountry(country));
   };
 
@@ -45,13 +42,6 @@ const Row = ({ country }) => {
         <p className={styles.editButton} onClick={onShowModalHelper}>
           🖊️
         </p>
-
-        {country.id === ui.isModal &&
-          editCountry &&
-          ReactDOM.createPortal(
-            <Modal country={country} />,
-            document.getElementById("modal_place")
-          )}
       </div>
     </>
   );

@@ -15,6 +15,7 @@ import styles from "./style.module.scss";
 
 const ChangeCountryDataForm = () => {
   const editCountry = useSelector((state) => state.countriesState.editCountry);
+  console.log(editCountry);
 
   const dispatch = useDispatch();
 

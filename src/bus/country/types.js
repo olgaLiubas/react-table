@@ -2,6 +2,7 @@ export const FETCH_FOR_SAGA = "fetchForSaga";
 export const FETCH_FOR_NEXT_TIMES = "fetchForNextTimes";
 export const PUT_FOR_SAGA = "putForSaga";
 
+export const PREPARE_NEW_GET_REQ = "prepareNewGetReg";
 export const FETCH_COUNTRIES = "fetchCountries";
 export const FETCH_COUNTRIES_START = "fetchCountriesStart";
 export const FETCH_COUNTRIES_ERROR = "fetchCountriesError";
