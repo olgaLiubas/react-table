@@ -10,7 +10,7 @@ import {
   setEditCountryIso,
   putForSaga,
 } from "bus/country/actions";
-import FieldModal from "./Field";
+import FieldModal from "components/Modal/ChangeCountryDataForm/Field";
 
 import styles from "./style.module.scss";
 

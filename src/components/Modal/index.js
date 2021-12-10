@@ -6,10 +6,10 @@ import {
   prepareNewGetReguest,
   fetchForNextTimes,
 } from "bus/country/actions";
-import AlertMsg from "./Alert";
 import { showModal } from "bus/ui/actions";
-import ChangeCountryDataForm from "./ChangeCountryDataForm";
+import AlertMsg from "components/Modal/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
+import ChangeCountryDataForm from "components/Modal/ChangeCountryDataForm";
 
 import styles from "./style.module.scss";
 
