@@ -1,6 +1,6 @@
 import * as Yup from "yup";
+import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import {
   setEditCountryName,
@@ -10,12 +10,12 @@ import {
   setEditCountryIso,
   putForSaga,
 } from "bus/country/actions";
+import FieldModal from "./Field";
 
 import styles from "./style.module.scss";
 
 const ChangeCountryDataForm = () => {
   const editCountry = useSelector((state) => state.countriesState.editCountry);
-  console.log(editCountry);
 
   const dispatch = useDispatch();
 
@@ -69,109 +69,45 @@ const ChangeCountryDataForm = () => {
               <p>{editCountry.id}</p>
             </div>
 
-            <div className={styles.modalProp}>
-              <div className={styles.modalInput}>
-                <p htmlFor="name">Name:</p>
-                <Field
-                  type="name"
-                  name="name"
-                  id="name"
-                  className={
-                    errors.name && touched.name ? styles.inputError : null
-                  }
-                />
-              </div>
+            <FieldModal
+              name={"Name:"}
+              fieldValue={"name"}
+              styles={styles}
+              errors={errors}
+              touched={touched}
+            />
 
-              <ErrorMessage
-                name="name"
-                component="span"
-                className={styles.error}
-              />
-            </div>
+            <FieldModal
+              name={"Capital:"}
+              fieldValue={"capital"}
+              styles={styles}
+              errors={errors}
+              touched={touched}
+            />
 
-            <div className={styles.modalProp}>
-              <div className={styles.modalInput}>
-                <p htmlFor="capital">Capital:</p>
-                <Field
-                  type="capital"
-                  name="capital"
-                  id="capital"
-                  className={
-                    errors.capital && touched.capital ? styles.inputError : null
-                  }
-                />
-              </div>
+            <FieldModal
+              name={"Phone code:"}
+              fieldValue={"phone_code"}
+              styles={styles}
+              errors={errors}
+              touched={touched}
+            />
 
-              <ErrorMessage
-                name="capital"
-                component="span"
-                className={styles.error}
-              />
-            </div>
+            <FieldModal
+              name={"Currency:"}
+              fieldValue={"currency"}
+              styles={styles}
+              errors={errors}
+              touched={touched}
+            />
 
-            <div className={styles.modalProp}>
-              <div className={styles.modalInput}>
-                <p htmlFor="phone_code">Phone code:</p>
-                <Field
-                  type="phone_code"
-                  name="phone_code"
-                  id="phone_code"
-                  className={
-                    errors.phone_code && touched.phone_code
-                      ? styles.inputError
-                      : null
-                  }
-                />
-              </div>
-
-              <ErrorMessage
-                name="phone_code"
-                component="span"
-                className={styles.error}
-              />
-            </div>
-
-            <div className={styles.modalProp}>
-              <div className={styles.modalInput}>
-                <p htmlFor="currency">Currency:</p>
-                <Field
-                  type="currency"
-                  name="currency"
-                  id="currency"
-                  className={
-                    errors.currency && touched.currency
-                      ? styles.inputError
-                      : null
-                  }
-                />
-              </div>
-
-              <ErrorMessage
-                name="currency"
-                component="span"
-                className={styles.error}
-              />
-            </div>
-
-            <div className={styles.modalProp}>
-              <div className={styles.modalInput}>
-                <p htmlFor="iso3">ISO:</p>
-                <Field
-                  type="iso3"
-                  name="iso3"
-                  id="iso3"
-                  className={
-                    errors.iso3 && touched.iso3 ? styles.inputError : null
-                  }
-                />
-              </div>
-
-              <ErrorMessage
-                name="iso3"
-                component="span"
-                className={styles.error}
-              />
-            </div>
+            <FieldModal
+              name={"ISO:"}
+              fieldValue={"iso3"}
+              styles={styles}
+              errors={errors}
+              touched={touched}
+            />
 
             <button
               type="submit"

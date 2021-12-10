@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import AlertMsg from "./Alert";
-import { showModal } from "bus/ui/actions";
-import ChangeCountryDataForm from "./ChangeCountryDataForm";
-import CircularProgress from "@mui/material/CircularProgress";
 import {
   setEditCountry,
   prepareNewPutReguest,
   prepareNewGetReguest,
   fetchForNextTimes,
 } from "bus/country/actions";
+import AlertMsg from "./Alert";
+import { showModal } from "bus/ui/actions";
+import ChangeCountryDataForm from "./ChangeCountryDataForm";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import styles from "./style.module.scss";
 
