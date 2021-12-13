@@ -8,6 +8,7 @@ import {
 import { getData } from "bus/country/getData";
 import { urlGenerator } from "bus/country/urlGenerator";
 import { FETCH_FOR_SAGA, FETCH_FOR_NEXT_TIMES } from "bus/country/types";
+import { showModal } from "bus/ui/actions";
 
 export const workerGetCountriesSaga = function* () {
   try {
@@ -20,6 +21,7 @@ export const workerGetCountriesSaga = function* () {
     yield put(fetchCountries(countries));
   } catch (e) {
     yield put(fetchCountriesError(e));
+    yield put(showModal(true));
   }
 };
 

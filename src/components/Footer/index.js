@@ -2,14 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchForNextTimes } from "bus/country/actions";
 import { setPageNumber, setRowsAmount } from "bus/country/actions";
+import { getFunctionalityData } from "bus/country/selectors";
 
 import styles from "./style.module.scss";
 
 const Footer = () => {
   const dispatch = useDispatch();
-  const { rowsAmount, pageNumber } = useSelector(
-    (state) => state.countriesState.functionality
-  );
+  const { rowsAmount, pageNumber } = useSelector(getFunctionalityData);
 
   const maxAmount = Math.ceil(250 / rowsAmount);
 

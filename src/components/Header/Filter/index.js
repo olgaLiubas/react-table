@@ -7,16 +7,15 @@ import {
   fetchForNextTimes,
   setSortOrFilter,
 } from "bus/country/actions";
-import { showFilter } from "bus/ui/actions";
+import { hideFilter } from "bus/ui/actions";
+import { getFunctionalityData } from "bus/country/selectors";
 
 import styles from "./style.module.scss";
 
 const Filter = () => {
   const dispatch = useDispatch();
 
-  const { filterValue } = useSelector(
-    (state) => state.countriesState.functionality
-  );
+  const { filterValue } = useSelector(getFunctionalityData);
 
   const onChangeFilterColumn = (e) => dispatch(setFilterColumn(e.target.value));
 
@@ -30,7 +29,7 @@ const Filter = () => {
   };
 
   const setIsFilterHelper = () => {
-    dispatch(showFilter(false));
+    dispatch(hideFilter());
     dispatch(setFilterColumn("Name"));
     dispatch(setFilterOperator("contains"));
     dispatch(setFilterValue(""));
