@@ -3,25 +3,30 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
+  showMenuColumn,
+  hideMenuColumn,
+  hideFilter,
+  hideModal,
+} from "bus/ui/actions";
+import {
   setOrder,
   setSortingColumn,
   fetchForNextTimes,
 } from "bus/country/actions";
+import { getUiState } from "bus/ui/selectors";
 import Dropdown from "components/Header/DropdownMenu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { getFunctionalityData } from "bus/country/selectors";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { showFilter, showModal, showMenuColumn } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 
 const HeaderCell = ({ id, text, extraClass, columnName, fieldInArray }) => {
   const dispatch = useDispatch();
 
-  const ui = useSelector((state) => state.ui);
-  const { sortingOrder } = useSelector(
-    (state) => state.countriesState.functionality
-  );
+  const ui = useSelector(getUiState);
+  const { sortingOrder } = useSelector(getFunctionalityData);
 
   const changeSortingOrder = () => {
     dispatch(setOrder());
@@ -31,11 +36,11 @@ const HeaderCell = ({ id, text, extraClass, columnName, fieldInArray }) => {
 
   const showMenuHelper = (columnName) => () => {
     if (columnName === ui.isMenuColumn) {
-      dispatch(showMenuColumn(null));
+      dispatch(hideMenuColumn());
     } else {
       dispatch(showMenuColumn(columnName));
-      dispatch(showFilter(false));
-      dispatch(showModal(false));
+      dispatch(hideFilter(false));
+      dispatch(hideModal(false));
     }
   };
   return (

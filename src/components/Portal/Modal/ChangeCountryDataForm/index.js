@@ -1,25 +1,22 @@
-import * as Yup from "yup";
+// import { string, object } from "yup";
+
 import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  setEditCountryName,
-  setEditCountryCapital,
-  setEditCountryPhoneCode,
-  setEditCountryCurrency,
-  setEditCountryIso,
-  putForSaga,
-} from "bus/country/actions";
-import FieldModal from "components/Modal/ChangeCountryDataForm/Field";
+import { putForSaga } from "bus/country/actions";
+import { getEditCountry } from "bus/country/selectors";
+import FieldModal from "components/Portal/Modal/ChangeCountryDataForm/Field";
+import { validationSchema } from "bus/country/validationShemaForFormik";
 
 import styles from "./style.module.scss";
 
 const ChangeCountryDataForm = () => {
-  const editCountry = useSelector((state) => state.countriesState.editCountry);
+  const editCountry = useSelector(getEditCountry);
 
   const dispatch = useDispatch();
 
   const initialValues = {
+    id: editCountry.id,
     name: editCountry.name,
     capital: editCountry.capital,
     phone_code: editCountry.phone_code,
@@ -27,31 +24,8 @@ const ChangeCountryDataForm = () => {
     iso3: editCountry.iso3,
   };
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string()
-      .required("Name is required")
-      .min(3, "Name is too short - should be 3 chars min"),
-    capital: Yup.string()
-      .required("Capital is required")
-      .min(3, "Capital is too short - should be 3 chars min"),
-    phone_code: Yup.string()
-      .required("Phone code is required")
-      .min(3, "Phone code is too short - should be 3 chars min"),
-    currency: Yup.string()
-      .required("Currency is required")
-      .min(2, "Currency is too short - should be 3 chars min"),
-    iso3: Yup.string()
-      .required("ISO is required")
-      .min(2, "ISO is too short - should be 3 chars min"),
-  });
-
   const submitForm = (values) => {
-    dispatch(setEditCountryName(values.name));
-    dispatch(setEditCountryCapital(values.capital));
-    dispatch(setEditCountryPhoneCode(values.phone_code));
-    dispatch(setEditCountryCurrency(values.currency));
-    dispatch(setEditCountryIso(values.iso3));
-    dispatch(putForSaga());
+    dispatch(putForSaga(values));
   };
 
   return (
@@ -66,7 +40,7 @@ const ChangeCountryDataForm = () => {
           <Form className={styles.modalForm}>
             <div className={styles.modalId}>
               <p>ID № </p>
-              <p>{editCountry.id}</p>
+              <p>{initialValues.id}</p>
             </div>
 
             <FieldModal
@@ -124,3 +98,30 @@ const ChangeCountryDataForm = () => {
 };
 
 export default ChangeCountryDataForm;
+
+// const validationSchema = {
+//   shape: {
+//     name: editCountry.name,
+//     capital: editCountry.capital,
+//     phone_code: editCountry.phone_code,
+//     currency: editCountry.currency,
+//     iso3: editCountry.iso3,
+//   },
+//   schema: object().shape({
+//     name: string()
+//       .required("Name is required")
+//       .min(3, "Name is too short - should be 3 chars min"),
+//     capital: string()
+//       .required("Capital is required")
+//       .min(3, "Capital is too short - should be 3 chars min"),
+//     phone_code: string()
+//       .required("Phone code is required")
+//       .min(3, "Phone code is too short - should be 3 chars min"),
+//     currency: string()
+//       .required("Currency is required")
+//       .min(2, "Currency is too short - should be 3 chars min"),
+//     iso3: string()
+//       .required("ISO is required")
+//       .min(2, "ISO is too short - should be 3 chars min"),
+//   }),
+// };

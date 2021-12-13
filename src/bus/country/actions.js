@@ -13,17 +13,12 @@ import {
   SET_PAGE_NUMBER,
   SORT_OR_FILTER,
   SET_EDIT_COUNTRY,
-  SET_EDIT_COUNTRY_NAME,
-  SET_EDIT_COUNTRY_CAPITAL,
-  SET_EDIT_COUNTRY_PHONE_CODE,
-  SET_EDIT_COUNTRY_CURRENCY,
-  SET_EDIT_COUNTRY_ISO,
   PUT_FOR_SAGA,
   PUT_COUNTRY_SUCCESS,
   PUT_COUNTRY_ERROR,
   PUT_COUNTRY_START,
-  PREPARE_NEW_PUT_REQ,
-  PREPARE_NEW_GET_REQ,
+  PREPARE_NEW_UPDATING_REQ,
+  PREPARE_NEW_FETCHING_REQ,
 } from "bus/country/types";
 
 export const fetchForSaga = (initialUrl) => ({
@@ -31,8 +26,9 @@ export const fetchForSaga = (initialUrl) => ({
   payload: initialUrl,
 });
 
-export const putForSaga = () => ({
+export const putForSaga = (editCountry) => ({
   type: PUT_FOR_SAGA,
+  payload: editCountry,
 });
 
 export const fetchForNextTimes = (newUrl) => ({
@@ -54,12 +50,12 @@ export const fetchCountriesError = (error) => ({
   payload: error,
 });
 
-export const prepareNewGetReguest = () => ({
-  type: PREPARE_NEW_GET_REQ,
+export const prepareNewFetchingReguest = () => ({
+  type: PREPARE_NEW_FETCHING_REQ,
 });
 
-export const prepareNewPutReguest = () => ({
-  type: PREPARE_NEW_PUT_REQ,
+export const prepareNewUpdatingReguest = () => ({
+  type: PREPARE_NEW_UPDATING_REQ,
 });
 
 export const putCountryStart = () => ({
@@ -117,29 +113,4 @@ export const setPageNumber = (newNumber) => ({
 export const setEditCountry = (newCountry) => ({
   type: SET_EDIT_COUNTRY,
   payload: newCountry,
-});
-
-export const setEditCountryName = (newValue) => ({
-  type: SET_EDIT_COUNTRY_NAME,
-  payload: newValue,
-});
-
-export const setEditCountryCapital = (newValue) => ({
-  type: SET_EDIT_COUNTRY_CAPITAL,
-  payload: newValue,
-});
-
-export const setEditCountryPhoneCode = (newValue) => ({
-  type: SET_EDIT_COUNTRY_PHONE_CODE,
-  payload: newValue,
-});
-
-export const setEditCountryCurrency = (newValue) => ({
-  type: SET_EDIT_COUNTRY_CURRENCY,
-  payload: newValue,
-});
-
-export const setEditCountryIso = (newValue) => ({
-  type: SET_EDIT_COUNTRY_ISO,
-  payload: newValue,
 });

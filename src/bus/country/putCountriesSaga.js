@@ -1,4 +1,4 @@
-import { takeEvery, put, call, select } from "redux-saga/effects";
+import { takeEvery, put, call } from "redux-saga/effects";
 
 import {
   putCountryError,
@@ -9,14 +9,12 @@ import { putData } from "bus/country/putData";
 import { PUT_FOR_SAGA } from "bus/country/types";
 import { initialUrl } from "constants/initialUrl";
 
-export const workerPutCountriesSaga = function* () {
+export const workerPutCountriesSaga = function* (action) {
+  console.log(action.payload);
   try {
     yield put(putCountryStart());
-    const editCountry = yield select(
-      (state) => state.countriesState.editCountry
-    );
-    const url = `${initialUrl}/${editCountry.id}`;
-    yield call(putData, url, editCountry);
+    const url = `${initialUrl}/${action.payload.id}`;
+    yield call(putData, url, action.payload);
     yield put(putCountrySuccess());
   } catch (e) {
     yield put(putCountryError(e));

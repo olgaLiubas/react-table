@@ -6,14 +6,15 @@ import {
   fetchForNextTimes,
 } from "bus/country/actions";
 import * as uiActions from "bus/ui/actions";
+import { getColumnsStatuses } from "bus/ui/selectors";
 
 import styles from "./style.module.scss";
 
 const Dropdown = ({ columnName, fieldInArray }) => {
-  const { showFilter, showModal, showMenuColumn, hideColumn } = uiActions;
+  const { showFilter, hideColumn, hideMenuColumn, hideModal } = uiActions;
 
   const dispatch = useDispatch();
-  const ui = useSelector((state) => state.ui);
+  const columns = useSelector(getColumnsStatuses);
 
   const changeSortingOrder = () => {
     dispatch(setOrder());
@@ -21,16 +22,14 @@ const Dropdown = ({ columnName, fieldInArray }) => {
     dispatch(fetchForNextTimes());
   };
 
-  const hideColumnHelper = () =>
-    dispatch(hideColumn({ [columnName]: !ui[columnName] }));
+  const hideColumnHelper = () => {
+    dispatch(hideColumn({ [columnName]: !columns[columnName] }));
+  };
 
-  const consoleText = (action) => () => {
-    console.log(`Button "${action}" from column "${ui.isMenuColumn}"`);
-    if (action === "Filter") {
-      dispatch(showMenuColumn(null));
-      dispatch(showFilter(true));
-      dispatch(showModal(false));
-    }
+  const filterHelper = () => {
+    dispatch(hideMenuColumn());
+    dispatch(showFilter());
+    dispatch(hideModal());
   };
 
   return (
@@ -53,7 +52,7 @@ const Dropdown = ({ columnName, fieldInArray }) => {
 
       <button
         className={styles.dropdownItem}
-        onClick={consoleText("Filter")}
+        onClick={filterHelper}
         type="button"
       >
         Filter
@@ -67,11 +66,7 @@ const Dropdown = ({ columnName, fieldInArray }) => {
         Hide column
       </button>
 
-      <button
-        className={styles.dropdownItem}
-        onClick={consoleText("Show columns")}
-        type="button"
-      >
+      <button className={styles.dropdownItem} type="button">
         Show columns
       </button>
     </div>

@@ -2,22 +2,35 @@ import {
   SHOW_FILTER,
   SHOW_MODAL,
   SHOW_MENU_COLUMN,
+  HIDE_FILTER,
+  HIDE_MENU_COLUMN,
+  HIDE_MODAL,
   HIDE_COLUMN,
 } from "bus/ui/types";
 
-export const showFilter = (newStatus) => ({
+export const showFilter = () => ({
   type: SHOW_FILTER,
-  payload: newStatus,
 });
 
-export const showModal = (newStatus) => ({
+export const showModal = () => ({
   type: SHOW_MODAL,
-  payload: newStatus,
 });
 
-export const showMenuColumn = (newStatus) => ({
+export const showMenuColumn = (column) => ({
   type: SHOW_MENU_COLUMN,
-  payload: newStatus,
+  payload: column,
+});
+
+export const hideFilter = () => ({
+  type: HIDE_FILTER,
+});
+
+export const hideModal = () => ({
+  type: HIDE_MODAL,
+});
+
+export const hideMenuColumn = () => ({
+  type: HIDE_MENU_COLUMN,
 });
 
 export const hideColumn = (state) => ({ type: HIDE_COLUMN, payload: state });

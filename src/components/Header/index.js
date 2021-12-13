@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 
+import { getUiState } from "bus/ui/selectors";
 import Filter from "components/Header/Filter";
 import HeaderCell from "components/Header/HeaderCell";
 import { cellsNamesConfig } from "constants/cellsNamesConfig";
@@ -7,7 +8,7 @@ import { cellsNamesConfig } from "constants/cellsNamesConfig";
 import styles from "./style.module.scss";
 
 const Header = () => {
-  const ui = useSelector((state) => state.ui);
+  const ui = useSelector(getUiState);
 
   return (
     <header className={styles.header}>
@@ -19,7 +20,7 @@ const Header = () => {
 
       {cellsNamesConfig.map(
         (cell) =>
-          ui[cell.nameInUiState] && (
+          ui.columns[cell.nameInUiState] && (
             <HeaderCell
               key={cell.id}
               id={cell.id}

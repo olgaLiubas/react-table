@@ -3,18 +3,24 @@ import {
   SHOW_MODAL,
   SHOW_MENU_COLUMN,
   HIDE_COLUMN,
+  HIDE_FILTER,
+  HIDE_MENU_COLUMN,
+  HIDE_MODAL,
 } from "bus/ui/types";
 
 const initialState = {
   isFilter: false,
   isModal: false,
   isMenuColumn: null,
-  idColumn: true,
-  nameColumn: true,
-  capitalColumn: true,
-  phoneCodeColumn: true,
-  isoColumn: true,
-  currencyColumn: true,
+
+  columns: {
+    idColumn: true,
+    nameColumn: true,
+    capitalColumn: true,
+    phoneCodeColumn: true,
+    isoColumn: true,
+    currencyColumn: true,
+  },
 };
 
 export const UIReducer = (state = initialState, action) => {
@@ -22,22 +28,40 @@ export const UIReducer = (state = initialState, action) => {
     case HIDE_COLUMN:
       return {
         ...state,
-        ...action.payload,
+        columns: {
+          ...state.columns,
+          ...action.payload,
+        },
       };
     case SHOW_FILTER:
       return {
         ...state,
-        isFilter: action.payload,
+        isFilter: true,
       };
     case SHOW_MODAL:
       return {
         ...state,
-        isModal: action.payload,
+        isModal: true,
       };
     case SHOW_MENU_COLUMN:
       return {
         ...state,
         isMenuColumn: action.payload,
+      };
+    case HIDE_FILTER:
+      return {
+        ...state,
+        isFilter: false,
+      };
+    case HIDE_MODAL:
+      return {
+        ...state,
+        isModal: false,
+      };
+    case HIDE_MENU_COLUMN:
+      return {
+        ...state,
+        isMenuColumn: false,
       };
     default:
       return state;

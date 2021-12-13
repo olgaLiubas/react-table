@@ -87,170 +87,34 @@
     {
       "id": 3,
       "name": "Albania",
-      "iso3": "ALB",
-      "iso2": "AL",
-      "numeric_code": "008",
-      "phone_code": "355",
       "capital": "Tirana",
+      "phone_code": "355",
       "currency": "ALB",
-      "currency_symbol": "Lek",
-      "tld": ".al",
-      "native": "Shqipëria",
-      "region": "Europe",
-      "subregion": "Southern Europe",
-      "timezones": [
-        {
-          "zoneName": "Europe/Tirane",
-          "gmtOffset": 3600,
-          "gmtOffsetName": "UTC+01:00",
-          "abbreviation": "CET",
-          "tzName": "Central European Time"
-        }
-      ],
-      "translations": {
-        "kr": "알바니아",
-        "br": "Albânia",
-        "pt": "Albânia",
-        "nl": "Albanië",
-        "hr": "Albanija",
-        "fa": "آلبانی",
-        "de": "Albanien",
-        "es": "Albania",
-        "fr": "Albanie",
-        "ja": "アルバニア",
-        "it": "Albania",
-        "cn": "阿尔巴尼亚"
-      },
-      "latitude": "41.00000000",
-      "longitude": "20.00000000",
-      "emoji": "🇦🇱",
-      "emojiU": "U+1F1E6 U+1F1F1"
+      "iso3": "ALB"
     },
     {
       "id": 4,
       "name": "Algeria",
-      "iso3": "DZA",
-      "iso2": "DZ",
-      "numeric_code": "012",
-      "phone_code": "213",
       "capital": "Algiers",
+      "phone_code": "213",
       "currency": "DZD",
-      "currency_symbol": "دج",
-      "tld": ".dz",
-      "native": "الجزائر",
-      "region": "Africa",
-      "subregion": "Northern Africa",
-      "timezones": [
-        {
-          "zoneName": "Africa/Algiers",
-          "gmtOffset": 3600,
-          "gmtOffsetName": "UTC+01:00",
-          "abbreviation": "CET",
-          "tzName": "Central European Time"
-        }
-      ],
-      "translations": {
-        "kr": "알제리",
-        "br": "Argélia",
-        "pt": "Argélia",
-        "nl": "Algerije",
-        "hr": "Alžir",
-        "fa": "الجزایر",
-        "de": "Algerien",
-        "es": "Argelia",
-        "fr": "Algérie",
-        "ja": "アルジェリア",
-        "it": "Algeria",
-        "cn": "阿尔及利亚"
-      },
-      "latitude": "28.00000000",
-      "longitude": "3.00000000",
-      "emoji": "🇩🇿",
-      "emojiU": "U+1F1E9 U+1F1FF"
+      "iso3": "DZA"
     },
     {
       "id": 5,
       "name": "American Samoa",
-      "iso3": "ASM",
-      "iso2": "AS",
-      "numeric_code": "016",
-      "phone_code": "+1-684",
       "capital": "Pago Pago",
+      "phone_code": "+1-684",
       "currency": "USD",
-      "currency_symbol": "$",
-      "tld": ".as",
-      "native": "American Samoa",
-      "region": "Oceania",
-      "subregion": "Polynesia",
-      "timezones": [
-        {
-          "zoneName": "Pacific/Pago_Pago",
-          "gmtOffset": -39600,
-          "gmtOffsetName": "UTC-11:00",
-          "abbreviation": "SST",
-          "tzName": "Samoa Standard Time"
-        }
-      ],
-      "translations": {
-        "kr": "아메리칸사모아",
-        "br": "Samoa Americana",
-        "pt": "Samoa Americana",
-        "nl": "Amerikaans Samoa",
-        "hr": "Američka Samoa",
-        "fa": "ساموآی آمریکا",
-        "de": "Amerikanisch-Samoa",
-        "es": "Samoa Americana",
-        "fr": "Samoa américaines",
-        "ja": "アメリカ領サモア",
-        "it": "Samoa Americane",
-        "cn": "美属萨摩亚"
-      },
-      "latitude": "-14.33333333",
-      "longitude": "-170.00000000",
-      "emoji": "🇦🇸",
-      "emojiU": "U+1F1E6 U+1F1F8"
+      "iso3": "ASM"
     },
     {
       "id": 6,
       "name": "Andorra",
-      "iso3": "AND",
-      "iso2": "AD",
-      "numeric_code": "020",
+      "capital": "Andorra la Vellan",
       "phone_code": "376",
-      "capital": "Andorra la Vella",
       "currency": "EUR",
-      "currency_symbol": "€",
-      "tld": ".ad",
-      "native": "Andorra",
-      "region": "Europe",
-      "subregion": "Southern Europe",
-      "timezones": [
-        {
-          "zoneName": "Europe/Andorra",
-          "gmtOffset": 3600,
-          "gmtOffsetName": "UTC+01:00",
-          "abbreviation": "CET",
-          "tzName": "Central European Time"
-        }
-      ],
-      "translations": {
-        "kr": "안도라",
-        "br": "Andorra",
-        "pt": "Andorra",
-        "nl": "Andorra",
-        "hr": "Andora",
-        "fa": "آندورا",
-        "de": "Andorra",
-        "es": "Andorra",
-        "fr": "Andorre",
-        "ja": "アンドラ",
-        "it": "Andorra",
-        "cn": "安道尔"
-      },
-      "latitude": "42.50000000",
-      "longitude": "1.50000000",
-      "emoji": "🇦🇩",
-      "emojiU": "U+1F1E6 U+1F1E9"
+      "iso3": "AND"
     },
     {
       "id": 7,
@@ -259,7 +123,7 @@
       "iso2": "AO",
       "numeric_code": "024",
       "phone_code": "244",
-      "capital": "Luanda",
+      "capital": "Luandaj",
       "currency": "AOA",
       "currency_symbol": "Kz",
       "tld": ".ao",
@@ -9513,7 +9377,7 @@
       "iso2": "SB",
       "numeric_code": "090",
       "phone_code": "677",
-      "capital": "Honiara",
+      "capital": "Honiara hh",
       "currency": "SBD",
       "currency_symbol": "Si$",
       "tld": ".sb",
@@ -9639,7 +9503,7 @@
       "iso2": "GS",
       "numeric_code": "239",
       "phone_code": "500",
-      "capital": "Grytviken",
+      "capital": "Grytviken j",
       "currency": "GBP",
       "currency_symbol": "£",
       "tld": ".gs",

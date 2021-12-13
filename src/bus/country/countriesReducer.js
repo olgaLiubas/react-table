@@ -11,16 +11,11 @@ import {
   SET_SORTING_COLUMN,
   SORT_OR_FILTER,
   SET_EDIT_COUNTRY,
-  SET_EDIT_COUNTRY_NAME,
-  SET_EDIT_COUNTRY_CAPITAL,
-  SET_EDIT_COUNTRY_PHONE_CODE,
-  SET_EDIT_COUNTRY_CURRENCY,
-  SET_EDIT_COUNTRY_ISO,
   PUT_COUNTRY_SUCCESS,
   PUT_COUNTRY_ERROR,
   PUT_COUNTRY_START,
-  PREPARE_NEW_PUT_REQ,
-  PREPARE_NEW_GET_REQ,
+  PREPARE_NEW_UPDATING_REQ,
+  PREPARE_NEW_FETCHING_REQ,
 } from "bus/country/types";
 import { ASC } from "constants/sortingOrders";
 import { changeOrderHelper } from "bus/country/changeOrderHelper";
@@ -28,13 +23,17 @@ import { changeOrderHelper } from "bus/country/changeOrderHelper";
 const initialState = {
   countries: [],
 
-  loadingGet: false,
-  successGet: false,
-  errorGet: null,
+  fetchingCountries: {
+    loading: false,
+    success: false,
+    error: null,
+  },
 
-  loadingPut: false,
-  successPut: false,
-  errorPut: null,
+  updatingCountries: {
+    loading: false,
+    success: false,
+    error: null,
+  },
 
   functionality: {
     sortOrFilter: "sort",
@@ -52,52 +51,76 @@ const initialState = {
 
 export const countriesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case PREPARE_NEW_PUT_REQ:
+    case PREPARE_NEW_UPDATING_REQ:
       return {
         ...state,
-        successPut: false,
-        errorPut: null,
+        updatingCountries: {
+          ...state.updatingCountries,
+          success: false,
+          error: null,
+        },
       };
-    case PREPARE_NEW_GET_REQ:
+    case PREPARE_NEW_FETCHING_REQ:
       return {
         ...state,
-        successGet: false,
-        errorGet: null,
+        fetchingCountries: {
+          ...state.fetchingCountries,
+          success: false,
+          error: null,
+        },
       };
     case FETCH_COUNTRIES_START:
       return {
         ...state,
-        loadingGet: true,
+        fetchingCountries: {
+          ...state.fetchingCountries,
+          loading: true,
+        },
       };
     case FETCH_COUNTRIES:
       return {
         ...state,
-        successGet: true,
-        loadingGet: false,
+        fetchingCountries: {
+          ...state.fetchingCountries,
+          success: true,
+          loading: false,
+        },
         countries: action.payload,
       };
     case FETCH_COUNTRIES_ERROR:
       return {
         ...state,
-        loadingGet: false,
-        errorGet: action.payload,
+        fetchingCountries: {
+          ...state.fetchingCountries,
+          loading: false,
+          error: action.payload,
+        },
       };
     case PUT_COUNTRY_START:
       return {
         ...state,
-        loadingPut: true,
+        updatingCountries: {
+          ...state.updatingCountries,
+          loading: true,
+        },
       };
     case PUT_COUNTRY_SUCCESS:
       return {
         ...state,
-        successPut: true,
-        loadingPut: false,
+        updatingCountries: {
+          ...state.updatingCountries,
+          success: true,
+          loading: false,
+        },
       };
     case PUT_COUNTRY_ERROR:
       return {
         ...state,
-        loadingPut: false,
-        errorPut: action.payload,
+        updatingCountries: {
+          ...state.updatingCountries,
+          loading: false,
+          error: action.payload,
+        },
       };
     case SET_ORDER:
       return {
@@ -152,31 +175,6 @@ export const countriesReducer = (state = initialState, action) => {
       return {
         ...state,
         editCountry: action.payload,
-      };
-    case SET_EDIT_COUNTRY_NAME:
-      return {
-        ...state,
-        editCountry: { ...state.editCountry, name: action.payload },
-      };
-    case SET_EDIT_COUNTRY_CAPITAL:
-      return {
-        ...state,
-        editCountry: { ...state.editCountry, capital: action.payload },
-      };
-    case SET_EDIT_COUNTRY_PHONE_CODE:
-      return {
-        ...state,
-        editCountry: { ...state.editCountry, phone_code: action.payload },
-      };
-    case SET_EDIT_COUNTRY_CURRENCY:
-      return {
-        ...state,
-        editCountry: { ...state.editCountry, currency: action.payload },
-      };
-    case SET_EDIT_COUNTRY_ISO:
-      return {
-        ...state,
-        editCountry: { ...state.editCountry, iso3: action.payload },
       };
     default:
       return state;

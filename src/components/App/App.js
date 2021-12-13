@@ -1,22 +1,22 @@
-import ReactDOM from "react-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Row from "components/Row/";
-import Modal from "components/Modal";
 import Footer from "components/Footer";
 import Header from "components/Header";
+import Portal from "components/Portal";
 import { fetchForSaga } from "bus/country/actions";
+import { getCountries } from "bus/country/selectors";
+
 import CircularProgress from "@mui/material/CircularProgress";
+import { getFetchingCountriesStatuses } from "bus/country/selectors";
 
 import styles from "./App.module.scss";
 
 const App = () => {
   const dispatch = useDispatch();
-  const countries = useSelector((state) => state.countriesState.countries);
-  const loadingGet = useSelector((state) => state.countriesState.loadingGet);
-  const successGet = useSelector((state) => state.countriesState.successGet);
-  const isModal = useSelector((state) => state.ui.isModal);
+  const countries = useSelector(getCountries);
+  const fetchingStatuses = useSelector(getFetchingCountriesStatuses);
 
   useEffect(() => {
     dispatch(fetchForSaga());
@@ -28,17 +28,13 @@ const App = () => {
 
       <div id="modal_place" className={styles.modalPlace}></div>
 
-      {isModal &&
-        ReactDOM.createPortal(
-          <Modal />,
-          document.getElementById("modal_place")
-        )}
+      <Portal />
 
-      {loadingGet && (
+      {fetchingStatuses.loading && (
         <CircularProgress color="inherit" className={styles.loader} />
       )}
 
-      {successGet && !loadingGet && (
+      {fetchingStatuses.success && !fetchingStatuses.loading && (
         <>
           {countries.map((country) => (
             <Row key={country.id} country={country} />

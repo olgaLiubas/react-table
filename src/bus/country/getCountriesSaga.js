@@ -19,7 +19,6 @@ export const workerGetCountriesSaga = function* () {
     const url = urlGenerator(functionality);
     const countries = yield call(getData, url);
     yield put(fetchCountries(countries));
-    yield put(showModal(true));
   } catch (e) {
     yield put(fetchCountriesError(e));
     yield put(showModal(true));

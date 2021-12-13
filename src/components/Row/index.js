@@ -3,18 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 
 import RowCell from "components/Row/RowCell";
 import { setEditCountry } from "bus/country/actions";
+import { getColumnsStatuses } from "bus/ui/selectors";
 import { cellsNamesConfig } from "constants/cellsNamesConfig";
-import { showFilter, showModal, showMenuColumn } from "bus/ui/actions";
+import { showModal, hideMenuColumn, hideFilter } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 
 const Row = ({ country }) => {
   const dispatch = useDispatch();
-  const ui = useSelector((state) => state.ui);
+  const columns = useSelector(getColumnsStatuses);
 
   const onShowModalHelper = () => {
-    dispatch(showMenuColumn(null));
-    dispatch(showFilter(false));
+    dispatch(hideMenuColumn());
+    dispatch(hideFilter());
     dispatch(showModal(true));
     dispatch(setEditCountry(country));
   };
@@ -30,7 +31,7 @@ const Row = ({ country }) => {
 
         {cellsNamesConfig.map(
           (cell) =>
-            ui[cell.nameInUiState] && (
+            columns[cell.nameInUiState] && (
               <RowCell
                 key={cell.id}
                 extraClass={styles[cell.id]}

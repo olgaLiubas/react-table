@@ -2,42 +2,40 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   setEditCountry,
-  prepareNewPutReguest,
-  prepareNewGetReguest,
+  prepareNewUpdatingReguest,
+  prepareNewFetchingReguest,
   fetchForNextTimes,
 } from "bus/country/actions";
-import { showModal } from "bus/ui/actions";
-import AlertMsg from "components/Modal/Alert";
+import { hideModal } from "bus/ui/actions";
+import AlertMsg from "components/Portal/Modal/Alert";
+import { getEditCountry } from "bus/country/selectors";
 import CircularProgress from "@mui/material/CircularProgress";
-import ChangeCountryDataForm from "components/Modal/ChangeCountryDataForm";
+import { getUpdatingCountriesStatuses } from "bus/country/selectors";
+import { getFetchingCountriesStatuses } from "bus/country/selectors";
+import ChangeCountryDataForm from "components/Portal/Modal/ChangeCountryDataForm";
 
 import styles from "./style.module.scss";
 
 const Modal = () => {
   const dispatch = useDispatch();
 
-  const loadingPut = useSelector((state) => state.countriesState.loadingPut);
-  const successPut = useSelector((state) => state.countriesState.successPut);
-  const errorPut = useSelector((state) => state.countriesState.errorPut);
-
-  const successGet = useSelector((state) => state.countriesState.successGet);
-  const errorGet = useSelector((state) => state.countriesState.errorGet);
-
-  const editCountry = useSelector((state) => state.countriesState.editCountry);
+  const updatingStatuses = useSelector(getUpdatingCountriesStatuses);
+  const fetchingStatuses = useSelector(getFetchingCountriesStatuses);
+  const editCountry = useSelector(getEditCountry);
 
   const onShowModalHelper = () => {
-    dispatch(showModal(false));
-    if (errorPut) {
+    dispatch(hideModal());
+    if (updatingStatuses.error) {
       dispatch(setEditCountry(null));
-      dispatch(prepareNewPutReguest());
+      dispatch(prepareNewUpdatingReguest());
     }
-    if (successPut) {
+    if (updatingStatuses.success) {
       dispatch(setEditCountry(null));
-      dispatch(prepareNewPutReguest());
+      dispatch(prepareNewUpdatingReguest());
       dispatch(fetchForNextTimes());
     }
-    if (errorGet) {
-      dispatch(prepareNewGetReguest());
+    if (fetchingStatuses.error) {
+      dispatch(prepareNewFetchingReguest());
     }
   };
 
@@ -52,27 +50,27 @@ const Modal = () => {
           x
         </button>
 
-        {loadingPut && (
+        {updatingStatuses.loading && (
           <CircularProgress color="inherit" className={styles.loader} />
         )}
 
-        {errorPut && (
+        {updatingStatuses.error && (
           <AlertMsg
-            msg={errorPut.message}
+            msg={updatingStatuses.error.message}
             type={"error"}
             func={onShowModalHelper}
           />
         )}
 
-        {!editCountry && errorGet && (
+        {!editCountry && fetchingStatuses.error && (
           <AlertMsg
-            msg={errorGet.message}
+            msg={fetchingStatuses.error.message}
             type={"error"}
             func={onShowModalHelper}
           />
         )}
 
-        {successPut && (
+        {updatingStatuses.success && (
           <AlertMsg
             msg={"Country data was changed successfully!"}
             type={"success"}
@@ -80,7 +78,7 @@ const Modal = () => {
           />
         )}
 
-        {!editCountry && successGet && (
+        {!editCountry && fetchingStatuses.success && (
           <AlertMsg
             msg={"Country data was loaded successfully!"}
             type={"success"}
@@ -89,10 +87,10 @@ const Modal = () => {
         )}
 
         {editCountry &&
-          !loadingPut &&
-          !errorPut &&
-          !successPut &&
-          successGet && <ChangeCountryDataForm />}
+          !updatingStatuses.loading &&
+          !updatingStatuses.error &&
+          !updatingStatuses.success &&
+          fetchingStatuses.success && <ChangeCountryDataForm />}
       </div>
     </div>
   );
