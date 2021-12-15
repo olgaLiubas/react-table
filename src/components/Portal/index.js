@@ -7,13 +7,13 @@ import { getUiState } from "bus/ui/selectors";
 const Portal = () => {
   const { isModal } = useSelector(getUiState);
 
-  if (!isModal) {
-    return null;
-  }
-
   return (
     <>
-      {ReactDOM.createPortal(<Modal />, document.getElementById("modal_place"))}
+      {isModal &&
+        ReactDOM.createPortal(
+          <Modal />,
+          document.getElementById("modal_place")
+        )}
     </>
   );
 };

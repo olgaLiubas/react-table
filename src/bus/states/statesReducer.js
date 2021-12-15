@@ -1,35 +1,35 @@
 import {
-  FETCH_COUNTRIES,
-  FETCH_COUNTRIES_ERROR,
-  FETCH_COUNTRIES_START,
+  FETCH_STATES_SUCCESS,
+  FETCH_STATES_START,
+  FETCH_STATES_ERROR,
+  SET_EDIT_STATE,
+  UPDATE_STATES_START,
+  UPDATE_STATES_ERROR,
+  UPDATE_STATES_SUCCESS,
   SET_ORDER,
   SET_FILTER_COLUMN,
+  SET_SORTING_COLUMN,
   SET_FILTER_OPERATOR,
   SET_FILTER_VALUE,
   SET_ROWS_AMOUNT,
   SET_PAGE_NUMBER,
-  SET_SORTING_COLUMN,
   SORT_OR_FILTER,
-  SET_EDIT_COUNTRY,
-  PUT_COUNTRY_SUCCESS,
-  PUT_COUNTRY_ERROR,
-  PUT_COUNTRY_START,
   PREPARE_NEW_UPDATING_REQ,
   PREPARE_NEW_FETCHING_REQ,
-} from "bus/country/types";
+} from "bus/states/types";
 import { ASC } from "constants/sortingOrders";
 import { changeOrderHelper } from "bus/country/changeOrderHelper";
 
 const initialState = {
-  countries: [],
+  states: [],
 
-  fetchingCountries: {
+  fetchingStates: {
     loading: false,
     success: false,
     error: null,
   },
 
-  updatingCountries: {
+  updatingStates: {
     loading: false,
     success: false,
     error: null,
@@ -46,16 +46,16 @@ const initialState = {
     pageNumber: 1,
   },
 
-  editCountry: null,
+  editState: null,
 };
 
-export const countriesReducer = (state = initialState, action) => {
+export const statesReducer = (state = initialState, action) => {
   switch (action.type) {
     case PREPARE_NEW_UPDATING_REQ:
       return {
         ...state,
-        updatingCountries: {
-          ...state.updatingCountries,
+        updatingStates: {
+          ...state.updatingStates,
           success: false,
           error: null,
         },
@@ -63,61 +63,61 @@ export const countriesReducer = (state = initialState, action) => {
     case PREPARE_NEW_FETCHING_REQ:
       return {
         ...state,
-        fetchingCountries: {
-          ...state.fetchingCountries,
+        fetchingStates: {
+          ...state.fetchingStates,
           success: false,
           error: null,
         },
       };
-    case FETCH_COUNTRIES_START:
+    case FETCH_STATES_START:
       return {
         ...state,
-        fetchingCountries: {
-          ...state.fetchingCountries,
+        fetchingStates: {
+          ...state.fetchingStates,
           loading: true,
         },
       };
-    case FETCH_COUNTRIES:
+    case FETCH_STATES_SUCCESS:
       return {
         ...state,
-        fetchingCountries: {
-          ...state.fetchingCountries,
+        fetchingStates: {
+          ...state.fetchingStates,
           success: true,
           loading: false,
         },
-        countries: action.payload,
+        states: action.payload,
       };
-    case FETCH_COUNTRIES_ERROR:
+    case FETCH_STATES_ERROR:
       return {
         ...state,
-        fetchingCountries: {
-          ...state.fetchingCountries,
+        fetchingStates: {
+          ...state.fetchingStates,
           loading: false,
           error: action.payload,
         },
       };
-    case PUT_COUNTRY_START:
+    case UPDATE_STATES_START:
       return {
         ...state,
-        updatingCountries: {
-          ...state.updatingCountries,
+        updatingStates: {
+          ...state.updatingStates,
           loading: true,
         },
       };
-    case PUT_COUNTRY_SUCCESS:
+    case UPDATE_STATES_SUCCESS:
       return {
         ...state,
-        updatingCountries: {
-          ...state.updatingCountries,
+        updatingStates: {
+          ...state.updatingStates,
           success: true,
           loading: false,
         },
       };
-    case PUT_COUNTRY_ERROR:
+    case UPDATE_STATES_ERROR:
       return {
         ...state,
-        updatingCountries: {
-          ...state.updatingCountries,
+        updatingStates: {
+          ...state.updatingStates,
           loading: false,
           error: action.payload,
         },
@@ -171,10 +171,10 @@ export const countriesReducer = (state = initialState, action) => {
         ...state,
         functionality: { ...state.functionality, rowsAmount: action.payload },
       };
-    case SET_EDIT_COUNTRY:
+    case SET_EDIT_STATE:
       return {
         ...state,
-        editCountry: action.payload,
+        editState: action.payload,
       };
     default:
       return state;
