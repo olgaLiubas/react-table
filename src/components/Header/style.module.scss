@@ -34,7 +34,9 @@
   .capital,
   .phoneCode,
   .longitude,
-  .latitude {
+  .latitude,
+  .stateId,
+  .countryCode {
     min-width: 150px;
     width: 17vw;
     max-width: 200px;

@@ -1,55 +1,61 @@
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-// import Row from "components/Row";
-// import Footer from "components/Footer";
-// import Header from "components/Header";
-// import Portal from "components/Portal";
-// import { fetchCountriesForSaga } from "bus/country/actions";
-// import { getCountries } from "bus/country/selectors";
+import Row from "components/Row";
+import Footer from "components/Footer";
+import Header from "components/Header";
+import Portal from "components/Portal";
 
-// import CircularProgress from "@mui/material/CircularProgress";
-// import { getFetchingCountriesStatuses } from "bus/country/selectors";
-// import { citiesCellsNamesConfig } from "constants/citiesCellsNamesConfig";
+import CircularProgress from "@mui/material/CircularProgress";
 
-// const CitiesPage = ({ styles }) => {
-//   const dispatch = useDispatch();
-//   const arrayOfData = useSelector(getCountries);
-//   const fetchingStatuses = useSelector(getFetchingCountriesStatuses);
+import { citiesCellsNamesConfig } from "constants/citiesCellsNamesConfig";
+import * as selectors from "bus/cities/selectors";
+import * as actions from "bus/cities/actions";
 
-//   useEffect(() => {
-//     dispatch(fetchCountriesForSaga());
-//   }, []);
+const CitiesPage = ({ styles }) => {
+  const dispatch = useDispatch();
+  const arrayOfData = useSelector(selectors.getData);
+  const fetchingStatuses = useSelector(selectors.getFetchingStatuses);
 
-//   return (
-//     <>
-//       <div className={styles.table}>
-//         <Header cellsNamesConfig={citiesCellsNamesConfig} />
+  useEffect(() => {
+    dispatch(actions.fetchForSaga());
+  }, []);
 
-//         <div id="modal_place" className={styles.modalPlace}></div>
+  return (
+    <>
+      <div className={styles.table}>
+        <Header
+          cellsNamesConfig={citiesCellsNamesConfig}
+          selectors={selectors}
+          actions={actions}
+        />
 
-//         <Portal />
+        <div id="modal_place" className={styles.modalPlace}></div>
 
-//         {fetchingStatuses.loading && (
-//           <CircularProgress color="inherit" className={styles.loader} />
-//         )}
+        <Portal selectors={selectors} actions={actions} />
 
-//         {fetchingStatuses.success && !fetchingStatuses.loading && (
-//           <>
-//             {arrayOfData.map((item) => (
-//               <Row
-//                 key={item.id}
-//                 item={item}
-//                 cellsNamesConfig={citiesCellsNamesConfig}
-//               />
-//             ))}
-//           </>
-//         )}
+        {fetchingStatuses.loading && (
+          <CircularProgress color="inherit" className={styles.loader} />
+        )}
 
-//         <Footer />
-//       </div>
-//     </>
-//   );
-// };
+        {fetchingStatuses.success && !fetchingStatuses.loading && (
+          <>
+            {arrayOfData.map((item) => (
+              <Row
+                key={item.id}
+                item={item}
+                cellsNamesConfig={citiesCellsNamesConfig}
+                selectors={selectors}
+                actions={actions}
+              />
+            ))}
+          </>
+        )}
 
-// export default CitiesPage;
+        <Footer actions={actions} />
+      </div>
+    </>
+  );
+};
+
+export default CitiesPage;
