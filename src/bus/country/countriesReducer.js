@@ -1,24 +1,14 @@
 import {
-  FETCH_COUNTRIES,
+  FETCH_COUNTRIES_SUCCESS,
   FETCH_COUNTRIES_ERROR,
   FETCH_COUNTRIES_START,
-  SET_ORDER,
-  SET_FILTER_COLUMN,
-  SET_FILTER_OPERATOR,
-  SET_FILTER_VALUE,
-  SET_ROWS_AMOUNT,
-  SET_PAGE_NUMBER,
-  SET_SORTING_COLUMN,
-  SORT_OR_FILTER,
-  SET_EDIT_COUNTRY,
-  PUT_COUNTRY_SUCCESS,
-  PUT_COUNTRY_ERROR,
-  PUT_COUNTRY_START,
-  PREPARE_NEW_UPDATING_REQ,
-  PREPARE_NEW_FETCHING_REQ,
+  UPDATE_COUNTRY_SUCCESS,
+  UPDATE_COUNTRY_ERROR,
+  UPDATE_COUNTRY_START,
+  PREPARE_NEW_UPDATING_REQ_COUNTRIES,
+  PREPARE_NEW_FETCHING_REQ_COUNTRIES,
+  HIDE_COLUMN,
 } from "bus/country/types";
-import { ASC } from "constants/sortingOrders";
-import { changeOrderHelper } from "bus/country/changeOrderHelper";
 
 const initialState = {
   countries: [],
@@ -35,23 +25,19 @@ const initialState = {
     error: null,
   },
 
-  functionality: {
-    sortOrFilter: "sort",
-    sortingColumn: "id",
-    sortingOrder: ASC,
-    filterColumn: "name",
-    filterOperator: "contains",
-    filterValue: "",
-    rowsAmount: 20,
-    pageNumber: 1,
+  columns: {
+    idColumn: true,
+    nameColumn: true,
+    capitalColumn: true,
+    phoneCodeColumn: true,
+    isoColumn: true,
+    currencyColumn: true,
   },
-
-  editCountry: null,
 };
 
 export const countriesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case PREPARE_NEW_UPDATING_REQ:
+    case PREPARE_NEW_UPDATING_REQ_COUNTRIES:
       return {
         ...state,
         updatingCountries: {
@@ -60,7 +46,7 @@ export const countriesReducer = (state = initialState, action) => {
           error: null,
         },
       };
-    case PREPARE_NEW_FETCHING_REQ:
+    case PREPARE_NEW_FETCHING_REQ_COUNTRIES:
       return {
         ...state,
         fetchingCountries: {
@@ -77,7 +63,7 @@ export const countriesReducer = (state = initialState, action) => {
           loading: true,
         },
       };
-    case FETCH_COUNTRIES:
+    case FETCH_COUNTRIES_SUCCESS:
       return {
         ...state,
         fetchingCountries: {
@@ -96,7 +82,7 @@ export const countriesReducer = (state = initialState, action) => {
           error: action.payload,
         },
       };
-    case PUT_COUNTRY_START:
+    case UPDATE_COUNTRY_START:
       return {
         ...state,
         updatingCountries: {
@@ -104,7 +90,7 @@ export const countriesReducer = (state = initialState, action) => {
           loading: true,
         },
       };
-    case PUT_COUNTRY_SUCCESS:
+    case UPDATE_COUNTRY_SUCCESS:
       return {
         ...state,
         updatingCountries: {
@@ -113,7 +99,7 @@ export const countriesReducer = (state = initialState, action) => {
           loading: false,
         },
       };
-    case PUT_COUNTRY_ERROR:
+    case UPDATE_COUNTRY_ERROR:
       return {
         ...state,
         updatingCountries: {
@@ -122,59 +108,13 @@ export const countriesReducer = (state = initialState, action) => {
           error: action.payload,
         },
       };
-    case SET_ORDER:
+    case HIDE_COLUMN:
       return {
         ...state,
-        functionality: {
-          ...state.functionality,
-          sortingOrder: changeOrderHelper(state.functionality.sortingOrder),
+        columns: {
+          ...state.columns,
+          ...action.payload,
         },
-      };
-    case SORT_OR_FILTER:
-      return {
-        ...state,
-        functionality: { ...state.functionality, sortOrFilter: action.payload },
-      };
-    case SET_SORTING_COLUMN:
-      return {
-        ...state,
-        functionality: {
-          ...state.functionality,
-          sortingColumn: action.payload,
-        },
-      };
-    case SET_FILTER_COLUMN:
-      return {
-        ...state,
-        functionality: { ...state.functionality, filterColumn: action.payload },
-      };
-    case SET_FILTER_OPERATOR:
-      return {
-        ...state,
-        functionality: {
-          ...state.functionality,
-          filterOperator: action.payload,
-        },
-      };
-    case SET_FILTER_VALUE:
-      return {
-        ...state,
-        functionality: { ...state.functionality, filterValue: action.payload },
-      };
-    case SET_PAGE_NUMBER:
-      return {
-        ...state,
-        functionality: { ...state.functionality, pageNumber: action.payload },
-      };
-    case SET_ROWS_AMOUNT:
-      return {
-        ...state,
-        functionality: { ...state.functionality, rowsAmount: action.payload },
-      };
-    case SET_EDIT_COUNTRY:
-      return {
-        ...state,
-        editCountry: action.payload,
       };
     default:
       return state;

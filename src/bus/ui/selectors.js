@@ -1,3 +1,5 @@
 export const getUiState = (state) => state.ui;
 
-export const getColumnsStatuses = (state) => state.ui.columns;
+export const getFunctionalityData = (state) => state.ui.functionality;
+
+export const getEditCountry = (state) => state.ui.editCountry;

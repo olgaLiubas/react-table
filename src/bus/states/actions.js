@@ -1,38 +1,30 @@
 import {
-  FETCH_FOR_SAGA_STATES,
-  FETCH_FOR_NEXT_TIMES_STATES,
+  FETCH_STATES_FOR_SAGA,
+  FETCH_STATES_FOR_NEXT_TIMES,
+  UPDATE_STATES_FOR_SAGA,
   FETCH_STATES_SUCCESS,
   FETCH_STATES_START,
   FETCH_STATES_ERROR,
-  SET_EDIT_STATE,
-  UPDATE_FOR_SAGA_STATES,
-  UPDATE_STATES_START,
-  UPDATE_STATES_ERROR,
   UPDATE_STATES_SUCCESS,
-  SET_ORDER,
-  SET_FILTER_COLUMN,
-  SET_SORTING_COLUMN,
-  SET_FILTER_OPERATOR,
-  SET_FILTER_VALUE,
-  SET_ROWS_AMOUNT,
-  SET_PAGE_NUMBER,
-  SORT_OR_FILTER,
-  PREPARE_NEW_UPDATING_REQ,
-  PREPARE_NEW_FETCHING_REQ,
+  UPDATE_STATES_ERROR,
+  UPDATE_STATES_START,
+  PREPARE_NEW_UPDATING_REQ_STATES,
+  PREPARE_NEW_FETCHING_REQ_STATES,
+  HIDE_STATES_COLUMN,
 } from "bus/states/types";
 
-export const fetchForSagaStates = (initialUrl) => ({
-  type: FETCH_FOR_SAGA_STATES,
+export const fetchForSaga = (initialUrl) => ({
+  type: FETCH_STATES_FOR_SAGA,
   payload: initialUrl,
 });
 
-export const updateForSagaStates = (editCountry) => ({
-  type: UPDATE_FOR_SAGA_STATES,
+export const updateForSaga = (editCountry) => ({
+  type: UPDATE_STATES_FOR_SAGA,
   payload: editCountry,
 });
 
-export const fetchForNextTimesStates = (newUrl) => ({
-  type: FETCH_FOR_NEXT_TIMES_STATES,
+export const fetchForNextTimes = (newUrl) => ({
+  type: FETCH_STATES_FOR_NEXT_TIMES,
   payload: newUrl,
 });
 
@@ -40,7 +32,7 @@ export const fetchStatesStart = () => ({
   type: FETCH_STATES_START,
 });
 
-export const fetchStatesSuccess = (newCountries) => ({
+export const fetchStatesSucces = (newCountries) => ({
   type: FETCH_STATES_SUCCESS,
   payload: newCountries,
 });
@@ -51,11 +43,11 @@ export const fetchStatesError = (error) => ({
 });
 
 export const prepareNewFetchingReguest = () => ({
-  type: PREPARE_NEW_FETCHING_REQ,
+  type: PREPARE_NEW_FETCHING_REQ_STATES,
 });
 
 export const prepareNewUpdatingReguest = () => ({
-  type: PREPARE_NEW_UPDATING_REQ,
+  type: PREPARE_NEW_UPDATING_REQ_STATES,
 });
 
 export const updateStatesStart = () => ({
@@ -71,46 +63,7 @@ export const updateStatesError = (error) => ({
   payload: error,
 });
 
-export const setSortOrFilter = (newAction) => ({
-  type: SORT_OR_FILTER,
-  payload: newAction,
-});
-
-export const setOrder = () => ({
-  type: SET_ORDER,
-});
-
-export const setSortingColumn = (newFilter) => ({
-  type: SET_SORTING_COLUMN,
-  payload: newFilter,
-});
-
-export const setFilterColumn = (newFilter) => ({
-  type: SET_FILTER_COLUMN,
-  payload: newFilter,
-});
-
-export const setFilterOperator = (newFilter) => ({
-  type: SET_FILTER_OPERATOR,
-  payload: newFilter,
-});
-
-export const setFilterValue = (newFilter) => ({
-  type: SET_FILTER_VALUE,
-  payload: newFilter,
-});
-
-export const setRowsAmount = (newAmount) => ({
-  type: SET_ROWS_AMOUNT,
-  payload: newAmount,
-});
-
-export const setPageNumber = (newNumber) => ({
-  type: SET_PAGE_NUMBER,
-  payload: newNumber,
-});
-
-export const setEditState = (newCountry) => ({
-  type: SET_EDIT_STATE,
-  payload: newCountry,
+export const hideColumn = (state) => ({
+  type: HIDE_STATES_COLUMN,
+  payload: state,
 });

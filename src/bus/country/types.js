@@ -1,25 +1,18 @@
-export const FETCH_FOR_SAGA = "fetchForSaga";
-export const FETCH_FOR_NEXT_TIMES = "fetchForNextTimes";
-export const PUT_FOR_SAGA = "putForSaga";
+export const FETCH_COUNTRIES_FOR_SAGA = "fetchCountriesForSaga";
+export const FETCH_COUNTRIES_FOR_NEXT_TIMES = "fetchCountriesForNextTimes";
+export const UPDATE_COUNTRIES_FOR_SAGA = "updateCountriesForSaga";
 
-export const PREPARE_NEW_FETCHING_REQ = "prepareNewFetchingReg";
-export const FETCH_COUNTRIES = "fetchCountries";
+export const PREPARE_NEW_FETCHING_REQ_COUNTRIES =
+  "prepareNewFetchingRegCountries";
+export const PREPARE_NEW_UPDATING_REQ_COUNTRIES =
+  "prepareNewUpdatingRegCountries";
+
+export const FETCH_COUNTRIES_SUCCESS = "fetchCountriesSucces";
 export const FETCH_COUNTRIES_START = "fetchCountriesStart";
 export const FETCH_COUNTRIES_ERROR = "fetchCountriesError";
 
-export const PREPARE_NEW_UPDATING_REQ = "prepareNewUpdatingReg";
-export const PUT_COUNTRY_SUCCESS = "putCountrySuccess";
-export const PUT_COUNTRY_START = "putCountryStart";
-export const PUT_COUNTRY_ERROR = "putCountryError";
+export const UPDATE_COUNTRY_SUCCESS = "updateCountrySuccess";
+export const UPDATE_COUNTRY_START = "updateCountryStart";
+export const UPDATE_COUNTRY_ERROR = "updateCountryError";
 
-export const SORT_OR_FILTER = "sortOrFilter";
-export const SET_ORDER = "setSortingOrder";
-export const SET_SORTING_COLUMN = "setSortingColumn";
-export const SET_FILTER_COLUMN = "setFilterColumn";
-export const SET_FILTER_OPERATOR = "setFilterOperator";
-export const SET_FILTER_VALUE = "setFilterValue";
-
-export const SET_ROWS_AMOUNT = "setRowsAmount";
-export const SET_PAGE_NUMBER = "setPageNumber";
-
-export const SET_EDIT_COUNTRY = "setEditCountry";
+export const HIDE_COLUMN = "hideColumn";

@@ -1,49 +1,55 @@
 // import { useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 
-// import Row from "components/countries/Row";
-// import Footer from "components/countries/Footer";
-// import Header from "components/countries/Header";
-// import Portal from "components/countries/Portal";
-// import { fetchForSaga } from "bus/country/actions";
+// import Row from "components/Row";
+// import Footer from "components/Footer";
+// import Header from "components/Header";
+// import Portal from "components/Portal";
+// import { fetchCountriesForSaga } from "bus/country/actions";
 // import { getCountries } from "bus/country/selectors";
 
 // import CircularProgress from "@mui/material/CircularProgress";
 // import { getFetchingCountriesStatuses } from "bus/country/selectors";
+// import { citiesCellsNamesConfig } from "constants/citiesCellsNamesConfig";
 
-const CitiesPage = ({ styles }) => {
-  // const dispatch = useDispatch();
-  // const countries = useSelector(getCountries);
-  // const fetchingStatuses = useSelector(getFetchingCountriesStatuses);
+// const CitiesPage = ({ styles }) => {
+//   const dispatch = useDispatch();
+//   const arrayOfData = useSelector(getCountries);
+//   const fetchingStatuses = useSelector(getFetchingCountriesStatuses);
 
-  // useEffect(() => {
-  //   dispatch(fetchForSaga());
-  // }, []);
+//   useEffect(() => {
+//     dispatch(fetchCountriesForSaga());
+//   }, []);
 
-  return (
-    <div className={styles.table}>
-      <p>Cities</p>
-      {/* <Header />
+//   return (
+//     <>
+//       <div className={styles.table}>
+//         <Header cellsNamesConfig={citiesCellsNamesConfig} />
 
-      <div id="modal_place" className={styles.modalPlace}></div>
+//         <div id="modal_place" className={styles.modalPlace}></div>
 
-      <Portal />
+//         <Portal />
 
-      {fetchingStatuses.loading && (
-        <CircularProgress color="inherit" className={styles.loader} />
-      )}
+//         {fetchingStatuses.loading && (
+//           <CircularProgress color="inherit" className={styles.loader} />
+//         )}
 
-      {fetchingStatuses.success && !fetchingStatuses.loading && (
-        <>
-          {countries.map((country) => (
-            <Row key={country.id} country={country} />
-          ))}
-        </>
-      )}
+//         {fetchingStatuses.success && !fetchingStatuses.loading && (
+//           <>
+//             {arrayOfData.map((item) => (
+//               <Row
+//                 key={item.id}
+//                 item={item}
+//                 cellsNamesConfig={citiesCellsNamesConfig}
+//               />
+//             ))}
+//           </>
+//         )}
 
-      <Footer /> */}
-    </div>
-  );
-};
+//         <Footer />
+//       </div>
+//     </>
+//   );
+// };
 
-export default CitiesPage;
+// export default CitiesPage;

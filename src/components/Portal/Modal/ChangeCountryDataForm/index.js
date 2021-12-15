@@ -1,16 +1,13 @@
-// import { string, object } from "yup";
-
 import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 
-import { putForSaga } from "bus/country/actions";
-import { getEditCountry } from "bus/country/selectors";
+import { getEditCountry } from "bus/ui/selectors";
 import FieldModal from "components/Portal/Modal/ChangeCountryDataForm/Field";
 import { validationSchema } from "bus/country/validationShemaForFormik";
 
 import styles from "./style.module.scss";
 
-const ChangeCountryDataForm = () => {
+const ChangeCountryDataForm = ({ actions }) => {
   const editCountry = useSelector(getEditCountry);
 
   const dispatch = useDispatch();
@@ -25,7 +22,7 @@ const ChangeCountryDataForm = () => {
   };
 
   const submitForm = (values) => {
-    dispatch(putForSaga(values));
+    dispatch(actions.updateForSaga(values));
   };
 
   return (
@@ -49,6 +46,7 @@ const ChangeCountryDataForm = () => {
               styles={styles}
               errors={errors}
               touched={touched}
+              actions={actions}
             />
 
             <FieldModal
@@ -57,6 +55,7 @@ const ChangeCountryDataForm = () => {
               styles={styles}
               errors={errors}
               touched={touched}
+              actions={actions}
             />
 
             <FieldModal
@@ -65,6 +64,7 @@ const ChangeCountryDataForm = () => {
               styles={styles}
               errors={errors}
               touched={touched}
+              actions={actions}
             />
 
             <FieldModal
@@ -73,6 +73,7 @@ const ChangeCountryDataForm = () => {
               styles={styles}
               errors={errors}
               touched={touched}
+              actions={actions}
             />
 
             <FieldModal
@@ -81,6 +82,7 @@ const ChangeCountryDataForm = () => {
               styles={styles}
               errors={errors}
               touched={touched}
+              actions={actions}
             />
 
             <button
@@ -98,30 +100,3 @@ const ChangeCountryDataForm = () => {
 };
 
 export default ChangeCountryDataForm;
-
-// const validationSchema = {
-//   shape: {
-//     name: editCountry.name,
-//     capital: editCountry.capital,
-//     phone_code: editCountry.phone_code,
-//     currency: editCountry.currency,
-//     iso3: editCountry.iso3,
-//   },
-//   schema: object().shape({
-//     name: string()
-//       .required("Name is required")
-//       .min(3, "Name is too short - should be 3 chars min"),
-//     capital: string()
-//       .required("Capital is required")
-//       .min(3, "Capital is too short - should be 3 chars min"),
-//     phone_code: string()
-//       .required("Phone code is required")
-//       .min(3, "Phone code is too short - should be 3 chars min"),
-//     currency: string()
-//       .required("Currency is required")
-//       .min(2, "Currency is too short - should be 3 chars min"),
-//     iso3: string()
-//       .required("ISO is required")
-//       .min(2, "ISO is too short - should be 3 chars min"),
-//   }),
-// };

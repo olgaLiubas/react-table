@@ -1,19 +1,19 @@
 import { takeEvery, put, call } from "redux-saga/effects";
 
 import {
-  updateStatesStart,
-  updateStatesSuccess,
   updateStatesError,
+  updateStatesSuccess,
+  updateStatesStart,
 } from "bus/states/actions";
-import { putData } from "bus/states/putData";
-import { UPDATE_FOR_SAGA_STATES } from "bus/states/types";
-import { statesInitialUrl } from "constants/initialUrls";
+import { updateData } from "bus/common/updateData";
+import { UPDATE_STATES_FOR_SAGA } from "bus/states/types";
+import { initialUrl } from "constants/initialUrl";
 
 export const workerUpdateStatesSaga = function* (action) {
   try {
     yield put(updateStatesStart());
-    const url = `${statesInitialUrl}/${action.payload.id}`;
-    yield call(putData, url, action.payload);
+    const url = `${initialUrl}/states/${action.payload.id}`;
+    yield call(updateData, url, action.payload);
     yield put(updateStatesSuccess());
   } catch (e) {
     yield put(updateStatesError(e));
@@ -21,5 +21,5 @@ export const workerUpdateStatesSaga = function* (action) {
 };
 
 export const watchUpdateStatesSaga = function* () {
-  yield takeEvery(UPDATE_FOR_SAGA_STATES, workerUpdateStatesSaga);
+  yield takeEvery(UPDATE_STATES_FOR_SAGA, workerUpdateStatesSaga);
 };

@@ -22,7 +22,9 @@
   }
 
   .iso,
-  .currency {
+  .currency,
+  .countryId,
+  .stateCode {
     min-width: 130px;
     width: 14vw;
     max-width: 200px;
@@ -30,7 +32,9 @@
 
   .name,
   .capital,
-  .phoneCode {
+  .phoneCode,
+  .longitude,
+  .latitude {
     min-width: 150px;
     width: 17vw;
     max-width: 200px;

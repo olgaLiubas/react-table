@@ -1,12 +1,9 @@
-export const getCountries = (state) => state.countriesState.countries;
+export const getData = (state) => state.countriesState.countries;
 
-export const getFetchingCountriesStatuses = (state) =>
+export const getColumnsStatuses = (state) => state.countriesState.columns;
+
+export const getFetchingStatuses = (state) =>
   state.countriesState.fetchingCountries;
 
-export const getUpdatingCountriesStatuses = (state) =>
+export const getUpdatingStatuses = (state) =>
   state.countriesState.updatingCountries;
-
-export const getFunctionalityData = (state) =>
-  state.countriesState.functionality;
-
-export const getEditCountry = (state) => state.countriesState.editCountry;

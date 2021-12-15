@@ -1,1 +1,1 @@
-export const initialUrl = "http://localhost:4000/countries";
+export const initialUrl = "http://localhost:4000";

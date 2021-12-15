@@ -1,11 +1,8 @@
-export const getStates = (state) => state.statesState.states;
+export const getData = (state) => state.statesState.states;
 
-export const getFetchingStatesStatuses = (state) =>
-  state.statesState.fetchingStates;
+export const getColumnsStatuses = (state) => state.statesState.columns;
 
-export const getUpdatingStatesStatuses = (state) =>
-  state.statesState.updatingStates;
+export const getFetchingStatuses = (state) => state.statesState.fetchingStates;
 
-export const getFunctionalityData = (state) => state.statesState.functionality;
-
-export const getEditState = (state) => state.statesState.editState;
+export const getUpdatingStatuses = (state) =>
+  state.statesState.updatingCountries;

@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchForNextTimes } from "bus/country/actions";
-import { setPageNumber, setRowsAmount } from "bus/country/actions";
-import { getFunctionalityData } from "bus/country/selectors";
+import { setPageNumber, setRowsAmount } from "bus/ui/actions";
+import { getFunctionalityData } from "bus/ui/selectors";
 
 import styles from "./style.module.scss";
 
-const Footer = () => {
+const Footer = ({ actions }) => {
   const dispatch = useDispatch();
   const { rowsAmount, pageNumber } = useSelector(getFunctionalityData);
 
@@ -15,19 +14,19 @@ const Footer = () => {
   const goBackHelper = () => {
     if (pageNumber > 1) {
       dispatch(setPageNumber(pageNumber - 1));
-      dispatch(fetchForNextTimes());
+      dispatch(actions.fetchForNextTimes());
     }
   };
   const goForwardHelper = () => {
     if (pageNumber < maxAmount) {
       dispatch(setPageNumber(pageNumber + 1));
-      dispatch(fetchForNextTimes());
+      dispatch(actions.fetchForNextTimes());
     }
   };
   const changeAmountHelper = (e) => {
     dispatch(setRowsAmount(Number(e.target.value)));
 
-    dispatch(fetchForNextTimes());
+    dispatch(actions.fetchForNextTimes());
   };
 
   return (

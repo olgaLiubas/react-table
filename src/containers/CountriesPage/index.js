@@ -5,29 +5,34 @@ import Row from "components/Row";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import Portal from "components/Portal";
-import { fetchForSaga } from "bus/country/actions";
-import { getCountries } from "bus/country/selectors";
 
 import CircularProgress from "@mui/material/CircularProgress";
-import { getFetchingCountriesStatuses } from "bus/country/selectors";
+
+import { countriesCellsNamesConfig } from "constants/countriesCellsNamesConfig";
+import * as selectors from "bus/country/selectors";
+import * as actions from "bus/country/actions";
 
 const CountriesPage = ({ styles }) => {
   const dispatch = useDispatch();
-  const countries = useSelector(getCountries);
-  const fetchingStatuses = useSelector(getFetchingCountriesStatuses);
+  const arrayOfData = useSelector(selectors.getData);
+  const fetchingStatuses = useSelector(selectors.getFetchingStatuses);
 
   useEffect(() => {
-    dispatch(fetchForSaga());
+    dispatch(actions.fetchForSaga());
   }, []);
 
   return (
     <>
       <div className={styles.table}>
-        <Header />
+        <Header
+          cellsNamesConfig={countriesCellsNamesConfig}
+          selectors={selectors}
+          actions={actions}
+        />
 
         <div id="modal_place" className={styles.modalPlace}></div>
 
-        <Portal />
+        <Portal selectors={selectors} actions={actions} />
 
         {fetchingStatuses.loading && (
           <CircularProgress color="inherit" className={styles.loader} />
@@ -35,13 +40,19 @@ const CountriesPage = ({ styles }) => {
 
         {fetchingStatuses.success && !fetchingStatuses.loading && (
           <>
-            {countries.map((country) => (
-              <Row key={country.id} country={country} />
+            {arrayOfData.map((item) => (
+              <Row
+                key={item.id}
+                item={item}
+                cellsNamesConfig={countriesCellsNamesConfig}
+                selectors={selectors}
+                actions={actions}
+              />
             ))}
           </>
         )}
 
-        <Footer />
+        <Footer actions={actions} />
       </div>
     </>
   );

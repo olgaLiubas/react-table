@@ -5,12 +5,14 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { rootSaga } from "./saga/rootSaga";
 import { UIReducer } from "bus/ui/UIReducer";
 import { countriesReducer } from "../bus/country/countriesReducer";
+import { statesReducer } from "bus/states/statesReducer";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   ui: UIReducer,
   countriesState: countriesReducer,
+  statesState: statesReducer,
 });
 
 export const store = createStore(

@@ -1,8 +1,15 @@
 import { all } from "redux-saga/effects";
 
-import { watchGetCountriesSaga } from "bus/country/getCountriesSaga";
-import { watchPutCountriesSaga } from "bus/country/putCountriesSaga";
+import { watchFetchCountriesSaga } from "bus/country/fetchCountriesSaga";
+import { watchUpdateCountriesSaga } from "bus/country/updateCountriesSaga";
+import { watchFetchStatesSaga } from "bus/states/fetchStatesSaga";
+import { watchUpdateStatesSaga } from "bus/states/updateStatesSaga";
 
 export const rootSaga = function* () {
-  yield all([watchPutCountriesSaga(), watchGetCountriesSaga()]);
+  yield all([
+    watchUpdateCountriesSaga(),
+    watchFetchCountriesSaga(),
+    watchUpdateStatesSaga(),
+    watchFetchStatesSaga(),
+  ]);
 };
