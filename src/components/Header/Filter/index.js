@@ -57,10 +57,6 @@ const Filter = () => {
         <select onChange={(e) => onChangeFilterOperator(e)}>
           <option value="contains">contains</option>
           <option value="equals">equals</option>
-          <option value="starts with">starts with</option>
-          <option value="ends with">ends with</option>
-          <option value="is empty">is empty</option>
-          <option value="isn't empty">isn't empty</option>
         </select>
       </div>
       <div className={styles.filterItem}>
