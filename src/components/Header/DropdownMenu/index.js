@@ -1,29 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import {
+  showFilter,
+  hideMenuColumn,
+  hideModal,
   setOrder,
   setSortingColumn,
-  fetchForNextTimes,
-} from "bus/country/actions";
-import * as uiActions from "bus/ui/actions";
-import { getColumnsStatuses } from "bus/ui/selectors";
+} from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 
-const Dropdown = ({ columnName, fieldInArray }) => {
-  const { showFilter, hideColumn, hideMenuColumn, hideModal } = uiActions;
-
+const Dropdown = ({ columnName, fieldInArray, selectors, actions }) => {
   const dispatch = useDispatch();
-  const columns = useSelector(getColumnsStatuses);
+  const columns = useSelector(selectors.getColumnsStatuses);
 
   const changeSortingOrder = () => {
     dispatch(setOrder());
     dispatch(setSortingColumn(fieldInArray));
-    dispatch(fetchForNextTimes());
+    dispatch(actions.fetchForNextTimes());
   };
 
   const hideColumnHelper = () => {
-    dispatch(hideColumn({ [columnName]: !columns[columnName] }));
+    dispatch(actions.hideColumn({ [columnName]: !columns[columnName] }));
   };
 
   const filterHelper = () => {

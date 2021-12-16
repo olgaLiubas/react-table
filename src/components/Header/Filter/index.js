@@ -1,20 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import {
+  hideFilter,
+  setSortOrFilter,
   setFilterColumn,
   setFilterOperator,
   setFilterValue,
-  fetchForNextTimes,
-  setSortOrFilter,
-} from "bus/country/actions";
-import { hideFilter } from "bus/ui/actions";
-import { getFunctionalityData } from "bus/country/selectors";
+} from "bus/ui/actions";
+import { getFunctionalityData } from "bus/ui/selectors";
 
 import styles from "./style.module.scss";
 
-const Filter = () => {
+const Filter = ({ actions, cellsNamesConfig }) => {
   const dispatch = useDispatch();
-
+  const cells = cellsNamesConfig.filter((cell) => cell.id !== "id");
   const { filterValue } = useSelector(getFunctionalityData);
 
   const onChangeFilterColumn = (e) => dispatch(setFilterColumn(e.target.value));
@@ -25,7 +24,7 @@ const Filter = () => {
   const onInputFilterValue = (e) => {
     dispatch(setSortOrFilter("filter"));
     dispatch(setFilterValue(e.target.value));
-    dispatch(fetchForNextTimes());
+    dispatch(actions.fetchForNextTimes());
   };
 
   const setIsFilterHelper = () => {
@@ -34,7 +33,7 @@ const Filter = () => {
     dispatch(setFilterOperator("contains"));
     dispatch(setFilterValue(""));
     dispatch(setSortOrFilter("sort"));
-    dispatch(fetchForNextTimes());
+    dispatch(actions.fetchForNextTimes());
   };
 
   return (
@@ -45,11 +44,11 @@ const Filter = () => {
       <div className={styles.filterItem}>
         <p>Columns</p>
         <select defaultValue="name" onChange={(e) => onChangeFilterColumn(e)}>
-          <option value="name">Name</option>
-          <option value="capital">Capital</option>
-          <option value="phone_code">Phone code</option>
-          <option value="currency">Currency</option>
-          <option value="iso3">ISO</option>
+          {cells.map((cell) => (
+            <option key={cell.id} value={cell.fieldInArray}>
+              {cell.nameOfHeaderColumn}
+            </option>
+          ))}
         </select>
       </div>
       <div className={styles.filterItem}>

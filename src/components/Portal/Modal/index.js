@@ -1,41 +1,33 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  setEditCountry,
-  prepareNewUpdatingReguest,
-  prepareNewFetchingReguest,
-  fetchForNextTimes,
-} from "bus/country/actions";
-import { hideModal } from "bus/ui/actions";
+import { getEditCountry } from "bus/ui/selectors";
 import AlertMsg from "components/Portal/Modal/Alert";
-import { getEditCountry } from "bus/country/selectors";
+import { setEditCountry, hideModal } from "bus/ui/actions";
 import CircularProgress from "@mui/material/CircularProgress";
-import { getUpdatingCountriesStatuses } from "bus/country/selectors";
-import { getFetchingCountriesStatuses } from "bus/country/selectors";
 import ChangeCountryDataForm from "components/Portal/Modal/ChangeCountryDataForm";
 
 import styles from "./style.module.scss";
 
-const Modal = () => {
+const Modal = ({ selectors, actions }) => {
   const dispatch = useDispatch();
 
-  const updatingStatuses = useSelector(getUpdatingCountriesStatuses);
-  const fetchingStatuses = useSelector(getFetchingCountriesStatuses);
+  const updatingStatuses = useSelector(selectors.getUpdatingStatuses);
+  const fetchingStatuses = useSelector(selectors.getFetchingStatuses);
   const editCountry = useSelector(getEditCountry);
 
   const onShowModalHelper = () => {
     dispatch(hideModal());
     if (updatingStatuses.error) {
       dispatch(setEditCountry(null));
-      dispatch(prepareNewUpdatingReguest());
+      dispatch(actions.prepareNewUpdatingReguest());
     }
     if (updatingStatuses.success) {
       dispatch(setEditCountry(null));
-      dispatch(prepareNewUpdatingReguest());
-      dispatch(fetchForNextTimes());
+      dispatch(actions.prepareNewUpdatingReguest());
+      dispatch(actions.fetchForNextTimes());
     }
     if (fetchingStatuses.error) {
-      dispatch(prepareNewFetchingReguest());
+      dispatch(actions.prepareNewFetchingReguest());
     }
   };
 
@@ -90,7 +82,9 @@ const Modal = () => {
           !updatingStatuses.loading &&
           !updatingStatuses.error &&
           !updatingStatuses.success &&
-          fetchingStatuses.success && <ChangeCountryDataForm />}
+          fetchingStatuses.success && (
+            <ChangeCountryDataForm actions={actions} />
+          )}
       </div>
     </div>
   );

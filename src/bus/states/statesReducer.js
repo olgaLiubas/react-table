@@ -2,23 +2,13 @@ import {
   FETCH_STATES_SUCCESS,
   FETCH_STATES_START,
   FETCH_STATES_ERROR,
-  SET_EDIT_STATE,
-  UPDATE_STATES_START,
-  UPDATE_STATES_ERROR,
   UPDATE_STATES_SUCCESS,
-  SET_ORDER,
-  SET_FILTER_COLUMN,
-  SET_SORTING_COLUMN,
-  SET_FILTER_OPERATOR,
-  SET_FILTER_VALUE,
-  SET_ROWS_AMOUNT,
-  SET_PAGE_NUMBER,
-  SORT_OR_FILTER,
-  PREPARE_NEW_UPDATING_REQ,
-  PREPARE_NEW_FETCHING_REQ,
+  UPDATE_STATES_ERROR,
+  UPDATE_STATES_START,
+  PREPARE_NEW_UPDATING_REQ_STATES,
+  PREPARE_NEW_FETCHING_REQ_STATES,
+  HIDE_STATES_COLUMN,
 } from "bus/states/types";
-import { ASC } from "constants/sortingOrders";
-import { changeOrderHelper } from "bus/country/changeOrderHelper";
 
 const initialState = {
   states: [],
@@ -35,23 +25,19 @@ const initialState = {
     error: null,
   },
 
-  functionality: {
-    sortOrFilter: "sort",
-    sortingColumn: "id",
-    sortingOrder: ASC,
-    filterColumn: "name",
-    filterOperator: "contains",
-    filterValue: "",
-    rowsAmount: 20,
-    pageNumber: 1,
+  columns: {
+    idColumn: true,
+    nameColumn: true,
+    stateCodeColumn: true,
+    countryIdColumn: true,
+    latitudeColumn: true,
+    longitudeColumn: true,
   },
-
-  editState: null,
 };
 
 export const statesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case PREPARE_NEW_UPDATING_REQ:
+    case PREPARE_NEW_UPDATING_REQ_STATES:
       return {
         ...state,
         updatingStates: {
@@ -60,7 +46,7 @@ export const statesReducer = (state = initialState, action) => {
           error: null,
         },
       };
-    case PREPARE_NEW_FETCHING_REQ:
+    case PREPARE_NEW_FETCHING_REQ_STATES:
       return {
         ...state,
         fetchingStates: {
@@ -122,59 +108,13 @@ export const statesReducer = (state = initialState, action) => {
           error: action.payload,
         },
       };
-    case SET_ORDER:
+    case HIDE_STATES_COLUMN:
       return {
         ...state,
-        functionality: {
-          ...state.functionality,
-          sortingOrder: changeOrderHelper(state.functionality.sortingOrder),
+        columns: {
+          ...state.columns,
+          ...action.payload,
         },
-      };
-    case SORT_OR_FILTER:
-      return {
-        ...state,
-        functionality: { ...state.functionality, sortOrFilter: action.payload },
-      };
-    case SET_SORTING_COLUMN:
-      return {
-        ...state,
-        functionality: {
-          ...state.functionality,
-          sortingColumn: action.payload,
-        },
-      };
-    case SET_FILTER_COLUMN:
-      return {
-        ...state,
-        functionality: { ...state.functionality, filterColumn: action.payload },
-      };
-    case SET_FILTER_OPERATOR:
-      return {
-        ...state,
-        functionality: {
-          ...state.functionality,
-          filterOperator: action.payload,
-        },
-      };
-    case SET_FILTER_VALUE:
-      return {
-        ...state,
-        functionality: { ...state.functionality, filterValue: action.payload },
-      };
-    case SET_PAGE_NUMBER:
-      return {
-        ...state,
-        functionality: { ...state.functionality, pageNumber: action.payload },
-      };
-    case SET_ROWS_AMOUNT:
-      return {
-        ...state,
-        functionality: { ...state.functionality, rowsAmount: action.payload },
-      };
-    case SET_EDIT_STATE:
-      return {
-        ...state,
-        editState: action.payload,
       };
     default:
       return state;

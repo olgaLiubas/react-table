@@ -1,48 +1,59 @@
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-// import Row from "components/countries/Row";
-// import Footer from "components/countries/Footer";
-// import Header from "components/countries/Header";
-// import Portal from "components/countries/Portal";
-// import { fetchForSaga } from "bus/country/actions";
-// import { getCountries } from "bus/country/selectors";
-
-// import CircularProgress from "@mui/material/CircularProgress";
-// import { getFetchingCountriesStatuses } from "bus/country/selectors";
+import Row from "components/Row";
+import Footer from "components/Footer";
+import Header from "components/Header";
+import Portal from "components/Portal";
+import * as actions from "bus/cities/actions";
+import * as selectors from "bus/cities/selectors";
+import { amountOfPlaces } from "constants/amountOfPlaces";
+import CircularProgress from "@mui/material/CircularProgress";
+import { citiesCellsNamesConfig } from "constants/citiesCellsNamesConfig";
 
 const CitiesPage = ({ styles }) => {
-  // const dispatch = useDispatch();
-  // const countries = useSelector(getCountries);
-  // const fetchingStatuses = useSelector(getFetchingCountriesStatuses);
+  const dispatch = useDispatch();
+  const arrayOfData = useSelector(selectors.getData);
+  const fetchingStatuses = useSelector(selectors.getFetchingStatuses);
 
-  // useEffect(() => {
-  //   dispatch(fetchForSaga());
-  // }, []);
+  useEffect(() => {
+    dispatch(actions.fetchForSaga());
+  }, []);
 
   return (
-    <div className={styles.table}>
-      <p>Cities</p>
-      {/* <Header />
+    <>
+      <div className={styles.table}>
+        <Header
+          cellsNamesConfig={citiesCellsNamesConfig}
+          selectors={selectors}
+          actions={actions}
+        />
 
-      <div id="modal_place" className={styles.modalPlace}></div>
+        <div id="modal_place" className={styles.modalPlace}></div>
 
-      <Portal />
+        <Portal selectors={selectors} actions={actions} />
 
-      {fetchingStatuses.loading && (
-        <CircularProgress color="inherit" className={styles.loader} />
-      )}
+        {fetchingStatuses.loading && (
+          <CircularProgress color="inherit" className={styles.loader} />
+        )}
 
-      {fetchingStatuses.success && !fetchingStatuses.loading && (
-        <>
-          {countries.map((country) => (
-            <Row key={country.id} country={country} />
-          ))}
-        </>
-      )}
+        {fetchingStatuses.success && !fetchingStatuses.loading && (
+          <>
+            {arrayOfData.map((item) => (
+              <Row
+                key={item.id}
+                item={item}
+                cellsNamesConfig={citiesCellsNamesConfig}
+                selectors={selectors}
+                actions={actions}
+              />
+            ))}
+          </>
+        )}
 
-      <Footer /> */}
-    </div>
+        <Footer actions={actions} amountOfPlaces={amountOfPlaces.cities} />
+      </div>
+    </>
   );
 };
 

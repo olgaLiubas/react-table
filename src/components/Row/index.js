@@ -2,22 +2,20 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
 import RowCell from "components/Row/RowCell";
-import { setEditCountry } from "bus/country/actions";
-import { getColumnsStatuses } from "bus/ui/selectors";
-import { cellsNamesConfig } from "constants/cellsNamesConfig";
+import { setEditCountry } from "bus/ui/actions";
 import { showModal, hideMenuColumn, hideFilter } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 
-const Row = ({ country }) => {
+const Row = ({ item, cellsNamesConfig, selectors }) => {
   const dispatch = useDispatch();
-  const columns = useSelector(getColumnsStatuses);
+  const columns = useSelector(selectors.getColumnsStatuses);
 
   const onShowModalHelper = () => {
     dispatch(hideMenuColumn());
     dispatch(hideFilter());
     dispatch(showModal(true));
-    dispatch(setEditCountry(country));
+    dispatch(setEditCountry(item));
   };
 
   return (
@@ -35,7 +33,7 @@ const Row = ({ country }) => {
               <RowCell
                 key={cell.id}
                 extraClass={styles[cell.id]}
-                text={country[cell.fieldInCountries]}
+                text={item[cell.fieldInArray]}
               />
             )
         )}

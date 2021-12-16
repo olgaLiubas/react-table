@@ -3,12 +3,12 @@ import { useSelector } from "react-redux";
 import { getUiState } from "bus/ui/selectors";
 import Filter from "components/Header/Filter";
 import HeaderCell from "components/Header/HeaderCell";
-import { cellsNamesConfig } from "constants/cellsNamesConfig";
 
 import styles from "./style.module.scss";
 
-const Header = () => {
+const Header = ({ cellsNamesConfig, selectors, actions }) => {
   const ui = useSelector(getUiState);
+  const columns = useSelector(selectors.getColumnsStatuses);
 
   return (
     <header className={styles.header}>
@@ -20,19 +20,23 @@ const Header = () => {
 
       {cellsNamesConfig.map(
         (cell) =>
-          ui.columns[cell.nameInUiState] && (
+          columns[cell.nameInUiState] && (
             <HeaderCell
               key={cell.id}
               id={cell.id}
               text={cell.nameOfHeaderColumn}
               extraClass={styles[cell.id]}
               columnName={cell.nameInUiState}
-              fieldInArray={cell.fieldInCountries}
+              fieldInArray={cell.fieldInArray}
+              selectors={selectors}
+              actions={actions}
             />
           )
       )}
 
-      {ui.isFilter ? <Filter /> : null}
+      {ui.isFilter ? (
+        <Filter actions={actions} cellsNamesConfig={cellsNamesConfig} />
+      ) : null}
     </header>
   );
 };

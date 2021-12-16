@@ -7,22 +7,27 @@ import {
   hideMenuColumn,
   hideFilter,
   hideModal,
-} from "bus/ui/actions";
-import {
   setOrder,
   setSortingColumn,
-  fetchForNextTimes,
-} from "bus/country/actions";
+} from "bus/ui/actions";
 import { getUiState } from "bus/ui/selectors";
 import Dropdown from "components/Header/DropdownMenu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { getFunctionalityData } from "bus/country/selectors";
+import { getFunctionalityData } from "bus/ui/selectors";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 import styles from "./style.module.scss";
 
-const HeaderCell = ({ id, text, extraClass, columnName, fieldInArray }) => {
+const HeaderCell = ({
+  id,
+  text,
+  extraClass,
+  columnName,
+  fieldInArray,
+  selectors,
+  actions,
+}) => {
   const dispatch = useDispatch();
 
   const ui = useSelector(getUiState);
@@ -31,7 +36,7 @@ const HeaderCell = ({ id, text, extraClass, columnName, fieldInArray }) => {
   const changeSortingOrder = () => {
     dispatch(setOrder());
     dispatch(setSortingColumn(fieldInArray));
-    dispatch(fetchForNextTimes());
+    dispatch(actions.fetchForNextTimes());
   };
 
   const showMenuHelper = (columnName) => () => {
@@ -62,7 +67,12 @@ const HeaderCell = ({ id, text, extraClass, columnName, fieldInArray }) => {
           </button>
 
           {id === ui.isMenuColumn && (
-            <Dropdown columnName={columnName} fieldInArray={fieldInArray} />
+            <Dropdown
+              columnName={columnName}
+              fieldInArray={fieldInArray}
+              selectors={selectors}
+              actions={actions}
+            />
           )}
         </div>
       </div>
