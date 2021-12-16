@@ -5,12 +5,11 @@ import Row from "components/Row";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import Portal from "components/Portal";
-
-import CircularProgress from "@mui/material/CircularProgress";
-
-import { citiesCellsNamesConfig } from "constants/citiesCellsNamesConfig";
-import * as selectors from "bus/cities/selectors";
 import * as actions from "bus/cities/actions";
+import * as selectors from "bus/cities/selectors";
+import { amountOfPlaces } from "constants/amountOfPlaces";
+import CircularProgress from "@mui/material/CircularProgress";
+import { citiesCellsNamesConfig } from "constants/citiesCellsNamesConfig";
 
 const CitiesPage = ({ styles }) => {
   const dispatch = useDispatch();
@@ -52,7 +51,7 @@ const CitiesPage = ({ styles }) => {
           </>
         )}
 
-        <Footer actions={actions} />
+        <Footer actions={actions} amountOfPlaces={amountOfPlaces.cities} />
       </div>
     </>
   );

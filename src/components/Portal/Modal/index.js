@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { setEditCountry, hideModal } from "bus/ui/actions";
-import AlertMsg from "components/Portal/Modal/Alert";
 import { getEditCountry } from "bus/ui/selectors";
+import AlertMsg from "components/Portal/Modal/Alert";
+import { setEditCountry, hideModal } from "bus/ui/actions";
 import CircularProgress from "@mui/material/CircularProgress";
 import ChangeCountryDataForm from "components/Portal/Modal/ChangeCountryDataForm";
 

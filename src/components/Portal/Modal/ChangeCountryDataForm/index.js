@@ -2,8 +2,8 @@ import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getEditCountry } from "bus/ui/selectors";
+import { validationSchema } from "bus/countries/validationShemaForFormik";
 import FieldModal from "components/Portal/Modal/ChangeCountryDataForm/Field";
-import { validationSchema } from "bus/country/validationShemaForFormik";
 
 import styles from "./style.module.scss";
 

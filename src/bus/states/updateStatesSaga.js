@@ -5,9 +5,9 @@ import {
   updateStatesSuccess,
   updateStatesStart,
 } from "bus/states/actions";
+import { initialUrl } from "constants/initialUrl";
 import { updateData } from "bus/common/updateData";
 import { UPDATE_STATES_FOR_SAGA } from "bus/states/types";
-import { initialUrl } from "constants/initialUrl";
 
 export const workerUpdateStatesSaga = function* (action) {
   try {

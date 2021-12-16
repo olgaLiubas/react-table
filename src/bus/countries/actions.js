@@ -11,7 +11,7 @@ import {
   PREPARE_NEW_UPDATING_REQ_COUNTRIES,
   PREPARE_NEW_FETCHING_REQ_COUNTRIES,
   HIDE_COLUMN,
-} from "bus/country/types";
+} from "bus/countries/types";
 
 export const fetchForSaga = (initialUrl) => ({
   type: FETCH_COUNTRIES_FOR_SAGA,

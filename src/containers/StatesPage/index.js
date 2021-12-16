@@ -5,12 +5,11 @@ import Row from "components/Row";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import Portal from "components/Portal";
-
-import CircularProgress from "@mui/material/CircularProgress";
-
-import { statesCellsNamesConfig } from "constants/statesCellsNamesConfig";
-import * as selectors from "bus/states/selectors";
 import * as actions from "bus/states/actions";
+import * as selectors from "bus/states/selectors";
+import { amountOfPlaces } from "constants/amountOfPlaces";
+import CircularProgress from "@mui/material/CircularProgress";
+import { statesCellsNamesConfig } from "constants/statesCellsNamesConfig";
 
 const StatesPage = ({ styles }) => {
   const dispatch = useDispatch();
@@ -52,7 +51,7 @@ const StatesPage = ({ styles }) => {
           </>
         )}
 
-        <Footer actions={actions} />
+        <Footer actions={actions} amountOfPlaces={amountOfPlaces.states} />
       </div>
     </>
   );

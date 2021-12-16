@@ -4,10 +4,10 @@ import {
   updateCountryError,
   updateCountrySuccess,
   updateCountryStart,
-} from "bus/country/actions";
-import { updateData } from "bus/common/updateData";
-import { UPDATE_COUNTRIES_FOR_SAGA } from "bus/country/types";
+} from "bus/countries/actions";
 import { initialUrl } from "constants/initialUrl";
+import { updateData } from "bus/common/updateData";
+import { UPDATE_COUNTRIES_FOR_SAGA } from "bus/countries/types";
 
 export const workerUpdateCountriesSaga = function* (action) {
   try {

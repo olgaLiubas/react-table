@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import RowCell from "components/Row/RowCell";
 import { setEditCountry } from "bus/ui/actions";
-
 import { showModal, hideMenuColumn, hideFilter } from "bus/ui/actions";
 
 import styles from "./style.module.scss";

@@ -7,13 +7,13 @@ import {
   fetchStatesStart,
   fetchStatesError,
 } from "bus/states/actions";
-import { fetchData } from "bus/common/fetchData";
-import { urlGenerator } from "bus/common/urlGenerator";
 import {
   FETCH_STATES_FOR_SAGA,
   FETCH_STATES_FOR_NEXT_TIMES,
 } from "bus/states/types";
 import { showModal } from "bus/ui/actions";
+import { fetchData } from "bus/common/fetchData";
+import { urlGenerator } from "bus/common/urlGenerator";
 
 export const workerFetchStatesSaga = function* () {
   try {

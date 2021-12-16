@@ -45,7 +45,9 @@ const Filter = ({ actions, cellsNamesConfig }) => {
         <p>Columns</p>
         <select defaultValue="name" onChange={(e) => onChangeFilterColumn(e)}>
           {cells.map((cell) => (
-            <option value={cell.fieldInArray}>{cell.nameOfHeaderColumn}</option>
+            <option key={cell.id} value={cell.fieldInArray}>
+              {cell.nameOfHeaderColumn}
+            </option>
           ))}
         </select>
       </div>

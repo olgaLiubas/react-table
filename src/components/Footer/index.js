@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { setPageNumber, setRowsAmount } from "bus/ui/actions";
 import { getFunctionalityData } from "bus/ui/selectors";
+import { setPageNumber, setRowsAmount } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
 
-const Footer = ({ actions }) => {
+const Footer = ({ actions, amountOfPlaces }) => {
   const dispatch = useDispatch();
   const { rowsAmount, pageNumber } = useSelector(getFunctionalityData);
 
-  const maxAmount = Math.ceil(250 / rowsAmount);
+  const maxAmount = Math.ceil(amountOfPlaces / rowsAmount);
 
   const goBackHelper = () => {
     if (pageNumber > 1) {

@@ -6,14 +6,14 @@ import {
   fetchCountriesSucces,
   fetchCountriesStart,
   fetchCountriesError,
-} from "bus/country/actions";
-import { fetchData } from "bus/common/fetchData";
-import { urlGenerator } from "bus/common/urlGenerator";
+} from "bus/countries/actions";
 import {
   FETCH_COUNTRIES_FOR_SAGA,
   FETCH_COUNTRIES_FOR_NEXT_TIMES,
-} from "bus/country/types";
+} from "bus/countries/types";
 import { showModal } from "bus/ui/actions";
+import { fetchData } from "bus/common/fetchData";
+import { urlGenerator } from "bus/common/urlGenerator";
 
 export const workerFetchCountriesSaga = function* () {
   try {
