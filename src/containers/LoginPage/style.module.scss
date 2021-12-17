@@ -1,0 +1,71 @@
+.login {
+  margin-left: 30vw;
+  margin-top: 10vh;
+  min-height: 80vh;
+  min-width: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .headerLogin {
+    width: 60%;
+    font-size: 22px;
+    font-weight: 700;
+
+    p {
+      margin: 10px 0px;
+      padding: 0px;
+    }
+  }
+
+  .loginProp {
+    height: 80px;
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    width: 60%;
+
+    p {
+      width: 100px;
+      margin: 0px;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      font-size: 16px;
+      font-weight: 200;
+      height: 30px;
+    }
+    .inputError {
+      border-color: red;
+      color: grey;
+    }
+    .error {
+      margin: 3px 0px 0px 0px;
+      font-size: 11px;
+      color: red;
+      width: 100%;
+      flex-wrap: nowrap;
+    }
+  }
+  button {
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 61%;
+    font-size: 16px;
+    font-weight: 500;
+    height: 35px;
+    background-color: black;
+    color: white;
+  }
+
+  .disabledBtn {
+    font-weight: 600;
+    color: red;
+    border: 3px solid red;
+  }
+}
