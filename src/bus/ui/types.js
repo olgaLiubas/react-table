@@ -19,3 +19,5 @@ export const SET_PAGE_NUMBER = "setPageNumber";
 export const SET_EDIT_PLACE = "setEditPlace";
 
 export const SET_NEW_ROUTER_PAGE = "setNewRouterPage";
+
+export const SET_IS_USER_LOGINED = "setIsUserLogined";

@@ -15,11 +15,17 @@ import {
   SORT_OR_FILTER,
   SET_EDIT_PLACE,
   SET_NEW_ROUTER_PAGE,
+  SET_IS_USER_LOGINED,
 } from "bus/ui/types";
 
 export const setNewRouterPage = (newPage) => ({
   type: SET_NEW_ROUTER_PAGE,
   payload: newPage,
+});
+
+export const setIsUserLogined = (dataFromForm) => ({
+  type: SET_IS_USER_LOGINED,
+  payload: dataFromForm,
 });
 
 export const showFilter = () => ({
