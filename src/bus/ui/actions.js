@@ -13,8 +13,14 @@ import {
   SET_ROWS_AMOUNT,
   SET_PAGE_NUMBER,
   SORT_OR_FILTER,
-  SET_EDIT_COUNTRY,
+  SET_EDIT_PLACE,
+  SET_NEW_ROUTER_PAGE,
 } from "bus/ui/types";
+
+export const setNewRouterPage = (newPage) => ({
+  type: SET_NEW_ROUTER_PAGE,
+  payload: newPage,
+});
 
 export const showFilter = () => ({
   type: SHOW_FILTER,
@@ -80,7 +86,7 @@ export const setPageNumber = (newNumber) => ({
   payload: newNumber,
 });
 
-export const setEditCountry = (newCountry) => ({
-  type: SET_EDIT_COUNTRY,
-  payload: newCountry,
+export const setEditPlace = (newPlace) => ({
+  type: SET_EDIT_PLACE,
+  payload: newPlace,
 });

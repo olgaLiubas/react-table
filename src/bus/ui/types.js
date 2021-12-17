@@ -16,4 +16,6 @@ export const SET_FILTER_VALUE = "setFilterValue";
 export const SET_ROWS_AMOUNT = "setRowsAmount";
 export const SET_PAGE_NUMBER = "setPageNumber";
 
-export const SET_EDIT_COUNTRY = "setEditCountry";
+export const SET_EDIT_PLACE = "setEditPlace";
+
+export const SET_NEW_ROUTER_PAGE = "setNewRouterPage";
