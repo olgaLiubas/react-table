@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
 import RowCell from "components/Row/RowCell";
-import { setEditCountry } from "bus/ui/actions";
+import { setEditPlace } from "bus/ui/actions";
 import { showModal, hideMenuColumn, hideFilter } from "bus/ui/actions";
 
 import styles from "./style.module.scss";
@@ -15,7 +15,7 @@ const Row = ({ item, cellsNamesConfig, selectors }) => {
     dispatch(hideMenuColumn());
     dispatch(hideFilter());
     dispatch(showModal(true));
-    dispatch(setEditCountry(item));
+    dispatch(setEditPlace(item));
   };
 
   return (

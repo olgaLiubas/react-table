@@ -5,6 +5,7 @@ import { watchUpdateCountriesSaga } from "bus/countries/updateCountriesSaga";
 import { watchFetchStatesSaga } from "bus/states/fetchStatesSaga";
 import { watchUpdateStatesSaga } from "bus/states/updateStatesSaga";
 import { watchFetchCitesSaga } from "bus/cities/fetchCitiesSaga";
+import { watchUpdateCitiesSaga } from "bus/cities/updateCitiesSaga";
 
 export const rootSaga = function* () {
   yield all([
@@ -12,6 +13,7 @@ export const rootSaga = function* () {
     watchFetchCountriesSaga(),
     watchUpdateStatesSaga(),
     watchFetchStatesSaga(),
+    watchUpdateCitiesSaga(),
     watchFetchCitesSaga(),
   ]);
 };

@@ -1,28 +1,30 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { getEditCountry } from "bus/ui/selectors";
+import { getEditPlace, getRouterPage } from "bus/ui/selectors";
 import AlertMsg from "components/Portal/Modal/Alert";
-import { setEditCountry, hideModal } from "bus/ui/actions";
+import { setEditPlace, hideModal } from "bus/ui/actions";
 import CircularProgress from "@mui/material/CircularProgress";
-import ChangeCountryDataForm from "components/Portal/Modal/ChangeCountryDataForm";
+import ChangeCityDataForm from "components/Portal/Modal/ChangeCountryDataForm/formForCities";
+import ChangeStateDataForm from "components/Portal/Modal/ChangeCountryDataForm/formForStates";
+import ChangeCountryDataForm from "components/Portal/Modal/ChangeCountryDataForm/formForCountries";
 
 import styles from "./style.module.scss";
 
-const Modal = ({ selectors, actions }) => {
+const Modal = ({ selectors, actions, cellsNamesConfig }) => {
   const dispatch = useDispatch();
-
+  const routerPage = useSelector(getRouterPage);
   const updatingStatuses = useSelector(selectors.getUpdatingStatuses);
   const fetchingStatuses = useSelector(selectors.getFetchingStatuses);
-  const editCountry = useSelector(getEditCountry);
+  const editCountry = useSelector(getEditPlace);
 
   const onShowModalHelper = () => {
     dispatch(hideModal());
     if (updatingStatuses.error) {
-      dispatch(setEditCountry(null));
+      dispatch(setEditPlace(null));
       dispatch(actions.prepareNewUpdatingReguest());
     }
     if (updatingStatuses.success) {
-      dispatch(setEditCountry(null));
+      dispatch(setEditPlace(null));
       dispatch(actions.prepareNewUpdatingReguest());
       dispatch(actions.fetchForNextTimes());
     }
@@ -64,7 +66,7 @@ const Modal = ({ selectors, actions }) => {
 
         {updatingStatuses.success && (
           <AlertMsg
-            msg={"Country data was changed successfully!"}
+            msg={"Data was changed successfully!"}
             type={"success"}
             func={onShowModalHelper}
           />
@@ -72,18 +74,46 @@ const Modal = ({ selectors, actions }) => {
 
         {!editCountry && fetchingStatuses.success && (
           <AlertMsg
-            msg={"Country data was loaded successfully!"}
+            msg={"Data was loaded successfully!"}
             type={"success"}
             func={onShowModalHelper}
           />
         )}
 
-        {editCountry &&
+        {routerPage === "cities" &&
+          editCountry &&
           !updatingStatuses.loading &&
           !updatingStatuses.error &&
           !updatingStatuses.success &&
           fetchingStatuses.success && (
-            <ChangeCountryDataForm actions={actions} />
+            <ChangeCityDataForm
+              actions={actions}
+              cellsNamesConfig={cellsNamesConfig}
+            />
+          )}
+
+        {routerPage === "countries" &&
+          editCountry &&
+          !updatingStatuses.loading &&
+          !updatingStatuses.error &&
+          !updatingStatuses.success &&
+          fetchingStatuses.success && (
+            <ChangeCountryDataForm
+              actions={actions}
+              cellsNamesConfig={cellsNamesConfig}
+            />
+          )}
+
+        {routerPage === "states" &&
+          editCountry &&
+          !updatingStatuses.loading &&
+          !updatingStatuses.error &&
+          !updatingStatuses.success &&
+          fetchingStatuses.success && (
+            <ChangeStateDataForm
+              actions={actions}
+              cellsNamesConfig={cellsNamesConfig}
+            />
           )}
       </div>
     </div>

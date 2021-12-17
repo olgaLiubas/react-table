@@ -13,12 +13,15 @@ import {
   SET_PAGE_NUMBER,
   SET_SORTING_COLUMN,
   SORT_OR_FILTER,
-  SET_EDIT_COUNTRY,
+  SET_EDIT_PLACE,
+  SET_NEW_ROUTER_PAGE,
 } from "bus/ui/types";
 import { ASC } from "constants/sortingOrders";
 import { changeOrderHelper } from "bus/common/changeOrderHelper";
 
 const initialState = {
+  routerPage: "login",
+
   isFilter: false,
   isModal: false,
   isMenuColumn: null,
@@ -34,11 +37,21 @@ const initialState = {
     pageNumber: 1,
   },
 
-  editCountry: null,
+  editPlace: null,
 };
 
 export const UIReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_NEW_ROUTER_PAGE:
+      return {
+        ...state,
+        routerPage: action.payload,
+        isFilter: initialState.isFilter,
+        isModal: initialState.isModal,
+        isMenuColumn: initialState.isMenuColumn,
+        functionality: initialState.functionality,
+        editPlace: initialState.editPlace,
+      };
     case SHOW_FILTER:
       return {
         ...state,
@@ -118,10 +131,10 @@ export const UIReducer = (state = initialState, action) => {
         ...state,
         functionality: { ...state.functionality, rowsAmount: action.payload },
       };
-    case SET_EDIT_COUNTRY:
+    case SET_EDIT_PLACE:
       return {
         ...state,
-        editCountry: action.payload,
+        editPlace: action.payload,
       };
     default:
       return state;

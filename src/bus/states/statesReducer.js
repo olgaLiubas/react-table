@@ -13,13 +13,13 @@ import {
 const initialState = {
   states: [],
 
-  fetchingStates: {
+  fetchingData: {
     loading: false,
     success: false,
     error: null,
   },
 
-  updatingStates: {
+  updatingData: {
     loading: false,
     success: false,
     error: null,
@@ -40,8 +40,8 @@ export const statesReducer = (state = initialState, action) => {
     case PREPARE_NEW_UPDATING_REQ_STATES:
       return {
         ...state,
-        updatingStates: {
-          ...state.updatingStates,
+        updatingData: {
+          ...state.updatingData,
           success: false,
           error: null,
         },
@@ -49,8 +49,8 @@ export const statesReducer = (state = initialState, action) => {
     case PREPARE_NEW_FETCHING_REQ_STATES:
       return {
         ...state,
-        fetchingStates: {
-          ...state.fetchingStates,
+        fetchingData: {
+          ...state.fetchingData,
           success: false,
           error: null,
         },
@@ -58,16 +58,16 @@ export const statesReducer = (state = initialState, action) => {
     case FETCH_STATES_START:
       return {
         ...state,
-        fetchingStates: {
-          ...state.fetchingStates,
+        fetchingData: {
+          ...state.fetchingData,
           loading: true,
         },
       };
     case FETCH_STATES_SUCCESS:
       return {
         ...state,
-        fetchingStates: {
-          ...state.fetchingStates,
+        fetchingData: {
+          ...state.fetchingData,
           success: true,
           loading: false,
         },
@@ -76,8 +76,8 @@ export const statesReducer = (state = initialState, action) => {
     case FETCH_STATES_ERROR:
       return {
         ...state,
-        fetchingStates: {
-          ...state.fetchingStates,
+        fetchingData: {
+          ...state.fetchingData,
           loading: false,
           error: action.payload,
         },
@@ -85,16 +85,16 @@ export const statesReducer = (state = initialState, action) => {
     case UPDATE_STATES_START:
       return {
         ...state,
-        updatingStates: {
-          ...state.updatingStates,
+        updatingData: {
+          ...state.updatingData,
           loading: true,
         },
       };
     case UPDATE_STATES_SUCCESS:
       return {
         ...state,
-        updatingStates: {
-          ...state.updatingStates,
+        updatingData: {
+          ...state.updatingData,
           success: true,
           loading: false,
         },
@@ -102,8 +102,8 @@ export const statesReducer = (state = initialState, action) => {
     case UPDATE_STATES_ERROR:
       return {
         ...state,
-        updatingStates: {
-          ...state.updatingStates,
+        updatingData: {
+          ...state.updatingData,
           loading: false,
           error: action.payload,
         },

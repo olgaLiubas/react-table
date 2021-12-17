@@ -6,6 +6,7 @@ import Footer from "components/Footer";
 import Header from "components/Header";
 import Portal from "components/Portal";
 import * as actions from "bus/states/actions";
+import { setNewRouterPage } from "bus/ui/actions";
 import * as selectors from "bus/states/selectors";
 import { amountOfPlaces } from "constants/amountOfPlaces";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -17,6 +18,7 @@ const StatesPage = ({ styles }) => {
   const fetchingStatuses = useSelector(selectors.getFetchingStatuses);
 
   useEffect(() => {
+    dispatch(setNewRouterPage("states"));
     dispatch(actions.fetchForSaga());
   }, []);
 
@@ -31,7 +33,11 @@ const StatesPage = ({ styles }) => {
 
         <div id="modal_place" className={styles.modalPlace}></div>
 
-        <Portal selectors={selectors} actions={actions} />
+        <Portal
+          selectors={selectors}
+          actions={actions}
+          cellsNamesConfig={statesCellsNamesConfig}
+        />
 
         {fetchingStatuses.loading && (
           <CircularProgress color="inherit" className={styles.loader} />

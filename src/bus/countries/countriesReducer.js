@@ -13,13 +13,13 @@ import {
 const initialState = {
   countries: [],
 
-  fetchingCountries: {
+  fetchingData: {
     loading: false,
     success: false,
     error: null,
   },
 
-  updatingCountries: {
+  updatingData: {
     loading: false,
     success: false,
     error: null,
@@ -40,8 +40,8 @@ export const countriesReducer = (state = initialState, action) => {
     case PREPARE_NEW_UPDATING_REQ_COUNTRIES:
       return {
         ...state,
-        updatingCountries: {
-          ...state.updatingCountries,
+        updatingData: {
+          ...state.updatingData,
           success: false,
           error: null,
         },
@@ -49,8 +49,8 @@ export const countriesReducer = (state = initialState, action) => {
     case PREPARE_NEW_FETCHING_REQ_COUNTRIES:
       return {
         ...state,
-        fetchingCountries: {
-          ...state.fetchingCountries,
+        fetchingData: {
+          ...state.fetchingData,
           success: false,
           error: null,
         },
@@ -58,16 +58,16 @@ export const countriesReducer = (state = initialState, action) => {
     case FETCH_COUNTRIES_START:
       return {
         ...state,
-        fetchingCountries: {
-          ...state.fetchingCountries,
+        fetchingData: {
+          ...state.fetchingData,
           loading: true,
         },
       };
     case FETCH_COUNTRIES_SUCCESS:
       return {
         ...state,
-        fetchingCountries: {
-          ...state.fetchingCountries,
+        fetchingData: {
+          ...state.fetchingData,
           success: true,
           loading: false,
         },
@@ -76,8 +76,8 @@ export const countriesReducer = (state = initialState, action) => {
     case FETCH_COUNTRIES_ERROR:
       return {
         ...state,
-        fetchingCountries: {
-          ...state.fetchingCountries,
+        fetchingData: {
+          ...state.fetchingData,
           loading: false,
           error: action.payload,
         },
@@ -85,16 +85,16 @@ export const countriesReducer = (state = initialState, action) => {
     case UPDATE_COUNTRY_START:
       return {
         ...state,
-        updatingCountries: {
-          ...state.updatingCountries,
+        updatingData: {
+          ...state.updatingData,
           loading: true,
         },
       };
     case UPDATE_COUNTRY_SUCCESS:
       return {
         ...state,
-        updatingCountries: {
-          ...state.updatingCountries,
+        updatingData: {
+          ...state.updatingData,
           success: true,
           loading: false,
         },
@@ -102,8 +102,8 @@ export const countriesReducer = (state = initialState, action) => {
     case UPDATE_COUNTRY_ERROR:
       return {
         ...state,
-        updatingCountries: {
-          ...state.updatingCountries,
+        updatingData: {
+          ...state.updatingData,
           loading: false,
           error: action.payload,
         },
