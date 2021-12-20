@@ -1,0 +1,35 @@
+.table {
+  background-color: white;
+  margin-left: 170px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  padding-bottom: 50px;
+  min-height: 99vh;
+  .loader {
+    align-self: center;
+    margin-top: 40vh;
+  }
+  .error {
+    align-self: center;
+    margin-top: 40vh;
+  }
+  .modalPlace {
+    height: 0px;
+    width: 0px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .table {
+    max-width: 98vw;
+    width: 98vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .table {
+    max-width: 1230px;
+    width: 1230px;
+  }
+}

@@ -18,7 +18,7 @@ import {
   SET_IS_USER_LOGINED,
 } from "bus/ui/types";
 import { ASC } from "constants/sortingOrders";
-import { isUserDataTrue } from "bus/common/isUserDataTrue";
+import { isUserDataTrue } from "bus/signIn/isUserDataTrue";
 import { changeOrderHelper } from "bus/common/changeOrderHelper";
 
 const initialState = {
