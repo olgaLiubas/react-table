@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -27,33 +26,38 @@ const App = () => {
           <Navigation />
         </header>
 
-        <Routes>
-          <Route
-            path={BOOK.AUTH.SIGN_IN}
-            element={<LoginPage styles={styles} />}
-          />
+        {loginedUser ? (
+          <Routes>
+            <Route
+              path={BOOK.CONTENT.STATES}
+              element={<StatesPage styles={styles} />}
+            />
 
-          {loginedUser && (
-            <>
-              <Route
-                path={BOOK.CONTENT.STATES}
-                element={<StatesPage styles={styles} />}
-              />
+            <Route
+              path={BOOK.CONTENT.CITIES}
+              element={<CitiesPage styles={styles} />}
+            />
 
-              <Route
-                path={BOOK.CONTENT.CITIES}
-                element={<CitiesPage styles={styles} />}
-              />
+            <Route
+              path={BOOK.CONTENT.COUNTRIES}
+              element={<CountriesPage styles={styles} />}
+            />
 
-              <Route
-                path={BOOK.CONTENT.COUNTRIES}
-                element={<CountriesPage styles={styles} />}
-              />
-            </>
-          )}
+            <Route
+              path="*"
+              element={<Navigate to={BOOK.CONTENT.COUNTRIES} />}
+            />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route
+              path={BOOK.AUTH.SIGN_IN}
+              element={<LoginPage styles={styles} />}
+            />
 
-          <Route path="*" element={<Navigate to={BOOK.AUTH.SIGN_IN} />} />
-        </Routes>
+            <Route path="*" element={<Navigate to={BOOK.AUTH.SIGN_IN} />} />
+          </Routes>
+        )}
       </Router>
     </div>
   );
