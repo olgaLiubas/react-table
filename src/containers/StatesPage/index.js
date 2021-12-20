@@ -12,7 +12,9 @@ import { amountOfPlaces } from "constants/amountOfPlaces";
 import CircularProgress from "@mui/material/CircularProgress";
 import { statesCellsNamesConfig } from "constants/statesCellsNamesConfig";
 
-const StatesPage = ({ styles }) => {
+import styles from "../style.module.scss";
+
+const StatesPage = () => {
   const dispatch = useDispatch();
   const arrayOfData = useSelector(selectors.getData);
   const fetchingStatuses = useSelector(selectors.getFetchingStatuses);

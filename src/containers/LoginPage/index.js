@@ -1,10 +1,7 @@
 import { useDispatch } from "react-redux";
 import { setIsUserLogined } from "bus/ui/actions";
+import { signIn } from "bus/signIn/validationSchema";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import {
-  initialValues,
-  signInSchema,
-} from "containers/LoginPage/validationSchema";
 
 import styles from "./style.module.scss";
 
@@ -17,8 +14,8 @@ const LoginPage = () => {
 
   return (
     <Formik
-      initialValues={initialValues}
-      validationSchema={signInSchema}
+      initialValues={signIn.shape}
+      validationSchema={signIn.schema}
       onSubmit={submitForm}
     >
       {(formik) => {
