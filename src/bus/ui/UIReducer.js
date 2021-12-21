@@ -15,20 +15,12 @@ import {
   SORT_OR_FILTER,
   SET_EDIT_PLACE,
   SET_NEW_ROUTER_PAGE,
-  SET_IS_USER_LOGINED,
 } from "bus/ui/types";
 import { ASC } from "constants/sortingOrders";
-import { isUserDataTrue } from "bus/signIn/isUserDataTrue";
+
 import { changeOrderHelper } from "bus/common/changeOrderHelper";
 
 const initialState = {
-  isUserLogined: false,
-
-  userData: {
-    userEmail: "user@gmail.com",
-    userPassword: "justTestPassword",
-  },
-
   routerPage: "login",
 
   isFilter: false,
@@ -51,11 +43,6 @@ const initialState = {
 
 export const UIReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_IS_USER_LOGINED:
-      return {
-        ...state,
-        isUserLogined: isUserDataTrue(action.payload, state.userData),
-      };
     case SET_NEW_ROUTER_PAGE:
       return {
         ...state,

@@ -7,11 +7,11 @@ import {
 import { useSelector } from "react-redux";
 
 import { BOOK } from "navigation/book";
-import Navigation from "navigation/NavigationMenu";
 import LoginPage from "containers/LoginPage";
 import CitiesPage from "containers/CitiesPage";
 import StatesPage from "containers/StatesPage";
-import { isUserLogined } from "bus/ui/selectors";
+import Navigation from "navigation/NavigationMenu";
+import { isUserLogined } from "bus/signIn/selectors";
 import CountriesPage from "containers/CountriesPage";
 
 import styles from "./App.module.scss";
