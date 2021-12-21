@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { BOOK } from "navigation/book";
-import { isUserLogined } from "bus/ui/selectors";
+import { isUserLogined } from "bus/signIn/selectors";
 
 import styles from "./style.module.scss";
 

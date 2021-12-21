@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { setIsUserLogined } from "bus/ui/actions";
 import { signIn } from "bus/signIn/validationSchema";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { setUserDataForSaga } from "bus/signIn/actions";
 
 import styles from "./style.module.scss";
 
@@ -9,7 +9,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
 
   const submitForm = (values) => {
-    dispatch(setIsUserLogined(values));
+    dispatch(setUserDataForSaga(values));
   };
 
   return (
