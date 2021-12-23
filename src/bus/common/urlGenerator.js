@@ -13,17 +13,14 @@ export function urlGenerator(...props) {
   } = props[0];
   let url;
   if (sortOrFilter === "sort") {
-    // url = `${initialUrl}/${page}?_sort=${sortingColumn}&_order=${sortingOrder}&_limit=${rowsAmount}&_page=${pageNumber}`;
-    url = `${page}?_sort=${sortingColumn}&_order=${sortingOrder}&_limit=${rowsAmount}&_page=${pageNumber}`;
+    url = `${initialUrl}/${page}?_sort=${sortingColumn}&_order=${sortingOrder}&_limit=${rowsAmount}&_page=${pageNumber}`;
   }
   if (sortOrFilter === "filter") {
     if (filterOperator === "contains") {
-      // url = `${initialUrl}/${page}?${filterColumn}_like=${filterValue}`;
-      url = `${page}?${filterColumn}_like=${filterValue}`;
+      url = `${initialUrl}/${page}?${filterColumn}_like=${filterValue}`;
     }
     if (filterOperator === "equals") {
-      // url = `${initialUrl}/${page}?${filterColumn}=${filterValue}&_limit=${rowsAmount}&_page=${pageNumber}`;
-      url = `${page}?${filterColumn}=${filterValue}&_limit=${rowsAmount}&_page=${pageNumber}`;
+      url = `${initialUrl}/${page}?${filterColumn}=${filterValue}&_limit=${rowsAmount}&_page=${pageNumber}`;
     }
   }
   return url;
