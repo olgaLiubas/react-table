@@ -7,7 +7,7 @@ import {
   hideMenuColumn,
   hideFilter,
   hideModal,
-  setOrder,
+  changeOrder,
   setSortingColumn,
 } from "bus/ui/actions";
 import { getUiState } from "bus/ui/selectors";
@@ -34,7 +34,7 @@ const HeaderCell = ({
   const { sortingOrder } = useSelector(getFunctionalityData);
 
   const changeSortingOrder = () => {
-    dispatch(setOrder());
+    dispatch(changeOrder());
     dispatch(setSortingColumn(fieldInArray));
     dispatch(actions.fetchForNextTimes());
   };

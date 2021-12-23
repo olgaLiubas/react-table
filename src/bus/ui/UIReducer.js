@@ -5,7 +5,7 @@ import {
   HIDE_FILTER,
   HIDE_MENU_COLUMN,
   HIDE_MODAL,
-  SET_ORDER,
+  CHANGE_ORDER,
   SET_FILTER_COLUMN,
   SET_FILTER_OPERATOR,
   SET_FILTER_VALUE,
@@ -15,8 +15,10 @@ import {
   SORT_OR_FILTER,
   SET_EDIT_PLACE,
   SET_NEW_ROUTER_PAGE,
+  SET_DESC_ORDER,
+  SET_ASC_ORDER,
 } from "bus/ui/types";
-import { ASC } from "constants/sortingOrders";
+import { ASC, DESC } from "constants/sortingOrders";
 
 import { changeOrderHelper } from "bus/common/changeOrderHelper";
 
@@ -83,12 +85,28 @@ export const UIReducer = (state = initialState, action) => {
         ...state,
         isMenuColumn: false,
       };
-    case SET_ORDER:
+    case CHANGE_ORDER:
       return {
         ...state,
         functionality: {
           ...state.functionality,
           sortingOrder: changeOrderHelper(state.functionality.sortingOrder),
+        },
+      };
+    case SET_ASC_ORDER:
+      return {
+        ...state,
+        functionality: {
+          ...state.functionality,
+          sortingOrder: ASC,
+        },
+      };
+    case SET_DESC_ORDER:
+      return {
+        ...state,
+        functionality: {
+          ...state.functionality,
+          sortingOrder: DESC,
         },
       };
     case SORT_OR_FILTER:

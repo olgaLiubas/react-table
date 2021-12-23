@@ -5,7 +5,7 @@ import {
   HIDE_FILTER,
   HIDE_MENU_COLUMN,
   HIDE_MODAL,
-  SET_ORDER,
+  CHANGE_ORDER,
   SET_FILTER_COLUMN,
   SET_SORTING_COLUMN,
   SET_FILTER_OPERATOR,
@@ -15,6 +15,8 @@ import {
   SORT_OR_FILTER,
   SET_EDIT_PLACE,
   SET_NEW_ROUTER_PAGE,
+  SET_ASC_ORDER,
+  SET_DESC_ORDER,
 } from "bus/ui/types";
 
 export const setNewRouterPage = (newPage) => ({
@@ -52,8 +54,16 @@ export const setSortOrFilter = (newAction) => ({
   payload: newAction,
 });
 
-export const setOrder = () => ({
-  type: SET_ORDER,
+export const changeOrder = () => ({
+  type: CHANGE_ORDER,
+});
+
+export const setAscOrder = () => ({
+  type: SET_ASC_ORDER,
+});
+
+export const setDescOrder = () => ({
+  type: SET_DESC_ORDER,
 });
 
 export const setSortingColumn = (newFilter) => ({
