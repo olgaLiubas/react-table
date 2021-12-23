@@ -12,11 +12,7 @@ const Navigation = () => {
   return (
     <nav className={styles.nav}>
       <ul>
-        <li>
-          <Link to={BOOK.AUTH.SIGN_IN}>Log in</Link>
-        </li>
-
-        {loginedUser && (
+        {loginedUser ? (
           <>
             <li>
               <Link to={BOOK.CONTENT.COUNTRIES}>Countries</Link>
@@ -30,6 +26,10 @@ const Navigation = () => {
               <Link to={BOOK.CONTENT.STATES}>States</Link>
             </li>
           </>
+        ) : (
+          <li>
+            <Link to={BOOK.AUTH.SIGN_IN}>Log in</Link>
+          </li>
         )}
       </ul>
     </nav>

@@ -4,7 +4,8 @@ import {
   showFilter,
   hideMenuColumn,
   hideModal,
-  setOrder,
+  setAscOrder,
+  setDescOrder,
   setSortingColumn,
 } from "bus/ui/actions";
 
@@ -14,8 +15,14 @@ const Dropdown = ({ columnName, fieldInArray, selectors, actions }) => {
   const dispatch = useDispatch();
   const columns = useSelector(selectors.getColumnsStatuses);
 
-  const changeSortingOrder = () => {
-    dispatch(setOrder());
+  const setAscSortingOrder = () => {
+    dispatch(setAscOrder());
+    dispatch(setSortingColumn(fieldInArray));
+    dispatch(actions.fetchForNextTimes());
+  };
+
+  const setDescSortingOrder = () => {
+    dispatch(setDescOrder());
     dispatch(setSortingColumn(fieldInArray));
     dispatch(actions.fetchForNextTimes());
   };
@@ -34,7 +41,7 @@ const Dropdown = ({ columnName, fieldInArray, selectors, actions }) => {
     <div className={styles.dropdown}>
       <button
         className={styles.dropdownItem}
-        onClick={changeSortingOrder}
+        onClick={setAscSortingOrder}
         type="button"
       >
         Sort by ASC
@@ -42,7 +49,7 @@ const Dropdown = ({ columnName, fieldInArray, selectors, actions }) => {
 
       <button
         className={styles.dropdownItem}
-        onClick={changeSortingOrder}
+        onClick={setDescSortingOrder}
         type="button"
       >
         Sort by DESC
