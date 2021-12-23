@@ -13,7 +13,8 @@ export function urlGenerator(...props) {
   } = props[0];
   let url;
   if (sortOrFilter === "sort") {
-    url = `${initialUrl}/${page}?_sort=${sortingColumn}&_order=${sortingOrder}&_limit=${rowsAmount}&_page=${pageNumber}`;
+    // url = `${initialUrl}/${page}?_sort=${sortingColumn}&_order=${sortingOrder}&_limit=${rowsAmount}&_page=${pageNumber}`;
+    url = `${page}?_sort=${sortingColumn}&_order=${sortingOrder}&_limit=${rowsAmount}&_page=${pageNumber}`;
   }
   if (sortOrFilter === "filter") {
     if (filterOperator === "contains") {
@@ -23,5 +24,6 @@ export function urlGenerator(...props) {
       url = `${initialUrl}/${page}?${filterColumn}=${filterValue}&_limit=${rowsAmount}&_page=${pageNumber}`;
     }
   }
+  console.log(url);
   return url;
 }
