@@ -12,7 +12,7 @@ import { UPDATE_COUNTRIES_FOR_SAGA } from "bus/countries/types";
 export const workerUpdateCountriesSaga = function* (action) {
   try {
     yield put(updateCountryStart());
-    const url = `${initialUrl}/countries/${action.payload.id}`;
+    const url = `countries/${action.payload.id}`;
     yield call(updateData, url, action.payload);
     yield put(updateCountrySuccess());
   } catch (e) {

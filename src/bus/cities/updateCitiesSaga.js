@@ -5,14 +5,13 @@ import {
   updateCitiesSuccess,
   updateCitiesStart,
 } from "bus/cities/actions";
-import { initialUrl } from "constants/initialUrl";
 import { updateData } from "bus/common/updateData";
 import { UPDATE_CITIES_FOR_SAGA } from "bus/cities/types";
 
 export const workerUpdateCitiesSaga = function* (action) {
   try {
     yield put(updateCitiesStart());
-    const url = `${initialUrl}/cities/${action.payload.id}`;
+    const url = `cities/${action.payload.id}`;
     yield call(updateData, url, action.payload);
     yield put(updateCitiesSuccess());
   } catch (e) {

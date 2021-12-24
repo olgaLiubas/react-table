@@ -12,7 +12,7 @@ import { UPDATE_STATES_FOR_SAGA } from "bus/states/types";
 export const workerUpdateStatesSaga = function* (action) {
   try {
     yield put(updateStatesStart());
-    const url = `${initialUrl}/states/${action.payload.id}`;
+    const url = `states/${action.payload.id}`;
     yield call(updateData, url, action.payload);
     yield put(updateStatesSuccess());
   } catch (e) {
