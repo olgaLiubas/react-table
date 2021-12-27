@@ -1,21 +1,10 @@
-@media (max-width: 1200px) {
-  .footer {
-    position: sticky;
-    top: 0;
-  }
-}
-
-@media (min-width: 1200px) {
-  .footer {
-    position: fixed;
-    max-width: inherit;
-    width: inherit;
-    top: 93vh;
-  }
-}
-
 .footer {
-  height: 50px;
+  position: absolute;
+  max-width: inherit;
+  width: inherit;
+  top: 93vh;
+  min-height: 50px;
+  height: 6vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
