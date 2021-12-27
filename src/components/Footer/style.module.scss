@@ -1,14 +1,26 @@
+@media (max-width: 1200px) {
+  .footer {
+    position: sticky;
+    top: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .footer {
+    position: fixed;
+    max-width: inherit;
+    width: inherit;
+    top: 93vh;
+  }
+}
+
 .footer {
-  max-width: inherit;
-  width: inherit;
   height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   font-weight: 600;
-  position: fixed;
-  top: 93vh;
   background-color: white;
   z-index: 1;
   border: 1px solid grey;
