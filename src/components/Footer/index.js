@@ -25,7 +25,7 @@ const Footer = ({ actions, amountOfPlaces }) => {
   };
   const changeAmountHelper = (e) => {
     dispatch(setRowsAmount(Number(e.target.value)));
-
+    dispatch(setPageNumber(1));
     dispatch(actions.fetchForNextTimes());
   };
 

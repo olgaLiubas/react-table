@@ -70,10 +70,6 @@ const Dropdown = ({ columnName, fieldInArray, selectors, actions }) => {
       >
         Hide column
       </button>
-
-      <button className={styles.dropdownItem} type="button">
-        Show columns
-      </button>
     </div>
   );
 };

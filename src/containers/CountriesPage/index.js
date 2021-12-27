@@ -46,7 +46,7 @@ const CountriesPage = () => {
         )}
 
         {fetchingStatuses.success && !fetchingStatuses.loading && (
-          <>
+          <div className={styles.rowsWrapper}>
             {arrayOfData.map((item) => (
               <Row
                 key={item.id}
@@ -56,7 +56,7 @@ const CountriesPage = () => {
                 actions={actions}
               />
             ))}
-          </>
+          </div>
         )}
 
         <Footer actions={actions} amountOfPlaces={amountOfPlaces.countries} />
