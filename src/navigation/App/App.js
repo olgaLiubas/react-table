@@ -10,6 +10,7 @@ import { BOOK } from "navigation/book";
 import LoginPage from "containers/LoginPage";
 import CitiesPage from "containers/CitiesPage";
 import StatesPage from "containers/StatesPage";
+import LogoutPage from "containers/LogoutPage";
 import Navigation from "navigation/NavigationMenu";
 import { isUserLogined } from "bus/signIn/selectors";
 import CountriesPage from "containers/CountriesPage";
@@ -28,6 +29,10 @@ const App = () => {
 
         {loginedUser ? (
           <Routes>
+            <Route
+              path={BOOK.AUTH.SIGN_OUT}
+              element={<LogoutPage styles={styles} />}
+            />
             <Route
               path={BOOK.CONTENT.STATES}
               element={<StatesPage styles={styles} />}

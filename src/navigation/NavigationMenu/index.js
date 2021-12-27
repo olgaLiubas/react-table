@@ -15,6 +15,9 @@ const Navigation = () => {
         {loginedUser ? (
           <>
             <li>
+              <Link to={BOOK.AUTH.SIGN_OUT}>Log out</Link>
+            </li>
+            <li>
               <Link to={BOOK.CONTENT.COUNTRIES}>Countries</Link>
             </li>
 
