@@ -6,12 +6,12 @@ const middlewares = jsonServer.defaults({
 });
 const PORT = process.env.PORT || 4000;
 server.use(middlewares);
-server.use(
-  jsonServer.rewriter({
-    "/api/*": "/api",
-  })
-);
-server.use(router);
+// server.use(
+//   jsonServer.rewriter({
+//     "/api/*": "/api",
+//   })
+// );
+server.use("/api", router);
 // server.use("/api", router);
 // server.get("*", function (req, res) {
 //   //   res.redirect("/");
