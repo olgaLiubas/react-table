@@ -11,7 +11,8 @@ server.use(
     "/api/*": "/$1",
   })
 );
-server.use(router);
+server.use("/api", router);
+// server.use(router);
 server.listen(PORT, () => {
   console.log("Server is running");
 });
