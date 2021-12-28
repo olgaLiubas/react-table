@@ -12,10 +12,10 @@ server.use(
   })
 );
 server.use(router);
-server.get("*", function (req, res) {
-  //   res.redirect("/");
-  res.sendfile(__dirname + "/public/index.html");
+server.get("/*", (req, res) => {
+  res.sendFile(__dirname + "/build/index.html");
 });
+
 server.listen(PORT, () => {
   console.log("Server is running");
 });
