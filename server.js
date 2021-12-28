@@ -6,17 +6,16 @@ const middlewares = jsonServer.defaults({
 });
 const PORT = process.env.PORT || 4000;
 server.use(middlewares);
-// server.use(
-//   jsonServer.rewriter({
-//     "/api/*": "/api",
-//   })
-// );
-server.use("/api", router);
-// server.use("/api", router);
-// server.get("*", function (req, res) {
-//   //   res.redirect("/");
-//   res.sendfile(__dirname + "/");
-// });
+server.use(
+  jsonServer.rewriter({
+    "/api/*": "/$1",
+  })
+);
+server.use(router);
+server.get("*", function (req, res) {
+  //   res.redirect("/");
+  res.sendfile(__dirname + "/public/index.html");
+});
 server.listen(PORT, () => {
   console.log("Server is running");
 });
